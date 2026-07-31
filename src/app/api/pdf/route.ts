@@ -17,31 +17,36 @@ function isAllowedPdfUrl(rawUrl: string): URL | null {
   return parsed;
 }
 
-async function fetchUpstream(pdfUrl: URL): Promise<Response> {
+async function fetchUpstream(
+  pdfUrl: URL,
+  rangeHeader: string | null,
+): Promise<Response> {
   let lastError: unknown;
-  const maxAttempts = 5;
+  const maxAttempts = 3;
 
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
     const controller = new AbortController();
-    // Fail fast and retry — NCERT often hangs then 502s.
-    const timeout = setTimeout(() => controller.abort(), 12_000);
+    const timeout = setTimeout(() => controller.abort(), 10_000);
     try {
+      const headers: Record<string, string> = {
+        "User-Agent":
+          "Mozilla/5.0 (compatible; ncrt-books-pdf-proxy/0.1; +https://github.com/SINGH202/ncert-books)",
+        Accept: "application/pdf,*/*",
+        Referer: "https://ncert.nic.in/textbook.php",
+      };
+      if (rangeHeader) headers.Range = rangeHeader;
+
       const upstream = await fetch(pdfUrl.toString(), {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (compatible; ncrt-books-pdf-proxy/0.1; +https://github.com/SINGH202/ncrt-books)",
-          Accept: "application/pdf,*/*",
-          Referer: "https://ncert.nic.in/textbook.php",
-        },
+        headers,
         redirect: "follow",
-        cache: "no-store",
+        // Cache successful upstream PDFs at the platform edge for a day.
+        next: { revalidate: 86400 },
         signal: controller.signal,
       });
 
       if (upstream.status === 404) return upstream;
-      if (upstream.ok) return upstream;
+      if (upstream.ok || upstream.status === 206) return upstream;
 
-      // Retry on transient upstream failures (502/503/504/408).
       if (![408, 429, 500, 502, 503, 504].includes(upstream.status)) {
         return upstream;
       }
@@ -53,7 +58,7 @@ async function fetchUpstream(pdfUrl: URL): Promise<Response> {
       clearTimeout(timeout);
     }
 
-    const delay = Math.min(2500, 350 * 2 ** attempt);
+    const delay = Math.min(1200, 250 * 2 ** attempt);
     await new Promise((resolve) => setTimeout(resolve, delay));
   }
 
@@ -77,9 +82,10 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const upstream = await fetchUpstream(pdfUrl);
+    const rangeHeader = request.headers.get("range");
+    const upstream = await fetchUpstream(pdfUrl, rangeHeader);
 
-    if (!upstream.ok) {
+    if (!upstream.ok && upstream.status !== 206) {
       return NextResponse.json(
         { error: `Upstream returned ${upstream.status}` },
         { status: upstream.status === 404 ? 404 : 502 },
@@ -87,20 +93,34 @@ export async function GET(request: NextRequest) {
     }
 
     const contentType = upstream.headers.get("content-type") ?? "application/pdf";
-    if (!contentType.includes("pdf") && !contentType.includes("octet-stream")) {
+    if (
+      !contentType.includes("pdf") &&
+      !contentType.includes("octet-stream") &&
+      !contentType.includes("application/octet-stream")
+    ) {
       return NextResponse.json(
         { error: "Upstream response was not a PDF" },
         { status: 502 },
       );
     }
 
+    const headers = new Headers();
+    headers.set("Content-Type", "application/pdf");
+    headers.set(
+      "Cache-Control",
+      "public, max-age=86400, stale-while-revalidate=604800",
+    );
+    headers.set("X-Content-Type-Options", "nosniff");
+    headers.set("Accept-Ranges", "bytes");
+
+    const contentLength = upstream.headers.get("content-length");
+    if (contentLength) headers.set("Content-Length", contentLength);
+    const contentRange = upstream.headers.get("content-range");
+    if (contentRange) headers.set("Content-Range", contentRange);
+
     return new NextResponse(upstream.body, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/pdf",
-        "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
-        "X-Content-Type-Options": "nosniff",
-      },
+      status: upstream.status,
+      headers,
     });
   } catch {
     return NextResponse.json({ error: "Failed to fetch PDF" }, { status: 502 });

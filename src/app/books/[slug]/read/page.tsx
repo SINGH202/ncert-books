@@ -39,7 +39,7 @@ export default async function ReadPage({ params }: ReadPageProps) {
         </div>
 
         <div className="flex-1 sm:rounded-xl sm:border sm:border-line sm:bg-surface sm:p-4">
-          <PdfReader book={book} />
+          <PdfReader key={book.id} book={book} />
         </div>
 
         <NcertAttribution

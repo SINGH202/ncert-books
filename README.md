@@ -1,10 +1,20 @@
 # NCERT Books
 
-Browse and preview English-medium NCERT textbooks for Classes 9–12 in one place.
+Browse and preview English-medium NCERT textbooks for Classes 9–12 in one place — without hosting the PDFs yourself.
 
 **Live:** [https://ncert-books.vercel.app/](https://ncert-books.vercel.app/)
 
-PDFs are loaded from the official [NCERT textbook portal](https://ncert.nic.in/textbook.php). This project does not host textbook files.
+PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textbook.php). This project only links and streams those files through an allowlisted proxy.
+
+## Features
+
+- Browse by class and subject from a synced NCERT catalog
+- In-app PDF.js reader with continuous page navigation across chapters
+- Fullscreen reading with a side control rail (chapter jump, page jump, search)
+- Find in book with match count, next/prev, and highlights
+- Offline-friendly IndexedDB + HTTP cache for PDF bytes (opens at page 1 every time)
+- Streams the first chapter ASAP; remaining chapters load in the background
+- Zoom, fit page/width, pinch/trackpad zoom, and pan
 
 ## Stack
 
@@ -37,5 +47,5 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Notes
 
 - Catalog covers Classes 9–12 English-medium books only (v1).
-- The reader proxies official PDF URLs through `/api/pdf` (allowlisted to `ncert.nic.in`) because browsers cannot fetch those PDFs directly (CORS).
-- Textbook content remains copyrighted by NCERT.
+- `/api/pdf` proxies allowlisted `ncert.nic.in` textbook URLs (required for CORS).
+- Textbook content remains copyrighted by NCERT; always prefer the official portal as the source of truth.

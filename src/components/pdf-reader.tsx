@@ -4,11 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { PdfSearchBar } from "@/components/pdf-search-bar";
 import { Typography } from "@/components/typography";
 import { controlButtonClassName } from "@/lib/control-button-class";
-import {
-  fetchAndCachePdf,
-  getReaderProgress,
-  putReaderProgress,
-} from "@/lib/pdf-cache";
+import { openPdfDocument } from "@/lib/pdf-cache";
 import { computeFitScale, paintPageToCanvas } from "@/lib/pdf-render";
 import {
   findMatchesOnPage,
@@ -43,6 +39,21 @@ function sumAvailablePages(
     (sum, meta) => sum + (meta.available === true ? meta.pageCount : 0),
     0,
   );
+}
+
+async function waitForCanvas(
+  getCanvas: () => HTMLCanvasElement | null,
+  isStale: () => boolean,
+): Promise<HTMLCanvasElement | null> {
+  for (let attempt = 0; attempt < 45; attempt += 1) {
+    if (isStale()) return null;
+    const canvas = getCanvas();
+    if (canvas?.isConnected) return canvas;
+    await new Promise<void>((resolve) => {
+      window.requestAnimationFrame(() => resolve());
+    });
+  }
+  return getCanvas();
 }
 
 function clampZoom(value: number): number {
@@ -81,6 +92,31 @@ function resolveLocation(
   return null;
 }
 
+function toGlobalPage(
+  metas: Array<{ available: boolean | null; pageCount: number }>,
+  metaIndex: number,
+  pageInChapter: number,
+): number {
+  let total = 0;
+  for (let i = 0; i < metaIndex; i += 1) {
+    if (metas[i]?.available === true) total += metas[i].pageCount;
+  }
+  return total + pageInChapter;
+}
+
+function clearCanvas(canvas: HTMLCanvasElement | null) {
+  if (!canvas) return;
+  const context = canvas.getContext("2d");
+  if (context) {
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  canvas.width = 0;
+  canvas.height = 0;
+  canvas.style.width = "0px";
+  canvas.style.height = "0px";
+}
+
 function preferredLoadOrder(chapters: Chapter[]): number[] {
   return chapters
     .map((_, index) => index)
@@ -96,7 +132,6 @@ export function PdfReader({ book }: PdfReaderProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const pdfDocsRef = useRef<Map<number, PdfDocument>>(new Map());
-  const pdfDataRef = useRef<Map<number, ArrayBuffer>>(new Map());
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const pdfjsRef = useRef<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -106,7 +141,11 @@ export function PdfReader({ book }: PdfReaderProps) {
     new Map(),
   );
   const metasRef = useRef<ChapterMeta[]>([]);
-  const restoredRef = useRef(false);
+  const viewAnchorRef = useRef<{
+    metaIndex: number;
+    pageInChapter: number;
+  } | null>(null);
+  const globalPageRef = useRef(1);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const lastViewportRef = useRef<any>(null);
   const searchAbortRef = useRef<AbortController | null>(null);
@@ -157,6 +196,46 @@ export function PdfReader({ book }: PdfReaderProps) {
     metasRef.current = metas;
   }, [metas]);
 
+  useEffect(() => {
+    globalPageRef.current = globalPage;
+  }, [globalPage]);
+
+  function goToGlobalPage(page: number) {
+    const max = sumAvailablePages(metasRef.current);
+    const next = Math.min(Math.max(1, page), Math.max(1, max || 1));
+    const loc = resolveLocation(metasRef.current, next);
+    if (loc) viewAnchorRef.current = loc;
+    globalPageRef.current = next;
+    setGlobalPage(next);
+  }
+
+  function goToChapterPage(metaIndex: number, pageInChapter: number) {
+    const meta = metasRef.current[metaIndex];
+    if (meta?.available !== true || meta.pageCount <= 0) return;
+    const safePage = Math.min(Math.max(1, pageInChapter), meta.pageCount);
+    viewAnchorRef.current = { metaIndex, pageInChapter: safePage };
+    const next = toGlobalPage(metasRef.current, metaIndex, safePage);
+    globalPageRef.current = next;
+    setGlobalPage(next);
+  }
+
+  function syncGlobalPageToAnchor(nextMetas: ChapterMeta[]) {
+    const anchor = viewAnchorRef.current;
+    if (!anchor) return;
+    const meta = nextMetas[anchor.metaIndex];
+    if (meta?.available !== true || meta.pageCount <= 0) return;
+    const safePage = Math.min(anchor.pageInChapter, meta.pageCount);
+    viewAnchorRef.current = {
+      metaIndex: anchor.metaIndex,
+      pageInChapter: safePage,
+    };
+    const next = toGlobalPage(nextMetas, anchor.metaIndex, safePage);
+    if (next !== globalPageRef.current) {
+      globalPageRef.current = next;
+      setGlobalPage(next);
+    }
+  }
+
   const totalPages = useMemo(() => sumAvailablePages(metas), [metas]);
 
   const location = useMemo(
@@ -189,20 +268,16 @@ export function PdfReader({ book }: PdfReaderProps) {
     const loadPromise = (async () => {
       const pdfjs = pdfjsRef.current;
       const meta = metasRef.current[metaIndex];
-      if (!pdfjs || meta?.available !== true) return null;
-
-      let data = pdfDataRef.current.get(metaIndex);
-      if (!data || data.byteLength < 100) {
-        data = await fetchAndCachePdf(meta.chapter.pdfUrl, book.id);
-        pdfDataRef.current.set(metaIndex, data);
-      }
+      if (!pdfjs || meta?.available === false) return null;
 
       const again = pdfDocsRef.current.get(metaIndex);
       if (again) return again;
 
-      const pdf = await pdfjs.getDocument({
-        data: new Uint8Array(data.slice(0)),
-      }).promise;
+      const pdf = await openPdfDocument(
+        pdfjs,
+        meta.chapter.pdfUrl,
+        book.id,
+      );
 
       const raced = pdfDocsRef.current.get(metaIndex);
       if (raced) {
@@ -211,6 +286,19 @@ export function PdfReader({ book }: PdfReaderProps) {
       }
 
       pdfDocsRef.current.set(metaIndex, pdf);
+      if (meta.available !== true) {
+        // Lazily discovered while navigating.
+        setMetas((prev) => {
+          const next = prev.map((item, i) =>
+            i === metaIndex
+              ? { ...item, available: true, pageCount: pdf.numPages }
+              : item,
+          );
+          metasRef.current = next;
+          syncGlobalPageToAnchor(next);
+          return next;
+        });
+      }
       return pdf;
     })().finally(() => {
       chapterLoadRef.current.delete(metaIndex);
@@ -424,7 +512,7 @@ export function PdfReader({ book }: PdfReaderProps) {
       }
       if (event.key === "ArrowLeft" || event.key === "PageUp") {
         event.preventDefault();
-        setGlobalPage((page) => Math.max(1, page - 1));
+        goToGlobalPage(globalPageRef.current - 1);
         return;
       }
       if (
@@ -433,7 +521,7 @@ export function PdfReader({ book }: PdfReaderProps) {
         event.key === " "
       ) {
         event.preventDefault();
-        setGlobalPage((page) => Math.min(totalPages || page, page + 1));
+        goToGlobalPage(globalPageRef.current + 1);
       }
     };
 
@@ -446,7 +534,6 @@ export function PdfReader({ book }: PdfReaderProps) {
 
   useEffect(() => {
     let cancelled = false;
-    restoredRef.current = false;
 
     function markChapter(index: number, patch: Partial<ChapterMeta>) {
       setMetas((prev) => {
@@ -454,19 +541,10 @@ export function PdfReader({ book }: PdfReaderProps) {
           i === index ? { ...meta, ...patch } : meta,
         );
         metasRef.current = next;
+        // Keep the same chapter/page on screen when earlier chapters finish loading.
+        syncGlobalPageToAnchor(next);
         return next;
       });
-    }
-
-    async function loadChapterData(index: number): Promise<ArrayBuffer> {
-      const existing = pdfDataRef.current.get(index);
-      if (existing && existing.byteLength > 100) return existing;
-      const data = await fetchAndCachePdf(
-        book.chapters[index].pdfUrl,
-        book.id,
-      );
-      pdfDataRef.current.set(index, data);
-      return data;
     }
 
     async function openChapter(
@@ -476,24 +554,32 @@ export function PdfReader({ book }: PdfReaderProps) {
       keepDoc: boolean,
     ): Promise<ChapterMeta> {
       const chapter = book.chapters[index];
-      const data = await loadChapterData(index);
-      const pdf = await pdfjs.getDocument({
-        data: new Uint8Array(data.slice(0)),
-      }).promise;
+      const existing = pdfDocsRef.current.get(index);
+      if (existing) {
+        return {
+          chapter,
+          pageCount: existing.numPages as number,
+          available: true,
+        };
+      }
+
+      const pdf = await openPdfDocument(pdfjs, chapter.pdfUrl, book.id);
       if (cancelled) {
         await pdf.destroy();
         throw new Error("cancelled");
       }
+
       if (keepDoc) {
         const previous = pdfDocsRef.current.get(index);
         if (previous && previous !== pdf) void previous.destroy?.();
         pdfDocsRef.current.set(index, pdf);
       } else {
-        const pageCount = pdf.numPages;
+        const pageCount = pdf.numPages as number;
+        // Keep bytes warm via openPdfDocument's cache write; drop the doc to save memory.
         await pdf.destroy();
         return { chapter, pageCount, available: true };
       }
-      return { chapter, pageCount: pdf.numPages, available: true };
+      return { chapter, pageCount: pdf.numPages as number, available: true };
     }
 
     async function tryOpenChapter(
@@ -502,28 +588,52 @@ export function PdfReader({ book }: PdfReaderProps) {
       index: number,
       keepDoc: boolean,
     ): Promise<ChapterMeta | null> {
-      for (let attempt = 0; attempt < 3; attempt += 1) {
+      for (let attempt = 0; attempt < 2; attempt += 1) {
         if (cancelled) return null;
         try {
           return await openChapter(pdfjs, index, keepDoc);
         } catch {
           await new Promise((resolve) =>
-            setTimeout(resolve, 500 * (attempt + 1)),
+            setTimeout(resolve, 280 * (attempt + 1)),
           );
         }
       }
       return null;
     }
 
+    function revealChapter(index: number, meta: ChapterMeta) {
+      markChapter(index, meta);
+      viewAnchorRef.current = { metaIndex: index, pageInChapter: 1 };
+      globalPageRef.current = toGlobalPage(metasRef.current, index, 1);
+      setGlobalPage(globalPageRef.current);
+      setReady(true);
+    }
+
     async function bootstrap() {
       setReady(false);
       setError(null);
+      viewAnchorRef.current = null;
+      globalPageRef.current = 1;
       setGlobalPage(1);
+      setZoomFactor(1);
+      setCommittedZoom(1);
+      zoomFactorRef.current = 1;
+      setFitMode("width");
+      setHighlightRects([]);
+      renderGenerationRef.current += 1;
+      try {
+        renderTaskRef.current?.cancel?.();
+      } catch {
+        // ignore
+      }
+      renderTaskRef.current = null;
+      clearCanvas(canvasRef.current);
+
       pdfDocsRef.current.forEach((pdf) => {
         void pdf.destroy?.();
       });
       pdfDocsRef.current.clear();
-      pdfDataRef.current.clear();
+      chapterLoadRef.current.clear();
 
       const initial = book.chapters.map((chapter) => ({
         chapter,
@@ -545,30 +655,53 @@ export function PdfReader({ book }: PdfReaderProps) {
         }
         pdfjsRef.current = pdfjs;
 
-        const saved = await getReaderProgress(book.id);
-        if (!cancelled && saved) {
-          setZoomFactor(clampZoom(saved.zoomFactor || 1));
-          setFitMode(saved.fitMode === "page" ? "page" : "width");
-        }
-
         const order = preferredLoadOrder(book.chapters);
         let firstReadyIndex = -1;
 
-        // Pass 1 + one automatic full retry if NCERT is flaky.
-        for (let pass = 0; pass < 2 && firstReadyIndex === -1; pass += 1) {
-          for (const index of order) {
+        // Race the first few chapters so one slow/404 file does not block paint.
+        const raceCount = Math.min(3, order.length);
+        const raceIndexes = order.slice(0, raceCount);
+
+        try {
+          const winner = await Promise.any(
+            raceIndexes.map(async (index) => {
+              const meta = await tryOpenChapter(pdfjs, index, true);
+              if (!meta) throw new Error("unavailable");
+              return { index, meta };
+            }),
+          );
+          if (cancelled) return;
+          firstReadyIndex = winner.index;
+          revealChapter(winner.index, winner.meta);
+        } catch {
+          // All raced chapters failed — fall through to sequential remainder.
+        }
+
+        // Mark raced failures (successes already kept in pdfDocsRef).
+        for (const index of raceIndexes) {
+          if (cancelled) return;
+          if (index === firstReadyIndex) continue;
+          if (pdfDocsRef.current.has(index)) {
+            const doc = pdfDocsRef.current.get(index);
+            markChapter(index, {
+              available: true,
+              pageCount: doc.numPages as number,
+            });
+            continue;
+          }
+          // If still in-flight from Promise.any losers, let background handle it.
+        }
+
+        if (firstReadyIndex === -1) {
+          for (const index of order.slice(raceCount)) {
             if (cancelled) return;
             const meta = await tryOpenChapter(pdfjs, index, true);
             if (meta) {
-              markChapter(index, meta);
               firstReadyIndex = index;
-              setReady(true);
+              revealChapter(index, meta);
               break;
             }
             markChapter(index, { available: false, pageCount: 0 });
-          }
-          if (firstReadyIndex === -1 && pass === 0) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
           }
         }
 
@@ -579,39 +712,55 @@ export function PdfReader({ book }: PdfReaderProps) {
           return;
         }
 
-        const remaining = order.filter((index) => index !== firstReadyIndex);
-        const concurrency = 2;
-        let cursor = 0;
+        // Prefetch the next chapter immediately; load the rest in the background
+        // without blocking the reader.
+        const remaining = order.filter((index) => {
+          const meta = metasRef.current[index];
+          return index !== firstReadyIndex && meta?.available !== true;
+        });
 
-        async function worker() {
-          while (cursor < remaining.length) {
-            if (cancelled) return;
-            const index = remaining[cursor];
-            cursor += 1;
-            const meta = await tryOpenChapter(pdfjs, index, false);
-            if (cancelled) return;
-            if (meta) {
-              markChapter(index, meta);
-            } else {
-              markChapter(index, { available: false, pageCount: 0 });
+        void (async () => {
+          const prefetch = remaining[0];
+          if (prefetch != null) {
+            const meta = await tryOpenChapter(pdfjs, prefetch, true);
+            if (!cancelled && meta) markChapter(prefetch, meta);
+            else if (!cancelled && prefetch != null) {
+              markChapter(prefetch, { available: false, pageCount: 0 });
             }
           }
-        }
 
-        await Promise.all(
-          Array.from(
-            { length: Math.min(concurrency, remaining.length) },
-            () => worker(),
-          ),
-        );
+          const rest = remaining.slice(1);
+          const concurrency = 3;
+          let cursor = 0;
 
-        if (!cancelled && saved?.globalPage && !restoredRef.current) {
-          restoredRef.current = true;
-          const maxPage = sumAvailablePages(metasRef.current);
-          setGlobalPage(
-            Math.min(Math.max(1, saved.globalPage), maxPage || 1),
+          async function worker() {
+            while (cursor < rest.length) {
+              if (cancelled) return;
+              const index = rest[cursor];
+              cursor += 1;
+              if (metasRef.current[index]?.available === true) continue;
+              const meta = await tryOpenChapter(pdfjs, index, false);
+              if (cancelled) return;
+              if (meta) markChapter(index, meta);
+              else markChapter(index, { available: false, pageCount: 0 });
+            }
+          }
+
+          await Promise.all(
+            Array.from(
+              { length: Math.min(concurrency, rest.length) },
+              () => worker(),
+            ),
           );
-        }
+
+          if (cancelled) return;
+          const startIndex = metasRef.current.findIndex(
+            (meta) => meta.available === true && meta.pageCount > 0,
+          );
+          if (startIndex >= 0 && startIndex < firstReadyIndex) {
+            goToChapterPage(startIndex, 1);
+          }
+        })();
       } catch {
         if (!cancelled) {
           setError("Something went wrong. Please try again.");
@@ -633,126 +782,88 @@ export function PdfReader({ book }: PdfReaderProps) {
   }, [book, retryToken]);
 
   useEffect(() => {
-    if (!ready || totalPages === 0) return;
-    const handle = window.setTimeout(() => {
-      void putReaderProgress({
-        bookId: book.id,
-        globalPage,
-        zoomFactor,
-        fitMode,
-        updatedAt: Date.now(),
-      });
-    }, 300);
-    return () => window.clearTimeout(handle);
-  }, [book.id, ready, totalPages, globalPage, zoomFactor, fitMode]);
-
-  useEffect(() => {
     if (!location || !ready || stageWidth <= 0) return;
-    if (fitMode === "page" && stageHeight < 40) return;
 
     const activeLocation = location;
     const generation = ++renderGenerationRef.current;
     let cancelled = false;
+    const isStale = () =>
+      cancelled || generation !== renderGenerationRef.current;
+
+    async function paintCurrentPage(page: {
+      getViewport: (args: { scale: number }) => { width: number; height: number };
+      render: (args: {
+        canvasContext: CanvasRenderingContext2D;
+        viewport: { width: number; height: number };
+        canvas: HTMLCanvasElement;
+      }) => { promise: Promise<void>; cancel?: () => void };
+    }) {
+      const canvas = await waitForCanvas(() => canvasRef.current, isStale);
+      if (!canvas || isStale()) return false;
+
+      // Prefer measured height; fall back to width-fit when layout is still settling.
+      const effectiveFitMode: FitMode =
+        fitMode === "page" && stageHeight < 40 ? "width" : fitMode;
+      const baseViewport = page.getViewport({ scale: 1 });
+      const scale =
+        computeFitScale({
+          pageWidth: baseViewport.width,
+          pageHeight: baseViewport.height,
+          stageWidth,
+          stageHeight,
+          pad: isFullscreen ? 24 : 16,
+          fitMode: effectiveFitMode,
+        }) * committedZoom;
+
+      const { viewport, task } = await paintPageToCanvas({
+        page,
+        canvas,
+        scale,
+        cancelPrevious: renderTaskRef.current,
+      });
+      if (isStale()) return false;
+      renderTaskRef.current = task;
+      lastViewportRef.current = viewport;
+      return true;
+    }
 
     async function renderPage() {
       setRendering(true);
       try {
         const pdf = await loadChapterDoc(activeLocation.metaIndex);
-        if (
-          !pdf ||
-          cancelled ||
-          generation !== renderGenerationRef.current
-        ) {
-          return;
-        }
+        if (!pdf || isStale()) return;
 
         if (activeLocation.metaIndex + 1 < metasRef.current.length) {
           void loadChapterDoc(activeLocation.metaIndex + 1);
         }
 
         const page = await pdf.getPage(activeLocation.pageInChapter);
-        if (cancelled || generation !== renderGenerationRef.current) return;
+        if (isStale()) return;
 
-        const canvas = canvasRef.current;
-        if (!canvas || cancelled || generation !== renderGenerationRef.current) {
-          return;
-        }
-
-        const baseViewport = page.getViewport({ scale: 1 });
-        const scale =
-          computeFitScale({
-            pageWidth: baseViewport.width,
-            pageHeight: baseViewport.height,
-            stageWidth,
-            stageHeight,
-            pad: isFullscreen ? 24 : 16,
-            fitMode,
-          }) * committedZoom;
-
-        const { viewport, task } = await paintPageToCanvas({
-          page,
-          canvas,
-          scale,
-          cancelPrevious: renderTaskRef.current,
-        });
-        renderTaskRef.current = task;
-
-        if (!cancelled && generation === renderGenerationRef.current) {
-          lastViewportRef.current = viewport;
+        const painted = await paintCurrentPage(page);
+        if (painted && !isStale()) {
           setError(null);
+        } else if (!isStale() && !canvasRef.current) {
+          setError("Something went wrong. Please try again.");
         }
       } catch (error) {
-        if (
-          cancelled ||
-          generation !== renderGenerationRef.current ||
-          isBenignRenderError(error)
-        ) {
-          return;
-        }
+        if (isStale() || isBenignRenderError(error)) return;
         // Quiet automatic retry once before surfacing an error.
         try {
           await new Promise((resolve) => setTimeout(resolve, 600));
-          if (cancelled || generation !== renderGenerationRef.current) return;
+          if (isStale()) return;
           const pdf = await loadChapterDoc(activeLocation.metaIndex);
-          if (!pdf || cancelled || generation !== renderGenerationRef.current) {
-            return;
-          }
+          if (!pdf || isStale()) return;
           const page = await pdf.getPage(activeLocation.pageInChapter);
-          if (cancelled || generation !== renderGenerationRef.current) return;
-          const canvas = canvasRef.current;
-          if (!canvas) {
-            setError("Something went wrong. Please try again.");
-            return;
-          }
-          const baseViewport = page.getViewport({ scale: 1 });
-          const scale =
-            computeFitScale({
-              pageWidth: baseViewport.width,
-              pageHeight: baseViewport.height,
-              stageWidth,
-              stageHeight,
-              pad: isFullscreen ? 24 : 16,
-              fitMode,
-            }) * committedZoom;
-          const { viewport, task } = await paintPageToCanvas({
-            page,
-            canvas,
-            scale,
-            cancelPrevious: renderTaskRef.current,
-          });
-          renderTaskRef.current = task;
-          if (!cancelled && generation === renderGenerationRef.current) {
-            lastViewportRef.current = viewport;
+          if (isStale()) return;
+          const painted = await paintCurrentPage(page);
+          if (painted && !isStale()) {
             setError(null);
+          } else if (!isStale()) {
+            setError("Something went wrong. Please try again.");
           }
         } catch (retryError) {
-          if (
-            cancelled ||
-            generation !== renderGenerationRef.current ||
-            isBenignRenderError(retryError)
-          ) {
-            return;
-          }
+          if (isStale() || isBenignRenderError(retryError)) return;
           setError("Something went wrong. Please try again.");
         }
       } finally {
@@ -774,6 +885,7 @@ export function PdfReader({ book }: PdfReaderProps) {
     };
   }, [
     locationKey,
+    location,
     committedZoom,
     stageWidth,
     stageHeight,
@@ -858,7 +970,7 @@ export function PdfReader({ book }: PdfReaderProps) {
         setActiveMatchIndex(0);
         setSearching(false);
         if (results[0]) {
-          setGlobalPage(results[0].globalPage);
+          goToGlobalPage(results[0].globalPage);
         }
       } catch (error) {
         if (controller.signal.aborted) return;
@@ -916,7 +1028,7 @@ export function PdfReader({ book }: PdfReaderProps) {
       ((index % searchMatches.length) + searchMatches.length) %
       searchMatches.length;
     setActiveMatchIndex(next);
-    setGlobalPage(searchMatches[next].globalPage);
+    goToGlobalPage(searchMatches[next].globalPage);
   }
 
   function applyZoom(next: number) {
@@ -943,23 +1055,14 @@ export function PdfReader({ book }: PdfReaderProps) {
     applyZoom(1);
   }
 
-  function globalPageForChapter(metaIndex: number): number {
-    let page = 1;
-    for (let i = 0; i < metaIndex; i += 1) {
-      if (metas[i]?.available === true) page += metas[i].pageCount;
-    }
-    return page;
-  }
-
   function jumpToChapter(metaIndex: number) {
-    if (metas[metaIndex]?.available !== true) return;
-    setGlobalPage(globalPageForChapter(metaIndex));
+    goToChapterPage(metaIndex, 1);
   }
 
   function jumpToPage(raw: string) {
     const parsed = Number.parseInt(raw, 10);
     if (!Number.isFinite(parsed) || totalPages === 0) return;
-    setGlobalPage(Math.min(totalPages, Math.max(1, parsed)));
+    goToGlobalPage(parsed);
   }
 
   useEffect(() => {
@@ -988,7 +1091,7 @@ export function PdfReader({ book }: PdfReaderProps) {
           className={controlButtonClassName("justify-self-start")}
           disabled={globalPage <= 1 || !ready}
           aria-label="Previous page"
-          onClick={() => setGlobalPage((page) => Math.max(1, page - 1))}
+          onClick={() => goToGlobalPage(globalPage - 1)}
         >
           <Typography variant="button">Prev</Typography>
         </button>
@@ -1003,9 +1106,7 @@ export function PdfReader({ book }: PdfReaderProps) {
           className={controlButtonClassName("justify-self-end")}
           disabled={!ready || totalPages === 0 || globalPage >= totalPages}
           aria-label="Next page"
-          onClick={() =>
-            setGlobalPage((page) => Math.min(totalPages, page + 1))
-          }
+          onClick={() => goToGlobalPage(globalPage + 1)}
         >
           <Typography variant="button">Next</Typography>
         </button>
@@ -1047,7 +1148,7 @@ export function PdfReader({ book }: PdfReaderProps) {
           type="button"
           className={controlButtonClassName()}
           disabled={globalPage <= 1 || !ready}
-          onClick={() => setGlobalPage((page) => Math.max(1, page - 1))}
+          onClick={() => goToGlobalPage(globalPage - 1)}
         >
           <Typography variant="button">Previous</Typography>
         </button>
@@ -1055,9 +1156,7 @@ export function PdfReader({ book }: PdfReaderProps) {
           type="button"
           className={controlButtonClassName()}
           disabled={!ready || totalPages === 0 || globalPage >= totalPages}
-          onClick={() =>
-            setGlobalPage((page) => Math.min(totalPages, page + 1))
-          }
+          onClick={() => goToGlobalPage(globalPage + 1)}
         >
           <Typography variant="button">Next</Typography>
         </button>
@@ -1113,43 +1212,46 @@ export function PdfReader({ book }: PdfReaderProps) {
             Loading…
           </Typography>
         </div>
-      ) : (
-        <div
-          className={
-            isFullscreen
+      ) : null}
+      {/* Keep canvas mounted so the first ready render does not miss the ref. */}
+      <div
+        className={
+          ready
+            ? isFullscreen
               ? "flex min-h-full w-full items-center justify-center p-3"
               : "relative flex w-full items-start justify-center p-3 sm:p-4"
-          }
-        >
-          {rendering ? (
-            <Typography
-              variant="small"
-              className="absolute right-3 top-3 z-[1] rounded-md bg-background/90 px-2 py-1"
-            >
-              Loading…
-            </Typography>
-          ) : null}
-          <div className="relative inline-block shadow-lg">
-            <canvas ref={canvasRef} className="block" />
-            {highlightRects.map((rect, index) => (
-              <div
-                key={`${rect.left}-${rect.top}-${index}`}
-                aria-hidden
-                className="pointer-events-none absolute"
-                style={{
-                  left: rect.left,
-                  top: rect.top,
-                  width: rect.width,
-                  height: Math.max(rect.height, 2),
-                  backgroundColor: rect.active
-                    ? "rgba(255, 140, 0, 0.45)"
-                    : "rgba(255, 214, 10, 0.35)",
-                }}
-              />
-            ))}
-          </div>
+            : "pointer-events-none invisible absolute h-0 w-0 overflow-hidden"
+        }
+        aria-hidden={!ready}
+      >
+        {ready && rendering ? (
+          <Typography
+            variant="small"
+            className="absolute right-3 top-3 z-[1] rounded-md bg-background/90 px-2 py-1"
+          >
+            Loading…
+          </Typography>
+        ) : null}
+        <div className="relative inline-block shadow-lg">
+          <canvas ref={canvasRef} className="block" />
+          {highlightRects.map((rect, index) => (
+            <div
+              key={`${rect.left}-${rect.top}-${index}`}
+              aria-hidden
+              className="pointer-events-none absolute"
+              style={{
+                left: rect.left,
+                top: rect.top,
+                width: rect.width,
+                height: Math.max(rect.height, 2),
+                backgroundColor: rect.active
+                  ? "rgba(255, 140, 0, 0.45)"
+                  : "rgba(255, 214, 10, 0.35)",
+              }}
+            />
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 
@@ -1310,7 +1412,7 @@ export function PdfReader({ book }: PdfReaderProps) {
               type="button"
               className={controlButtonClassName()}
               disabled={globalPage <= 1 || !ready}
-              onClick={() => setGlobalPage((page) => Math.max(1, page - 1))}
+              onClick={() => goToGlobalPage(globalPage - 1)}
             >
               <Typography variant="button">Previous</Typography>
             </button>
@@ -1318,9 +1420,7 @@ export function PdfReader({ book }: PdfReaderProps) {
               type="button"
               className={controlButtonClassName()}
               disabled={!ready || totalPages === 0 || globalPage >= totalPages}
-              onClick={() =>
-                setGlobalPage((page) => Math.min(totalPages, page + 1))
-              }
+              onClick={() => goToGlobalPage(globalPage + 1)}
             >
               <Typography variant="button">Next</Typography>
             </button>
