@@ -1,0 +1,5776 @@
+{
+  "syncedAt": "2026-07-31T10:38:12.687Z",
+  "language": "en",
+  "books": [
+    {
+      "id": "class-9-iemr1",
+      "class": 9,
+      "subject": "Arts",
+      "title": "Madhurima",
+      "ncertBookCode": "iemr1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iemr1=0-17",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr114.pdf"
+        },
+        {
+          "index": 16,
+          "title": "Chapter 15",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr115.pdf"
+        },
+        {
+          "index": 17,
+          "title": "Chapter 16",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr116.pdf"
+        },
+        {
+          "index": 18,
+          "title": "Chapter 17",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemr117.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iebe1",
+      "class": 9,
+      "subject": "English",
+      "title": "Kaveri",
+      "ncertBookCode": "iebe1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iebe1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iebe108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iemh1",
+      "class": 9,
+      "subject": "Mathematics",
+      "title": "Ganita Manjari",
+      "ncertBookCode": "iemh1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iemh1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iehp1",
+      "class": 9,
+      "subject": "Physical Education and Well Being",
+      "title": "Khel Praveen",
+      "ncertBookCode": "iehp1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iehp1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iehp106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iesc1",
+      "class": 9,
+      "subject": "Science",
+      "title": "Exploration",
+      "ncertBookCode": "iesc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iesc1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iesc113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iekv1",
+      "class": 9,
+      "subject": "Skill Education",
+      "title": "Kaushal Vikas",
+      "ncertBookCode": "iekv1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iekv1=0-12",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iekv112.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iest1",
+      "class": 9,
+      "subject": "Social Science",
+      "title": "Understanding Society India and Beyond PART-I",
+      "ncertBookCode": "iest1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iest1=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iest109.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ievw1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Animal Health Workers (Agriculture)",
+      "ncertBookCode": "ievw1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ievw1=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievw1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievw101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievw102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievw103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievw104.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ievt1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Assistant Beauty Therapist",
+      "ncertBookCode": "ievt1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ievt1=0-3",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievt1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievt101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievt102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievt103.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ievc1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Cashier",
+      "ncertBookCode": "ievc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ievc1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievc105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iees1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Employability Skill",
+      "ncertBookCode": "iees1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iees1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iees1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iees101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iees102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iees103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iees104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iees105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ievh1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Hand Embroiderer",
+      "ncertBookCode": "ievh1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ievh1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievh1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievh101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievh102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievh103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievh104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievh105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ieve1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Hand Embroiderer (Addawala)",
+      "ncertBookCode": "ieve1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ieve1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieve1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieve101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieve102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieve103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieve104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieve105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ieeo1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "IT Domestic Data Entry Operator",
+      "ncertBookCode": "ieeo1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ieeo1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieeo1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieeo101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieeo102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieeo103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieeo104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieeo105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-iepg1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Plumber General",
+      "ncertBookCode": "iepg1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?iepg1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iepg1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iepg101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iepg102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iepg103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iepg104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/iepg105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ievs1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Solanceous Crop Cultivator",
+      "ncertBookCode": "ievs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ievs1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievs104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ievs105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-9-ieva1",
+      "class": 9,
+      "subject": "Vocational",
+      "title": "Store Operations Assistant",
+      "ncertBookCode": "ieva1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?ieva1=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieva1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieva101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieva102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieva103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/ieva104.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jeff1",
+      "class": 10,
+      "subject": "English",
+      "title": "First Flight",
+      "ncertBookCode": "jeff1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jeff1=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jeff109.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jefp1",
+      "class": 10,
+      "subject": "English",
+      "title": "Foot Prints Without feet Supp. Reader",
+      "ncertBookCode": "jefp1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jefp1=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jefp109.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jewe2",
+      "class": 10,
+      "subject": "English",
+      "title": "Words and Expressions  2",
+      "ncertBookCode": "jewe2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jewe2=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe207.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe208.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jewe209.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jehp1",
+      "class": 10,
+      "subject": "Health and Physical Education",
+      "title": "Health and Physical Education",
+      "ncertBookCode": "jehp1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jehp1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jehp113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jemh1",
+      "class": 10,
+      "subject": "Mathematics",
+      "title": "Mathematics",
+      "ncertBookCode": "jemh1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jemh1=0-14",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh114.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jesc1",
+      "class": 10,
+      "subject": "Science",
+      "title": "Science",
+      "ncertBookCode": "jesc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jesc1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jesc113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jess1",
+      "class": 10,
+      "subject": "Social Science",
+      "title": "Contemporary India",
+      "ncertBookCode": "jess1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jess1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jess4",
+      "class": 10,
+      "subject": "Social Science",
+      "title": "Democratic Politics",
+      "ncertBookCode": "jess4",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jess4=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess4ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess401.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess402.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess403.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess404.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess405.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jess3",
+      "class": 10,
+      "subject": "Social Science",
+      "title": "India and the Contemporary World-II",
+      "ncertBookCode": "jess3",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jess3=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess3ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess301.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess302.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess303.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess304.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess305.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-10-jess2",
+      "class": 10,
+      "subject": "Social Science",
+      "title": "Understanding Economic Development",
+      "ncertBookCode": "jess2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?jess2=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/jess205.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keac2",
+      "class": 11,
+      "subject": "Accountancy",
+      "title": "Accountancy-II",
+      "ncertBookCode": "keac2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keac2=0-2",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac202.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keac1",
+      "class": 11,
+      "subject": "Accountancy",
+      "title": "Financial Accounting-I",
+      "ncertBookCode": "keac1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keac1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keac107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kebo1",
+      "class": 11,
+      "subject": "Biology",
+      "title": "Biology",
+      "ncertBookCode": "kebo1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kebo1=0-19",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo114.pdf"
+        },
+        {
+          "index": 16,
+          "title": "Chapter 15",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo115.pdf"
+        },
+        {
+          "index": 17,
+          "title": "Chapter 16",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo116.pdf"
+        },
+        {
+          "index": 18,
+          "title": "Chapter 17",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo117.pdf"
+        },
+        {
+          "index": 19,
+          "title": "Chapter 18",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo118.pdf"
+        },
+        {
+          "index": 20,
+          "title": "Chapter 19",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebo119.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kebt1",
+      "class": 11,
+      "subject": "Biotechnology",
+      "title": "Biotechnology",
+      "ncertBookCode": "kebt1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kebt1=0-12",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebt112.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kebs1",
+      "class": 11,
+      "subject": "Business Studies",
+      "title": "Business Studies",
+      "ncertBookCode": "kebs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kebs1=0-11",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kebs111.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kech2",
+      "class": 11,
+      "subject": "Chemistry",
+      "title": "Chemistry Part II",
+      "ncertBookCode": "kech2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kech2=0-3",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech203.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kech1",
+      "class": 11,
+      "subject": "Chemistry",
+      "title": "Chemistry Part-I",
+      "ncertBookCode": "kech1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kech1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kech106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kecs1",
+      "class": 11,
+      "subject": "Computer Science",
+      "title": "Computer Science",
+      "ncertBookCode": "kecs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kecs1=0-11",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kecs111.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kect1",
+      "class": 11,
+      "subject": "Computers and Communication Technology",
+      "title": "CCT Part-I",
+      "ncertBookCode": "kect1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kect1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kect2",
+      "class": 11,
+      "subject": "Computers and Communication Technology",
+      "title": "CCT Part-II",
+      "ncertBookCode": "kect2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kect2=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kect206.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keec1",
+      "class": 11,
+      "subject": "Economics",
+      "title": "Indian Economic Development",
+      "ncertBookCode": "keec1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keec1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keec108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kest1",
+      "class": 11,
+      "subject": "Economics",
+      "title": "Statistics for Economics",
+      "ncertBookCode": "kest1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kest1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kest108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kehb1",
+      "class": 11,
+      "subject": "English",
+      "title": "Hornbill",
+      "ncertBookCode": "kehb1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kehb1=0-14",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehb114.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kesp1",
+      "class": 11,
+      "subject": "English",
+      "title": "Snapshots Suppl.Reader English",
+      "ncertBookCode": "kesp1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kesp1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesp1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesp101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesp102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesp103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesp104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesp105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keww1",
+      "class": 11,
+      "subject": "English",
+      "title": "Woven Words",
+      "ncertBookCode": "keww1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keww1=0-27",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww114.pdf"
+        },
+        {
+          "index": 16,
+          "title": "Chapter 15",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww115.pdf"
+        },
+        {
+          "index": 17,
+          "title": "Chapter 16",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww116.pdf"
+        },
+        {
+          "index": 18,
+          "title": "Chapter 17",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww117.pdf"
+        },
+        {
+          "index": 19,
+          "title": "Chapter 18",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww118.pdf"
+        },
+        {
+          "index": 20,
+          "title": "Chapter 19",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww119.pdf"
+        },
+        {
+          "index": 21,
+          "title": "Chapter 20",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww120.pdf"
+        },
+        {
+          "index": 22,
+          "title": "Chapter 21",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww121.pdf"
+        },
+        {
+          "index": 23,
+          "title": "Chapter 22",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww122.pdf"
+        },
+        {
+          "index": 24,
+          "title": "Chapter 23",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww123.pdf"
+        },
+        {
+          "index": 25,
+          "title": "Chapter 24",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww124.pdf"
+        },
+        {
+          "index": 26,
+          "title": "Chapter 25",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww125.pdf"
+        },
+        {
+          "index": 27,
+          "title": "Chapter 26",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww126.pdf"
+        },
+        {
+          "index": 28,
+          "title": "Chapter 27",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keww127.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kefa1",
+      "class": 11,
+      "subject": "Fine Art",
+      "title": "An Introduction to Indian Art Part-I",
+      "ncertBookCode": "kefa1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kefa1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefa108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kegy2",
+      "class": 11,
+      "subject": "Geography",
+      "title": "Fundamental of Physical Geography",
+      "ncertBookCode": "kegy2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kegy2=0-14",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy207.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy208.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy209.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy210.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy211.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy212.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy213.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy214.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kegy1",
+      "class": 11,
+      "subject": "Geography",
+      "title": "India Physical Environment",
+      "ncertBookCode": "kegy1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kegy1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kegy3",
+      "class": 11,
+      "subject": "Geography",
+      "title": "Pratical Work in Geography",
+      "ncertBookCode": "kegy3",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kegy3=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy3ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy301.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy302.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy303.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy304.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy305.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegy306.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kegd1",
+      "class": 11,
+      "subject": "Graphics design",
+      "title": "The story of graphic design",
+      "ncertBookCode": "kegd1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kegd1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kegd108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kehp1",
+      "class": 11,
+      "subject": "Health and Physical Education",
+      "title": "Health and Physical Education",
+      "ncertBookCode": "kehp1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kehp1=0-11",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehp111.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kehc1",
+      "class": 11,
+      "subject": "Heritage Crafts",
+      "title": "Living Craft Traditions of India",
+      "ncertBookCode": "kehc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kehc1=0-10",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehc110.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kehs1",
+      "class": 11,
+      "subject": "History",
+      "title": "Themes in World History",
+      "ncertBookCode": "kehs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kehs1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehs107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kehe1",
+      "class": 11,
+      "subject": "Home Science",
+      "title": "Human Ecology and Family Sciences Part I",
+      "ncertBookCode": "kehe1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kehe1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kehe2",
+      "class": 11,
+      "subject": "Home Science",
+      "title": "Human Ecology and Family Sciences Part II",
+      "ncertBookCode": "kehe2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kehe2=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kehe204.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keip1",
+      "class": 11,
+      "subject": "Informatics Practices",
+      "title": "Informatics Practices",
+      "ncertBookCode": "keip1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keip1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keip108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keks1",
+      "class": 11,
+      "subject": "Knowledge Traditions Practices of India",
+      "title": "Knowledge Traditions Practices of India",
+      "ncertBookCode": "keks1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keks1=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keks109.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kemh1",
+      "class": 11,
+      "subject": "Mathematics",
+      "title": "Mathematics",
+      "ncertBookCode": "kemh1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kemh1=0-14",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh114.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keph1",
+      "class": 11,
+      "subject": "Physics",
+      "title": "Physics Part-I",
+      "ncertBookCode": "keph1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keph1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keph2",
+      "class": 11,
+      "subject": "Physics",
+      "title": "Physics Part-II",
+      "ncertBookCode": "keph2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keph2=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keph207.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keps2",
+      "class": 11,
+      "subject": "Political Science",
+      "title": "India Constitution at Work",
+      "ncertBookCode": "keps2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keps2=0-10",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps207.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps208.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps209.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps210.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keps1",
+      "class": 11,
+      "subject": "Political Science",
+      "title": "Political Theory",
+      "ncertBookCode": "keps1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keps1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keps108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kepy1",
+      "class": 11,
+      "subject": "Psychology",
+      "title": "Introduction to Psychology",
+      "ncertBookCode": "kepy1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kepy1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepy108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kesy1",
+      "class": 11,
+      "subject": "Sociology",
+      "title": "Introducing Sociology",
+      "ncertBookCode": "kesy1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kesy1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kesy2",
+      "class": 11,
+      "subject": "Sociology",
+      "title": "Understanding Society",
+      "ncertBookCode": "kesy2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kesy2=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kesy205.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kedf1",
+      "class": 11,
+      "subject": "Vocational",
+      "title": "Dairy Farmer Enterpreneur",
+      "ncertBookCode": "kedf1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kedf1=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kedf1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kedf101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kedf102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kedf103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kedf104.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keoc1",
+      "class": 11,
+      "subject": "Vocational",
+      "title": "Floriculturist",
+      "ncertBookCode": "keoc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keoc1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keoc106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kefc1",
+      "class": 11,
+      "subject": "Vocational",
+      "title": "Floriculturist",
+      "ncertBookCode": "kefc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kefc1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kefc106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kepc1",
+      "class": 11,
+      "subject": "Vocational",
+      "title": "Floriculturist- Protected Cultivation",
+      "ncertBookCode": "kepc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kepc1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kepc105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-keda1",
+      "class": 11,
+      "subject": "Vocational",
+      "title": "General Duty Assistant",
+      "ncertBookCode": "keda1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?keda1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keda1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keda101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keda102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keda103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keda104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/keda105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-11-kevt1",
+      "class": 11,
+      "subject": "Vocational",
+      "title": "Vision Technician",
+      "ncertBookCode": "kevt1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?kevt1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/kevt107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leac2",
+      "class": 12,
+      "subject": "Accountancy",
+      "title": "Accountancy Part-II",
+      "ncertBookCode": "leac2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leac2=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac206.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leac1",
+      "class": 12,
+      "subject": "Accountancy",
+      "title": "Accountancy-I",
+      "ncertBookCode": "leac1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leac1=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leac104.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leca1",
+      "class": 12,
+      "subject": "Accountancy",
+      "title": "Computerised Accounting System",
+      "ncertBookCode": "leca1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leca1=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leca1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leca101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leca102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leca103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leca104.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lebo1",
+      "class": 12,
+      "subject": "Biology",
+      "title": "Biology",
+      "ncertBookCode": "lebo1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lebo1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebo113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lebt1",
+      "class": 12,
+      "subject": "Biotechnology",
+      "title": "Biotechnology",
+      "ncertBookCode": "lebt1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lebt1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebt113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lebs1",
+      "class": 12,
+      "subject": "Business Studies",
+      "title": "Business Studies-I",
+      "ncertBookCode": "lebs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lebs1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lebs2",
+      "class": 12,
+      "subject": "Business Studies",
+      "title": "Business Studies-II",
+      "ncertBookCode": "lebs2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lebs2=0-3",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lebs203.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lech1",
+      "class": 12,
+      "subject": "Chemistry",
+      "title": "Chemistry-I",
+      "ncertBookCode": "lech1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lech1=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech105.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lech2",
+      "class": 12,
+      "subject": "Chemistry",
+      "title": "Chemistry-II",
+      "ncertBookCode": "lech2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lech2=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lech205.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lecs1",
+      "class": 12,
+      "subject": "Computer Science",
+      "title": "Computer Science",
+      "ncertBookCode": "lecs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lecs1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lecs113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leec1",
+      "class": 12,
+      "subject": "Economics",
+      "title": "Introductory Macroeconomics",
+      "ncertBookCode": "leec1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leec1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leec2",
+      "class": 12,
+      "subject": "Economics",
+      "title": "Introductory Microeconomics",
+      "ncertBookCode": "leec2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leec2=0-5",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leec205.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lefl1",
+      "class": 12,
+      "subject": "English",
+      "title": "Flamingo",
+      "ncertBookCode": "lefl1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lefl1=0-13",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefl113.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lekl1",
+      "class": 12,
+      "subject": "English",
+      "title": "Kaliedoscope",
+      "ncertBookCode": "lekl1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lekl1=0-21",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl112.pdf"
+        },
+        {
+          "index": 14,
+          "title": "Chapter 13",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl113.pdf"
+        },
+        {
+          "index": 15,
+          "title": "Chapter 14",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl114.pdf"
+        },
+        {
+          "index": 16,
+          "title": "Chapter 15",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl115.pdf"
+        },
+        {
+          "index": 17,
+          "title": "Chapter 16",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl116.pdf"
+        },
+        {
+          "index": 18,
+          "title": "Chapter 17",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl117.pdf"
+        },
+        {
+          "index": 19,
+          "title": "Chapter 18",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl118.pdf"
+        },
+        {
+          "index": 20,
+          "title": "Chapter 19",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl119.pdf"
+        },
+        {
+          "index": 21,
+          "title": "Chapter 20",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl120.pdf"
+        },
+        {
+          "index": 22,
+          "title": "Chapter 21",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lekl121.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-levt1",
+      "class": 12,
+      "subject": "English",
+      "title": "Vistas",
+      "ncertBookCode": "levt1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?levt1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/levt106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lefa1",
+      "class": 12,
+      "subject": "Fine Art",
+      "title": "An Introduction to Indian Art Part-II",
+      "ncertBookCode": "lefa1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lefa1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lefa108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-legy1",
+      "class": 12,
+      "subject": "Geography",
+      "title": "Fundamentals of Human Geography",
+      "ncertBookCode": "legy1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?legy1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-legy2",
+      "class": 12,
+      "subject": "Geography",
+      "title": "India -People And Economy",
+      "ncertBookCode": "legy2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?legy2=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy207.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy208.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy209.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-legy3",
+      "class": 12,
+      "subject": "Geography",
+      "title": "Practical Work in Geography Part II",
+      "ncertBookCode": "legy3",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?legy3=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy3ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy301.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy302.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy303.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legy304.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehc1",
+      "class": 12,
+      "subject": "Heritage Crafts",
+      "title": "Craft Tradition of India",
+      "ncertBookCode": "lehc1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehc1=0-9",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehc109.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehs1",
+      "class": 12,
+      "subject": "History",
+      "title": "Themes in Indian History-I",
+      "ncertBookCode": "lehs1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehs1=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs104.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehs2",
+      "class": 12,
+      "subject": "History",
+      "title": "Themes in Indian History-II",
+      "ncertBookCode": "lehs2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehs2=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs204.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehs3",
+      "class": 12,
+      "subject": "History",
+      "title": "Themes in Indian History-III",
+      "ncertBookCode": "lehs3",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehs3=0-4",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs3ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs301.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs302.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs303.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehs304.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehe1",
+      "class": 12,
+      "subject": "Home Science",
+      "title": "Human Ecology and Family Sciences Part I",
+      "ncertBookCode": "lehe1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehe1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehe2",
+      "class": 12,
+      "subject": "Home Science",
+      "title": "Human Ecology and Family Sciences Part II",
+      "ncertBookCode": "lehe2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehe2=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehe207.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehh1",
+      "class": 12,
+      "subject": "Home Science",
+      "title": "Manav Paristhitik avam Parivar Vigyan Bhag 1",
+      "ncertBookCode": "lehh1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehh1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lehh2",
+      "class": 12,
+      "subject": "Home Science",
+      "title": "Manav Paristhitiki avam Parivar Vigyan Bhag 2",
+      "ncertBookCode": "lehh2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lehh2=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lehh207.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leip1",
+      "class": 12,
+      "subject": "Informatics Practices",
+      "title": "Informatics Practices",
+      "ncertBookCode": "leip1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leip1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leip107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lemh1",
+      "class": 12,
+      "subject": "Mathematics",
+      "title": "Mathematics Part-I",
+      "ncertBookCode": "lemh1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lemh1=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh106.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lemh2",
+      "class": 12,
+      "subject": "Mathematics",
+      "title": "Mathematics Part-II",
+      "ncertBookCode": "lemh2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lemh2=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh207.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-legd1",
+      "class": 12,
+      "subject": "New Age Graphics Design",
+      "title": "New Age Graphics Design",
+      "ncertBookCode": "legd1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?legd1=0-12",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd108.pdf"
+        },
+        {
+          "index": 10,
+          "title": "Chapter 9",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd109.pdf"
+        },
+        {
+          "index": 11,
+          "title": "Chapter 10",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd110.pdf"
+        },
+        {
+          "index": 12,
+          "title": "Chapter 11",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd111.pdf"
+        },
+        {
+          "index": 13,
+          "title": "Chapter 12",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/legd112.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leph1",
+      "class": 12,
+      "subject": "Physics",
+      "title": "Physics Part-I",
+      "ncertBookCode": "leph1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leph1=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph107.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph108.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leph2",
+      "class": 12,
+      "subject": "Physics",
+      "title": "Physics Part-II",
+      "ncertBookCode": "leph2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leph2=0-6",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leph206.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leps1",
+      "class": 12,
+      "subject": "Political Science",
+      "title": "Contemporary World Politics",
+      "ncertBookCode": "leps1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leps1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-leps2",
+      "class": 12,
+      "subject": "Political Science",
+      "title": "Politics in India Since Independence",
+      "ncertBookCode": "leps2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?leps2=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps207.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/leps208.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lepy1",
+      "class": 12,
+      "subject": "Psychology",
+      "title": "Psychology",
+      "ncertBookCode": "lepy1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lepy1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lepy107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lesy1",
+      "class": 12,
+      "subject": "Sociology",
+      "title": "Indian Society",
+      "ncertBookCode": "lesy1",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lesy1=0-7",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy1ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy101.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy102.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy103.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy104.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy105.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy106.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy107.pdf"
+        }
+      ]
+    },
+    {
+      "id": "class-12-lesy2",
+      "class": 12,
+      "subject": "Sociology",
+      "title": "Social Change and Development in India",
+      "ncertBookCode": "lesy2",
+      "ncertBookUrl": "https://ncert.nic.in/textbook.php?lesy2=0-8",
+      "chapters": [
+        {
+          "index": 1,
+          "title": "Prelims",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy2ps.pdf"
+        },
+        {
+          "index": 2,
+          "title": "Chapter 1",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy201.pdf"
+        },
+        {
+          "index": 3,
+          "title": "Chapter 2",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy202.pdf"
+        },
+        {
+          "index": 4,
+          "title": "Chapter 3",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy203.pdf"
+        },
+        {
+          "index": 5,
+          "title": "Chapter 4",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy204.pdf"
+        },
+        {
+          "index": 6,
+          "title": "Chapter 5",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy205.pdf"
+        },
+        {
+          "index": 7,
+          "title": "Chapter 6",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy206.pdf"
+        },
+        {
+          "index": 8,
+          "title": "Chapter 7",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy207.pdf"
+        },
+        {
+          "index": 9,
+          "title": "Chapter 8",
+          "pdfUrl": "https://ncert.nic.in/textbook/pdf/lesy208.pdf"
+        }
+      ]
+    }
+  ]
+}
