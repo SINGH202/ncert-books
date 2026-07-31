@@ -17,23 +17,16 @@ function isAllowedPdfUrl(rawUrl: string): URL | null {
   return parsed;
 }
 
-export async function GET(request: NextRequest) {
-  const rawUrl = request.nextUrl.searchParams.get("url");
-  if (!rawUrl) {
-    return NextResponse.json({ error: "Missing url parameter" }, { status: 400 });
-  }
+async function fetchUpstream(pdfUrl: URL): Promise<Response> {
+  let lastError: unknown;
+  const maxAttempts = 5;
 
-  const pdfUrl = isAllowedPdfUrl(rawUrl);
-  if (!pdfUrl) {
-    return NextResponse.json({ error: "URL is not an allowlisted NCERT PDF" }, { status: 400 });
-  }
-
-  try {
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 60_000);
-    let upstream: Response;
+    // Fail fast and retry — NCERT often hangs then 502s.
+    const timeout = setTimeout(() => controller.abort(), 12_000);
     try {
-      upstream = await fetch(pdfUrl.toString(), {
+      const upstream = await fetch(pdfUrl.toString(), {
         headers: {
           "User-Agent":
             "Mozilla/5.0 (compatible; ncrt-books-pdf-proxy/0.1; +https://github.com/SINGH202/ncrt-books)",
@@ -44,9 +37,47 @@ export async function GET(request: NextRequest) {
         cache: "no-store",
         signal: controller.signal,
       });
+
+      if (upstream.status === 404) return upstream;
+      if (upstream.ok) return upstream;
+
+      // Retry on transient upstream failures (502/503/504/408).
+      if (![408, 429, 500, 502, 503, 504].includes(upstream.status)) {
+        return upstream;
+      }
+
+      lastError = new Error(`Upstream returned ${upstream.status}`);
+    } catch (error) {
+      lastError = error;
     } finally {
       clearTimeout(timeout);
     }
+
+    const delay = Math.min(2500, 350 * 2 ** attempt);
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+
+  throw lastError instanceof Error
+    ? lastError
+    : new Error("Failed to fetch PDF");
+}
+
+export async function GET(request: NextRequest) {
+  const rawUrl = request.nextUrl.searchParams.get("url");
+  if (!rawUrl) {
+    return NextResponse.json({ error: "Missing url parameter" }, { status: 400 });
+  }
+
+  const pdfUrl = isAllowedPdfUrl(rawUrl);
+  if (!pdfUrl) {
+    return NextResponse.json(
+      { error: "URL is not an allowlisted NCERT PDF" },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const upstream = await fetchUpstream(pdfUrl);
 
     if (!upstream.ok) {
       return NextResponse.json(
@@ -67,7 +98,7 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Cache-Control": "private, max-age=0, no-store",
+        "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
         "X-Content-Type-Options": "nosniff",
       },
     });
