@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { PdfReader } from "@/components/pdf-reader";
@@ -12,6 +13,19 @@ type ReadPageProps = {
 
 export function generateStaticParams() {
   return getAllBooks().map((book) => ({ slug: book.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: ReadPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const book = getBookById(slug);
+  if (!book) return { title: "Reader" };
+  return {
+    title: `Read ${book.title}`,
+    description: `Read ${book.title} online — Class ${book.class} ${book.subject} NCERT textbook preview.`,
+    robots: { index: false, follow: true },
+  };
 }
 
 export default async function ReadPage({ params }: ReadPageProps) {

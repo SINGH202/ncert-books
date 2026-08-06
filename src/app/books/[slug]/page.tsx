@@ -1,7 +1,9 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { SiteHeader } from "@/components/site-header";
+import { TrackEventOnMount } from "@/components/track-event-on-mount";
 import { Typography } from "@/components/typography";
 import { getAllBooks, getBookById } from "@/lib/catalog";
 
@@ -13,6 +15,18 @@ export function generateStaticParams() {
   return getAllBooks().map((book) => ({ slug: book.id }));
 }
 
+export async function generateMetadata({
+  params,
+}: BookPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const book = getBookById(slug);
+  if (!book) return { title: "Book not found" };
+  return {
+    title: book.title,
+    description: `Preview ${book.title} — Class ${book.class} ${book.subject} (English medium) from NCERT.`,
+  };
+}
+
 export default async function BookPage({ params }: BookPageProps) {
   const { slug } = await params;
   const book = getBookById(slug);
@@ -20,6 +34,14 @@ export default async function BookPage({ params }: BookPageProps) {
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <TrackEventOnMount
+        name="book_open"
+        props={{
+          bookId: book.id,
+          class: book.class,
+          subject: book.subject,
+        }}
+      />
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-6 pb-[calc(1.5rem+var(--safe-bottom))] sm:gap-8 sm:px-6 sm:py-10">
         <div className="space-y-2">
