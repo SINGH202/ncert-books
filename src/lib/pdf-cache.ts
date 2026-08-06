@@ -128,8 +128,8 @@ export async function fetchAndCachePdf(
 }
 
 /**
- * Open a PDF with IndexedDB-first, then streaming URL (faster first paint).
- * Persists bytes into IndexedDB after a streamed open when possible.
+ * Open a fully-downloaded PDF. Streaming partial documents caused intermittent
+ * inverted / black / incomplete first-page paints, so we always buffer first.
  */
 export async function openPdfDocument(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -138,41 +138,10 @@ export async function openPdfDocument(
   bookId: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
-  const cached = await getCachedPdf(officialUrl);
-  if (cached && cached.byteLength > 100) {
-    return pdfjs.getDocument({
-      data: new Uint8Array(cached.slice(0)),
-    }).promise;
-  }
-
-  try {
-    const pdf = await pdfjs.getDocument({
-      url: getPdfProxyUrl(officialUrl),
-      disableStream: false,
-      disableAutoFetch: false,
-    }).promise;
-
-    void (async () => {
-      try {
-        const data = (await pdf.getData()) as Uint8Array;
-        const copy = data.buffer.slice(
-          data.byteOffset,
-          data.byteOffset + data.byteLength,
-        ) as ArrayBuffer;
-        if (copy.byteLength > 100) {
-          await putCachedPdf(officialUrl, bookId, copy);
-        }
-      } catch {
-        // ignore cache write failures
-      }
-    })();
-
-    return pdf;
-  } catch {
-    // Fall back to full buffered download + parse.
-    const data = await fetchAndCachePdf(officialUrl, bookId);
-    return pdfjs.getDocument({
-      data: new Uint8Array(data.slice(0)),
-    }).promise;
-  }
+  const data = await fetchAndCachePdf(officialUrl, bookId);
+  return pdfjs.getDocument({
+    data: new Uint8Array(data.slice(0)),
+    disableAutoFetch: true,
+    disableStream: true,
+  }).promise;
 }

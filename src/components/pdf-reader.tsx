@@ -791,11 +791,16 @@ export function PdfReader({ book }: PdfReaderProps) {
       cancelled || generation !== renderGenerationRef.current;
 
     async function paintCurrentPage(page: {
-      getViewport: (args: { scale: number }) => { width: number; height: number };
+      getViewport: (args: { scale: number }) => {
+        width: number;
+        height: number;
+      };
       render: (args: {
         canvasContext: CanvasRenderingContext2D;
+        canvas: HTMLCanvasElement | null;
         viewport: { width: number; height: number };
-        canvas: HTMLCanvasElement;
+        transform?: number[] | null;
+        background?: string;
       }) => { promise: Promise<void>; cancel?: () => void };
     }) {
       const canvas = await waitForCanvas(() => canvasRef.current, isStale);
