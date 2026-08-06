@@ -107,7 +107,7 @@ Ship in this order. Each item is one PR-sized slice where possible.
 | Order | Feature | Depends on | Ship note |
 | --- | --- | --- | --- |
 | C1 | **Browse search / filter** (title, subject, class) using `useDebouncedValue` | A7 optional | ✅ Home + class pages |
-| C2 | **Real chapter titles** in catalog sync | A2, A3 | Biggest catalog upgrade |
+| C2 | **Real chapter titles** in catalog sync | A2, A3 | ✅ Extract from chapter PDFs + cache; weekly fill |
 | C3 | **Reader chrome parity** — chapter jump + find available without fullscreen (desktop); keep rail on mobile FS | A5 | Reduces “hidden” features |
 
 ### Wave 2 — Reading quality
