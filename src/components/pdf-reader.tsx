@@ -179,6 +179,7 @@ export function PdfReader({ book }: PdfReaderProps) {
   const [rendering, setRendering] = useState(false);
   const [railOpen, setRailOpen] = useState(true);
   const [pageDraft, setPageDraft] = useState("1");
+  const [loadStatus, setLoadStatus] = useState("Preparing reader…");
   const zoomFactorRef = useRef(zoomFactor);
   const openStartedAtRef = useRef(Date.now());
   const readyTrackedRef = useRef(false);
@@ -638,12 +639,14 @@ export function PdfReader({ book }: PdfReaderProps) {
       viewAnchorRef.current = { metaIndex: index, pageInChapter: 1 };
       globalPageRef.current = toGlobalPage(metasRef.current, index, 1);
       setGlobalPage(globalPageRef.current);
+      setLoadStatus("Opening first page…");
       setReady(true);
     }
 
     async function bootstrap() {
       setReady(false);
       setError(null);
+      setLoadStatus("Preparing reader…");
       viewAnchorRef.current = null;
       globalPageRef.current = 1;
       setGlobalPage(1);
@@ -676,6 +679,7 @@ export function PdfReader({ book }: PdfReaderProps) {
       setMetas(initial);
 
       try {
+        setLoadStatus("Starting PDF engine…");
         const pdfjs = await import("pdfjs-dist");
         try {
           pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -687,65 +691,36 @@ export function PdfReader({ book }: PdfReaderProps) {
         }
         pdfjsRef.current = pdfjs;
 
+        // Load in a fixed order so the first painted page is always the book
+        // start (not whichever chapter happens to finish downloading first).
         const order = preferredLoadOrder(book.chapters);
         let firstReadyIndex = -1;
 
-        // Race the first few chapters so one slow/404 file does not block paint.
-        const raceCount = Math.min(3, order.length);
-        const raceIndexes = order.slice(0, raceCount);
-
-        try {
-          const winner = await Promise.any(
-            raceIndexes.map(async (index) => {
-              const meta = await tryOpenChapter(pdfjs, index, true);
-              if (!meta) throw new Error("unavailable");
-              return { index, meta };
-            }),
+        for (const index of order) {
+          if (cancelled) return;
+          const chapterTitle = book.chapters[index]?.title ?? "section";
+          setLoadStatus(`Opening “${chapterTitle}”…`);
+          const meta = await tryOpenChapter(pdfjs, index, true);
+          if (meta) {
+            firstReadyIndex = index;
+            revealChapter(index, meta);
+            break;
+          }
+          markChapter(index, { available: false, pageCount: 0 });
+          setLoadStatus(
+            `“${chapterTitle}” isn’t available. Trying the next section…`,
           );
-          if (cancelled) return;
-          firstReadyIndex = winner.index;
-          revealChapter(winner.index, winner.meta);
-        } catch {
-          // All raced chapters failed — fall through to sequential remainder.
-        }
-
-        // Mark raced failures (successes already kept in pdfDocsRef).
-        for (const index of raceIndexes) {
-          if (cancelled) return;
-          if (index === firstReadyIndex) continue;
-          if (pdfDocsRef.current.has(index)) {
-            const doc = pdfDocsRef.current.get(index);
-            markChapter(index, {
-              available: true,
-              pageCount: doc.numPages as number,
-            });
-            continue;
-          }
-          // If still in-flight from Promise.any losers, let background handle it.
-        }
-
-        if (firstReadyIndex === -1) {
-          for (const index of order.slice(raceCount)) {
-            if (cancelled) return;
-            const meta = await tryOpenChapter(pdfjs, index, true);
-            if (meta) {
-              firstReadyIndex = index;
-              revealChapter(index, meta);
-              break;
-            }
-            markChapter(index, { available: false, pageCount: 0 });
-          }
         }
 
         if (firstReadyIndex === -1) {
           if (!cancelled) {
+            setLoadStatus("Could not open this book.");
             setError("Something went wrong. Please try again.");
           }
           return;
         }
 
-        // Prefetch the next chapter immediately; load the rest in the background
-        // without blocking the reader.
+        // Prefetch the next chapter; load the rest quietly in the background.
         const remaining = order.filter((index) => {
           const meta = metasRef.current[index];
           return index !== firstReadyIndex && meta?.available !== true;
@@ -756,13 +731,13 @@ export function PdfReader({ book }: PdfReaderProps) {
           if (prefetch != null) {
             const meta = await tryOpenChapter(pdfjs, prefetch, true);
             if (!cancelled && meta) markChapter(prefetch, meta);
-            else if (!cancelled && prefetch != null) {
+            else if (!cancelled) {
               markChapter(prefetch, { available: false, pageCount: 0 });
             }
           }
 
           const rest = remaining.slice(1);
-          const concurrency = 3;
+          const concurrency = 2;
           let cursor = 0;
 
           async function worker() {
@@ -784,17 +759,10 @@ export function PdfReader({ book }: PdfReaderProps) {
               () => worker(),
             ),
           );
-
-          if (cancelled) return;
-          const startIndex = metasRef.current.findIndex(
-            (meta) => meta.available === true && meta.pageCount > 0,
-          );
-          if (startIndex >= 0 && startIndex < firstReadyIndex) {
-            goToChapterPage(startIndex, 1);
-          }
         })();
       } catch {
         if (!cancelled) {
+          setLoadStatus("Could not open this book.");
           setError("Something went wrong. Please try again.");
         }
       }
@@ -1236,13 +1204,32 @@ export function PdfReader({ book }: PdfReaderProps) {
       }
     >
       {!ready ? (
-        <div className="flex h-full min-h-[40dvh] w-full flex-col items-center justify-center gap-2 px-4 py-8">
-          <Typography
-            variant="bodyMedium"
-            className={isFullscreen ? "text-zinc-200" : undefined}
-          >
-            Loading…
-          </Typography>
+        <div className="flex h-full min-h-[40dvh] w-full flex-col items-center justify-center gap-4 px-6 py-10 text-center">
+          <div
+            className={`h-9 w-9 animate-spin rounded-full border-2 border-transparent border-t-accent ${
+              isFullscreen ? "border-t-zinc-200" : ""
+            }`}
+            aria-hidden
+          />
+          <div className="flex max-w-sm flex-col gap-2">
+            <Typography
+              variant="bodyMedium"
+              className={
+                isFullscreen
+                  ? "font-medium text-zinc-100"
+                  : "font-medium text-foreground"
+              }
+            >
+              {loadStatus}
+            </Typography>
+            <Typography
+              variant="small"
+              className={isFullscreen ? "text-zinc-400" : undefined}
+            >
+              NCERT servers can be slow. We open the book from the beginning —
+              thanks for waiting.
+            </Typography>
+          </div>
         </div>
       ) : null}
       {/* Keep canvas mounted so the first ready render does not miss the ref. */}
