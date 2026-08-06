@@ -791,13 +791,13 @@ export function PdfReader({ book }: PdfReaderProps) {
       cancelled || generation !== renderGenerationRef.current;
 
     async function paintCurrentPage(page: {
-      rotate?: number;
-      getViewport: (args: {
-        scale: number;
-        rotation?: number;
-      }) => { width: number; height: number };
+      getViewport: (args: { scale: number }) => {
+        width: number;
+        height: number;
+      };
       render: (args: {
-        canvas: HTMLCanvasElement;
+        canvasContext: CanvasRenderingContext2D;
+        canvas: HTMLCanvasElement | null;
         viewport: { width: number; height: number };
         transform?: number[] | null;
         background?: string;

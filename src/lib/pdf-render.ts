@@ -5,20 +5,16 @@ export type { FitMode };
 type ViewportLike = {
   width: number;
   height: number;
-  transform?: number[];
 };
 
 type PageLike = {
-  rotate?: number;
-  getViewport: (args: {
-    scale: number;
-    rotation?: number;
-  }) => ViewportLike & {
+  getViewport: (args: { scale: number }) => ViewportLike & {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     convertToViewportRectangle?: (...args: any[]) => number[];
   };
   render: (args: {
-    canvas: HTMLCanvasElement;
+    canvasContext: CanvasRenderingContext2D;
+    canvas: HTMLCanvasElement | null;
     viewport: ViewportLike;
     transform?: number[] | null;
     background?: string;
@@ -65,9 +61,11 @@ async function cancelRenderTask(
 }
 
 /**
- * Paint a PDF.js page onto a canvas using the library's recommended HiDPI path.
- * Avoids setTransform-before-render (known to invert/corrupt pages when reused)
- * and cancels any in-flight paint before starting a new one.
+ * Paint a PDF page onto the display canvas.
+ *
+ * Uses a brand-new offscreen canvas for every PDF.js render (reusing one canvas
+ * is a known cause of mirrored/inverted pages), then copies the result to the
+ * visible canvas. Follows the official HiDPI `transform` pattern.
  */
 export async function paintPageToCanvas(args: {
   page: PageLike;
@@ -82,49 +80,68 @@ export async function paintPageToCanvas(args: {
 }> {
   await cancelRenderTask(args.cancelPrevious);
 
-  // Include the page's embedded rotation so landscape/rotated pages stay upright.
-  const rotation =
-    typeof args.page.rotate === "number" ? args.page.rotate : undefined;
-  const viewport = args.page.getViewport({
-    scale: args.scale,
-    ...(rotation != null ? { rotation } : {}),
-  });
-
+  // Default viewport already applies the page's embedded /Rotate value.
+  const viewport = args.page.getViewport({ scale: args.scale });
   const outputScale = Math.min(window.devicePixelRatio || 1, 2);
-  const width = Math.max(1, Math.floor(viewport.width * outputScale));
-  const height = Math.max(1, Math.floor(viewport.height * outputScale));
+  const cssWidth = Math.max(1, Math.floor(viewport.width));
+  const cssHeight = Math.max(1, Math.floor(viewport.height));
+  const pixelWidth = Math.max(1, Math.floor(viewport.width * outputScale));
+  const pixelHeight = Math.max(1, Math.floor(viewport.height * outputScale));
 
-  // Assigning width/height resets the context (clears prior corrupt paints).
-  args.canvas.width = width;
-  args.canvas.height = height;
-  args.canvas.style.width = `${Math.floor(viewport.width)}px`;
-  args.canvas.style.height = `${Math.floor(viewport.height)}px`;
+  const offscreen = document.createElement("canvas");
+  offscreen.width = pixelWidth;
+  offscreen.height = pixelHeight;
 
-  const context = args.canvas.getContext("2d", {
+  const offscreenContext = offscreen.getContext("2d", {
     alpha: false,
     willReadFrequently: false,
   });
-  if (!context) {
+  if (!offscreenContext) {
     throw new Error("Canvas context unavailable");
   }
 
-  // Opaque canvases clear to black — paint a white page backdrop first.
-  context.setTransform(1, 0, 0, 1, 0, 0);
-  context.fillStyle = "#ffffff";
-  context.fillRect(0, 0, width, height);
+  offscreenContext.setTransform(1, 0, 0, 1, 0, 0);
+  offscreenContext.fillStyle = "#ffffff";
+  offscreenContext.fillRect(0, 0, pixelWidth, pixelHeight);
 
   const transform =
-    outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+    outputScale !== 1 ? ([outputScale, 0, 0, outputScale, 0, 0] as number[]) : null;
 
-  // PDF.js 4+/5: prefer `canvas` + `transform`. Do not also setTransform on the
-  // context or pass canvasContext together with canvas (can double-apply CTM).
+  // PDF.js 5: when using canvasContext, `canvas` must be null.
   const task = args.page.render({
-    canvas: args.canvas,
+    canvasContext: offscreenContext,
+    canvas: null,
     viewport,
     transform,
     background: "rgb(255,255,255)",
   });
 
-  await task.promise;
+  try {
+    await task.promise;
+  } catch (error) {
+    offscreen.width = 0;
+    offscreen.height = 0;
+    throw error;
+  }
+
+  const display = args.canvas;
+  display.width = pixelWidth;
+  display.height = pixelHeight;
+  display.style.width = `${cssWidth}px`;
+  display.style.height = `${cssHeight}px`;
+
+  const displayContext = display.getContext("2d", { alpha: false });
+  if (!displayContext) {
+    throw new Error("Display canvas context unavailable");
+  }
+  displayContext.setTransform(1, 0, 0, 1, 0, 0);
+  displayContext.fillStyle = "#ffffff";
+  displayContext.fillRect(0, 0, pixelWidth, pixelHeight);
+  displayContext.drawImage(offscreen, 0, 0);
+
+  // Release offscreen buffer.
+  offscreen.width = 0;
+  offscreen.height = 0;
+
   return { viewport, task };
 }
