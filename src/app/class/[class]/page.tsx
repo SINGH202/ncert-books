@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { SiteHeader } from "@/components/site-header";
@@ -18,6 +19,18 @@ export function generateStaticParams() {
   return SCHOOL_CLASSES.map((schoolClass) => ({
     class: String(schoolClass),
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: ClassPageProps): Promise<Metadata> {
+  const { class: classParam } = await params;
+  const schoolClass = parseSchoolClass(classParam);
+  if (!schoolClass) return { title: "Class" };
+  return {
+    title: `Class ${schoolClass}`,
+    description: `Browse English-medium NCERT textbooks for Class ${schoolClass}.`,
+  };
 }
 
 export default async function ClassPage({ params }: ClassPageProps) {

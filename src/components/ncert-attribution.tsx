@@ -12,7 +12,9 @@ export function NcertAttribution({
       <Typography variant="small" className="block max-w-prose">
         Textbook content is published by NCERT. This site does not host NCERT
         files; PDFs are loaded from the official NCERT textbook portal for
-        preview only. Republication or redistribution is prohibited.
+        preview only. Republication or redistribution is prohibited. We use
+        privacy-friendly analytics (no ads, no sale of personal data) to
+        understand which pages are used.
       </Typography>
       {ncertBookUrl ? (
         <a

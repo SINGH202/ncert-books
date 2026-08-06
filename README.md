@@ -15,6 +15,8 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - Offline-friendly IndexedDB + HTTP cache for PDF bytes (opens at page 1 every time)
 - Streams the first chapter ASAP; remaining chapters load in the background
 - Zoom, fit page/width, pinch/trackpad zoom, and pan
+- Privacy-friendly Vercel Analytics + Speed Insights (no ads)
+- Weekly automated catalog sync via GitHub Actions
 
 ## Stack
 
@@ -23,6 +25,7 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - TypeScript
 - Tailwind CSS
 - PDF.js
+- Vercel Analytics / Speed Insights
 
 ## Getting Started
 
@@ -49,3 +52,5 @@ Open [http://localhost:3000](http://localhost:3000).
 - Catalog covers Classes 9–12 English-medium books only (v1).
 - `/api/pdf` proxies allowlisted `ncert.nic.in` textbook URLs (required for CORS).
 - Textbook content remains copyrighted by NCERT; always prefer the official portal as the source of truth.
+- Catalog sync runs weekly via `.github/workflows/sync-ncert-catalog.yml` (also runnable manually).
+- Analytics events: `book_open`, `reader_open`, `reader_ready`, `reader_error`, `fullscreen_enter`.

@@ -1,0 +1,47 @@
+name: Sync NCERT catalog
+
+on:
+  schedule:
+    # Mondays 03:00 UTC
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync catalog from NCERT
+        run: npm run sync:catalog
+
+      - name: Create pull request if catalog changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: sync NCERT catalog"
+          title: "chore: sync NCERT catalog"
+          body: |
+            Automated weekly refresh of `data/catalog.json` from the official NCERT textbook portal.
+
+            ## Checklist
+            - [ ] Spot-check book count / classes 9–12 English
+            - [ ] Merge to update production catalog
+          branch: chore/sync-ncert-catalog
+          delete-branch: true
+          add-paths: |
+            data/catalog.json

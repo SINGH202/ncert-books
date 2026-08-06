@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { PdfSearchBar } from "@/components/pdf-search-bar";
 import { Typography } from "@/components/typography";
 import { controlButtonClassName } from "@/lib/control-button-class";
+import { trackEvent } from "@/lib/analytics";
 import { openPdfDocument } from "@/lib/pdf-cache";
 import { computeFitScale, paintPageToCanvas } from "@/lib/pdf-render";
 import {
@@ -179,10 +180,41 @@ export function PdfReader({ book }: PdfReaderProps) {
   const [railOpen, setRailOpen] = useState(true);
   const [pageDraft, setPageDraft] = useState("1");
   const zoomFactorRef = useRef(zoomFactor);
+  const openStartedAtRef = useRef(Date.now());
+  const readyTrackedRef = useRef(false);
 
   useEffect(() => {
     zoomFactorRef.current = zoomFactor;
   }, [zoomFactor]);
+
+  useEffect(() => {
+    openStartedAtRef.current = Date.now();
+    readyTrackedRef.current = false;
+    trackEvent("reader_open", {
+      bookId: book.id,
+      class: book.class,
+      subject: book.subject,
+    });
+  }, [book.id, book.class, book.subject]);
+
+  useEffect(() => {
+    if (!ready || readyTrackedRef.current) return;
+    readyTrackedRef.current = true;
+    trackEvent("reader_ready", {
+      bookId: book.id,
+      ms_to_ready: Date.now() - openStartedAtRef.current,
+    });
+  }, [ready, book.id]);
+
+  useEffect(() => {
+    if (!error) return;
+    trackEvent("reader_error", { bookId: book.id });
+  }, [error, book.id]);
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+    trackEvent("fullscreen_enter", { bookId: book.id });
+  }, [isFullscreen, book.id]);
 
   // Debounce expensive PDF re-renders while gestures zoom rapidly.
   useEffect(() => {
