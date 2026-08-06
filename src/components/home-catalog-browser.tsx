@@ -3,12 +3,19 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BookListItem } from "@/components/book-list-item";
+import {
+  CatalogEmptyState,
+  CatalogSearchInput,
+  FilterChipGroup,
+  ResultsSummary,
+} from "@/components/catalog-filters";
 import { Typography } from "@/components/typography";
 import { trackEvent } from "@/lib/analytics";
 import {
   filterBooks,
   groupBooksByClass,
 } from "@/lib/catalog-search";
+import { formatSyncedAt } from "@/lib/format-date";
 import type { Book, SchoolClass } from "@/lib/types";
 import { useDebouncedValue } from "@/shared/hooks/useDebouncedValue";
 
@@ -18,7 +25,13 @@ type HomeCatalogBrowserProps = {
   classCounts: Record<SchoolClass, number>;
 };
 
-const CLASS_OPTIONS: Array<SchoolClass | "all"> = ["all", 9, 10, 11, 12];
+const CLASS_CHIP_OPTIONS: Array<{ value: SchoolClass | "all"; label: string }> = [
+  { value: "all", label: "All" },
+  { value: 9, label: "9" },
+  { value: 10, label: "10" },
+  { value: 11, label: "11" },
+  { value: 12, label: "12" },
+];
 
 export function HomeCatalogBrowser({
   books,
@@ -30,8 +43,13 @@ export function HomeCatalogBrowser({
   const debouncedQuery = useDebouncedValue(query, 400);
   const lastTrackedKey = useRef("");
 
+  const trimmedQuery = query.trim();
   const activeSearch = debouncedQuery.trim().length >= 2;
   const filtering = activeSearch || schoolClass !== "all";
+  const isPending =
+    trimmedQuery.length >= 2 &&
+    trimmedQuery.toLowerCase() !== debouncedQuery.trim().toLowerCase();
+  const shortQueryHint = trimmedQuery.length > 0 && trimmedQuery.length < 2;
 
   const results = useMemo(
     () =>
@@ -57,6 +75,11 @@ export function HomeCatalogBrowser({
     });
   }, [filtering, debouncedQuery, schoolClass, activeSearch, results.length]);
 
+  function clearFilters() {
+    setQuery("");
+    setSchoolClass("all");
+  }
+
   return (
     <div className="flex flex-col gap-8 sm:gap-10">
       <section className="space-y-3">
@@ -67,54 +90,25 @@ export function HomeCatalogBrowser({
           textbook portal.
         </Typography>
         <Typography variant="small" className="block">
-          Catalog synced {new Date(syncedAt).toLocaleString()} · {books.length}{" "}
-          books
+          Catalog synced {formatSyncedAt(syncedAt)} · {books.length} books
         </Typography>
       </section>
 
-      <section className="flex flex-col gap-3 sm:flex-row sm:items-end">
-        <div className="min-w-0 flex-1 space-y-1.5">
-          <Typography variant="small" className="block">
-            Search books
-          </Typography>
-          <label className="sr-only" htmlFor="home-book-search">
-            Search books by title or subject
-          </label>
-          <input
-            id="home-book-search"
-            type="search"
-            value={query}
-            placeholder="Try “Science”, “Maths”, book code…"
-            autoComplete="off"
-            className="w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-accent"
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </div>
-        <div className="w-full space-y-1.5 sm:w-44">
-          <Typography variant="small" className="block">
-            Class
-          </Typography>
-          <label className="sr-only" htmlFor="home-class-filter">
-            Filter by class
-          </label>
-          <select
-            id="home-class-filter"
-            value={schoolClass}
-            className="w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-accent"
-            onChange={(event) => {
-              const value = event.target.value;
-              setSchoolClass(
-                value === "all" ? "all" : (Number(value) as SchoolClass),
-              );
-            }}
-          >
-            {CLASS_OPTIONS.map((option) => (
-              <option key={String(option)} value={option}>
-                {option === "all" ? "All classes" : `Class ${option}`}
-              </option>
-            ))}
-          </select>
-        </div>
+      <section className="space-y-4 rounded-2xl border border-line bg-surface/70 p-4 sm:p-5">
+        <CatalogSearchInput
+          id="home-book-search"
+          label="Search books"
+          value={query}
+          placeholder="Try “Science”, “Maths”, or a book code…"
+          isPending={isPending}
+          onChange={setQuery}
+        />
+        <FilterChipGroup
+          label="Class"
+          value={schoolClass}
+          options={CLASS_CHIP_OPTIONS}
+          onChange={setSchoolClass}
+        />
       </section>
 
       {!filtering ? (
@@ -123,9 +117,12 @@ export function HomeCatalogBrowser({
             <Link
               key={value}
               href={`/class/${value}`}
-              className="flex min-h-[7.5rem] flex-col justify-between rounded-xl border border-line bg-surface p-4 shadow-[0_1px_0_rgba(0,0,0,0.03)] transition active:scale-[0.98] sm:min-h-[9rem] sm:p-6"
+              className="group flex min-h-[7.5rem] flex-col justify-between rounded-xl border border-line bg-surface p-4 shadow-[0_1px_0_rgba(0,0,0,0.03)] transition hover:border-accent/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.98] sm:min-h-[9rem] sm:p-6"
             >
-              <Typography variant="h2" className="text-lg sm:text-2xl">
+              <Typography
+                variant="h2"
+                className="text-lg transition group-hover:text-accent sm:text-2xl"
+              >
                 Class {value}
               </Typography>
               <Typography variant="small" className="mt-3 block">
@@ -135,26 +132,41 @@ export function HomeCatalogBrowser({
           ))}
         </section>
       ) : (
-        <section className="space-y-6">
-          <Typography variant="small" className="block">
-            {results.length === 0
-              ? "No books match your search."
-              : `${results.length} book${results.length === 1 ? "" : "s"} found`}
-            {query.trim().length > 0 && query.trim().length < 2
-              ? " · type at least 2 characters to search by name"
-              : ""}
-          </Typography>
+        <section className="space-y-5">
+          <ResultsSummary
+            count={results.length}
+            shortQueryHint={shortQueryHint}
+            onClear={clearFilters}
+          />
 
-          {grouped.map((group) => (
-            <div key={group.schoolClass} className="space-y-3">
-              <Typography variant="h2">Class {group.schoolClass}</Typography>
-              <ul className="space-y-2">
-                {group.books.map((book) => (
-                  <BookListItem key={book.id} book={book} />
-                ))}
-              </ul>
-            </div>
-          ))}
+          {results.length === 0 ? (
+            <CatalogEmptyState
+              title="No books found"
+              hint="Try a different title, subject, or class — or clear filters to browse by class again."
+              onReset={clearFilters}
+            />
+          ) : (
+            grouped.map((group) => (
+              <div key={group.schoolClass} className="space-y-3">
+                <div className="flex items-baseline justify-between gap-3">
+                  <Typography variant="h2">Class {group.schoolClass}</Typography>
+                  <Link
+                    href={`/class/${group.schoolClass}`}
+                    className="shrink-0"
+                  >
+                    <Typography variant="link" className="text-xs sm:text-sm">
+                      Browse class
+                    </Typography>
+                  </Link>
+                </div>
+                <ul className="space-y-2">
+                  {group.books.map((book) => (
+                    <BookListItem key={book.id} book={book} showClass={false} />
+                  ))}
+                </ul>
+              </div>
+            ))
+          )}
         </section>
       )}
     </div>
