@@ -13,7 +13,9 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - Fullscreen reading with a side control rail (chapter jump, page jump, search)
 - Find in book with match count, next/prev, and highlights
 - Offline-friendly IndexedDB + HTTP cache for PDF bytes (opens at page 1 every time)
-- Streams the first chapter ASAP; remaining chapters load in the background
+- Opens books from the first available section in order (no race-to-random-chapter)
+- Streams and caches PDFs; remaining chapters load in the background
+- Clear loading status while waiting on NCERT
 - Zoom, fit page/width, pinch/trackpad zoom, and pan
 - Privacy-friendly Vercel Analytics + Speed Insights (no ads)
 - Weekly automated catalog sync via GitHub Actions
