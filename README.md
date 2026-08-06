@@ -47,7 +47,10 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build` | Create a production build |
 | `npm start` | Run the production server |
 | `npm run lint` | Run ESLint |
-| `npm run sync:catalog` | Scrape NCERT and refresh `data/catalog.json` |
+| `npm run sync:catalog` | Scrape NCERT listing and refresh `data/catalog.json` (also fills missing chapter titles) |
+| `npm run sync:chapter-titles` | Fetch chapter PDFs and extract real titles into `data/chapter-titles.json` |
+| `npm run sync:chapter-titles:local` | Extract titles from PDFs in `TITLE_PDF_DIR` (offline / resume) |
+| `npm run test:chapter-titles` | Unit tests for chapter title parsing |
 
 ## Notes
 
@@ -55,4 +58,5 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/api/pdf` proxies allowlisted `ncert.nic.in` textbook URLs (required for CORS).
 - Textbook content remains copyrighted by NCERT; always prefer the official portal as the source of truth.
 - Catalog sync runs weekly via `.github/workflows/sync-ncert-catalog.yml` (also runnable manually).
-- Analytics events: `book_open`, `reader_open`, `reader_ready`, `reader_error`, `fullscreen_enter`.
+- Chapter titles are extracted from the first page of each chapter PDF (NCERT’s listing only shows “Chapter N”). Titles are cached in `data/chapter-titles.json` and filled gradually (`TITLE_MAX_FETCH`) because NCERT downloads are slow/flaky.
+- Analytics events: `book_open`, `reader_open`, `reader_ready`, `reader_error`, `fullscreen_enter`, `catalog_filter_used`.

@@ -27,6 +27,12 @@ jobs:
         run: npm ci
 
       - name: Sync catalog from NCERT
+        # Reuse cached chapter titles; fetch a limited batch of missing ones.
+        env:
+          TITLE_CONCURRENCY: "2"
+          TITLE_TIMEOUT_MS: "90000"
+          # Fill titles gradually each week (NCERT PDF fetches are slow/flaky).
+          TITLE_MAX_FETCH: "40"
         run: npm run sync:catalog
 
       - name: Create pull request if catalog changed
@@ -37,11 +43,14 @@ jobs:
           title: "chore: sync NCERT catalog"
           body: |
             Automated weekly refresh of `data/catalog.json` from the official NCERT textbook portal.
+            Also updates `data/chapter-titles.json` when new chapter titles can be extracted from PDFs.
 
             ## Checklist
             - [ ] Spot-check book count / classes 9–12 English
+            - [ ] Spot-check a few chapter titles are real names (not only “Chapter N”)
             - [ ] Merge to update production catalog
           branch: chore/sync-ncert-catalog
           delete-branch: true
           add-paths: |
             data/catalog.json
+            data/chapter-titles.json
