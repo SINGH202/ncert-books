@@ -1088,6 +1088,14 @@ export function PdfReader({ book }: PdfReaderProps) {
       ? `${globalPage} / ${totalPages}`
       : "—";
 
+  const chapterSelectValue =
+    location != null && metas[location.metaIndex]?.available === true
+      ? String(location.metaIndex)
+      : "";
+
+  const fieldClassName =
+    "rounded-lg border border-line bg-surface px-3 py-2 text-sm text-foreground outline-none focus:border-accent disabled:opacity-40";
+
   const toolbar = (
     <>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-3 py-2 sm:hidden">
@@ -1148,53 +1156,132 @@ export function PdfReader({ book }: PdfReaderProps) {
         </button>
       </div>
 
-      <div className="hidden flex-wrap items-center gap-2 p-3 sm:flex">
-        <button
-          type="button"
-          className={controlButtonClassName()}
-          disabled={globalPage <= 1 || !ready}
-          onClick={() => goToGlobalPage(globalPage - 1)}
-        >
-          <Typography variant="button">Previous</Typography>
-        </button>
-        <button
-          type="button"
-          className={controlButtonClassName()}
-          disabled={!ready || totalPages === 0 || globalPage >= totalPages}
-          onClick={() => goToGlobalPage(globalPage + 1)}
-        >
-          <Typography variant="button">Next</Typography>
-        </button>
-        <Typography variant="small" className="px-2">
-          {ready && totalPages > 0 ? `Page ${pageLabel}` : pageLabel}
-        </Typography>
-        <div className="ml-auto flex flex-wrap items-center gap-2">
+      <div className="hidden flex-col gap-2 p-3 sm:flex">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             className={controlButtonClassName()}
-            onClick={() => applyZoom(zoomFactorRef.current - ZOOM_STEP)}
+            disabled={globalPage <= 1 || !ready}
+            onClick={() => goToGlobalPage(globalPage - 1)}
           >
-            <Typography variant="button">−</Typography>
+            <Typography variant="button">Previous</Typography>
           </button>
-          <Typography variant="small">
-            {Math.round(zoomFactor * 100)}%
+          <button
+            type="button"
+            className={controlButtonClassName()}
+            disabled={!ready || totalPages === 0 || globalPage >= totalPages}
+            onClick={() => goToGlobalPage(globalPage + 1)}
+          >
+            <Typography variant="button">Next</Typography>
+          </button>
+          <Typography variant="small" className="px-1">
+            {ready && totalPages > 0 ? `Page ${pageLabel}` : pageLabel}
           </Typography>
-          <button
-            type="button"
-            className={controlButtonClassName()}
-            onClick={() => applyZoom(zoomFactorRef.current + ZOOM_STEP)}
+
+          <label className="sr-only" htmlFor="reader-chapter-select">
+            Chapter
+          </label>
+          <select
+            id="reader-chapter-select"
+            className={`${fieldClassName} max-w-[14rem]`}
+            disabled={!ready || availableChapters.length === 0}
+            value={chapterSelectValue}
+            aria-label="Jump to chapter"
+            onChange={(event) => {
+              const next = Number(event.target.value);
+              if (Number.isFinite(next)) jumpToChapter(next);
+            }}
           >
-            <Typography variant="button">+</Typography>
-          </button>
-          <button
-            type="button"
-            className={controlButtonClassName()}
-            disabled={!ready}
-            onClick={enterFullscreen}
-          >
-            <Typography variant="button">Fullscreen</Typography>
-          </button>
+            {availableChapters.length === 0 ? (
+              <option value="">Loading chapters…</option>
+            ) : null}
+            {location == null ? (
+              <option value="">Select chapter</option>
+            ) : null}
+            {availableChapters.map(({ meta, metaIndex }) => (
+              <option key={meta.chapter.pdfUrl} value={metaIndex}>
+                {meta.chapter.title}
+              </option>
+            ))}
+          </select>
+
+          <div className="flex items-center gap-1.5">
+            <label className="sr-only" htmlFor="reader-page-jump">
+              Go to page
+            </label>
+            <input
+              id="reader-page-jump"
+              type="number"
+              min={1}
+              max={Math.max(1, totalPages)}
+              inputMode="numeric"
+              disabled={!ready || totalPages === 0}
+              value={pageDraft}
+              aria-label="Go to page"
+              className={`${fieldClassName} w-[4.5rem]`}
+              onChange={(event) => setPageDraft(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  jumpToPage(pageDraft);
+                }
+              }}
+              onBlur={() => jumpToPage(pageDraft)}
+            />
+            <Typography variant="small" className="text-muted">
+              / {totalPages || "—"}
+            </Typography>
+            <button
+              type="button"
+              className={controlButtonClassName("px-2.5")}
+              disabled={!ready || totalPages === 0}
+              onClick={() => jumpToPage(pageDraft)}
+            >
+              <Typography variant="button">Go</Typography>
+            </button>
+          </div>
+
+          <div className="ml-auto flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              className={controlButtonClassName()}
+              onClick={() => applyZoom(zoomFactorRef.current - ZOOM_STEP)}
+            >
+              <Typography variant="button">−</Typography>
+            </button>
+            <Typography variant="small">
+              {Math.round(zoomFactor * 100)}%
+            </Typography>
+            <button
+              type="button"
+              className={controlButtonClassName()}
+              onClick={() => applyZoom(zoomFactorRef.current + ZOOM_STEP)}
+            >
+              <Typography variant="button">+</Typography>
+            </button>
+            <button
+              type="button"
+              className={controlButtonClassName()}
+              disabled={!ready}
+              onClick={enterFullscreen}
+            >
+              <Typography variant="button">Fullscreen</Typography>
+            </button>
+          </div>
         </div>
+
+        <PdfSearchBar
+          tone="light"
+          inputId="pdf-search-input-inline"
+          query={searchQuery}
+          onQueryChange={setSearchQuery}
+          matchCount={searchMatches.length}
+          activeIndex={activeMatchIndex}
+          searching={searching}
+          disabled={!ready}
+          onPrev={() => goToMatch(activeMatchIndex - 1)}
+          onNext={() => goToMatch(activeMatchIndex + 1)}
+        />
       </div>
     </>
   );
@@ -1371,12 +1458,7 @@ export function PdfReader({ book }: PdfReaderProps) {
             <select
               className={railFieldClassName}
               disabled={!ready || availableChapters.length === 0}
-              value={
-                location != null &&
-                metas[location.metaIndex]?.available === true
-                  ? String(location.metaIndex)
-                  : ""
-              }
+              value={chapterSelectValue}
               onChange={(event) => {
                 const next = Number(event.target.value);
                 if (Number.isFinite(next)) jumpToChapter(next);
@@ -1455,6 +1537,8 @@ export function PdfReader({ book }: PdfReaderProps) {
               Find
             </Typography>
             <PdfSearchBar
+              tone="dark"
+              inputId="pdf-search-input-fullscreen"
               query={searchQuery}
               onQueryChange={setSearchQuery}
               matchCount={searchMatches.length}

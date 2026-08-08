@@ -12,6 +12,9 @@ type PdfSearchBarProps = {
   disabled?: boolean;
   onPrev: () => void;
   onNext: () => void;
+  /** Fullscreen rail uses dark; inline desktop toolbar uses light. */
+  tone?: "dark" | "light";
+  inputId?: string;
 };
 
 export function PdfSearchBar({
@@ -23,6 +26,8 @@ export function PdfSearchBar({
   disabled,
   onPrev,
   onNext,
+  tone = "dark",
+  inputId = "pdf-search-input",
 }: PdfSearchBarProps) {
   const counter =
     matchCount > 0
@@ -33,13 +38,21 @@ export function PdfSearchBar({
           : "0 of 0"
         : "";
 
+  const isDark = tone === "dark";
+
   return (
-    <div className="flex w-full flex-wrap items-center gap-2 [&_input]:bg-[#2a2a2a] [&_input]:text-[#f2f2f0] [&_input]:placeholder:text-zinc-400">
-      <label className="sr-only" htmlFor="pdf-search-input">
+    <div
+      className={
+        isDark
+          ? "flex w-full flex-wrap items-center gap-2 [&_input]:bg-[#2a2a2a] [&_input]:text-[#f2f2f0] [&_input]:placeholder:text-zinc-400"
+          : "flex w-full flex-wrap items-center gap-2"
+      }
+    >
+      <label className="sr-only" htmlFor={inputId}>
         Search in book
       </label>
       <input
-        id="pdf-search-input"
+        id={inputId}
         type="text"
         value={query}
         disabled={disabled}
@@ -47,7 +60,7 @@ export function PdfSearchBar({
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}
-        className="min-w-0 flex-1 rounded-lg border border-line bg-surface px-3 py-2 text-sm outline-none focus:border-accent"
+        className="min-w-0 flex-1 rounded-lg border border-line bg-surface px-3 py-2 text-sm text-foreground outline-none focus:border-accent disabled:opacity-40"
         onChange={(event) => onQueryChange(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
@@ -61,7 +74,14 @@ export function PdfSearchBar({
           }
         }}
       />
-      <Typography variant="small" className="min-w-[4.5rem] text-center text-zinc-300">
+      <Typography
+        variant="small"
+        className={
+          isDark
+            ? "min-w-[4.5rem] text-center text-zinc-300"
+            : "min-w-[4.5rem] text-center text-muted"
+        }
+      >
         {counter}
       </Typography>
       <button
