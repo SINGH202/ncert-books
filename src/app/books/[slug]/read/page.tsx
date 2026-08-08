@@ -9,6 +9,7 @@ import { getAllBooks, getBookById } from "@/lib/catalog";
 
 type ReadPageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ continue?: string }>;
 };
 
 export function generateStaticParams() {
@@ -28,8 +29,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function ReadPage({ params }: ReadPageProps) {
+export default async function ReadPage({ params, searchParams }: ReadPageProps) {
   const { slug } = await params;
+  const { continue: continueParam } = await searchParams;
   const book = getBookById(slug);
   if (!book) notFound();
 
@@ -53,7 +55,11 @@ export default async function ReadPage({ params }: ReadPageProps) {
         </div>
 
         <div className="flex-1 sm:rounded-xl sm:border sm:border-line sm:bg-surface sm:p-4">
-          <PdfReader key={book.id} book={book} />
+          <PdfReader
+            key={book.id}
+            book={book}
+            autoContinue={continueParam === "1"}
+          />
         </div>
 
         <NcertAttribution

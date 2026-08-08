@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BookReadingActions } from "@/components/book-reading-actions";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { PrefetchBookPdfs } from "@/components/prefetch-book-pdfs";
 import { SiteHeader } from "@/components/site-header";
@@ -60,14 +61,7 @@ export default async function BookPage({ params }: BookPageProps) {
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Link
-            href={`/books/${book.id}/read`}
-            className="touch-target inline-flex w-full items-center justify-center rounded-xl bg-accent px-5 py-3 sm:w-auto"
-          >
-            <Typography variant="button" className="text-[#f7f4ef] dark:text-[#0c0f0e]">
-              Read full book
-            </Typography>
-          </Link>
+          <BookReadingActions bookId={book.id} />
           <a
             href={book.ncertBookUrl}
             target="_blank"
