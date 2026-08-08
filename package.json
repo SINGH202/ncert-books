@@ -10,7 +10,8 @@
     "sync:catalog": "tsx scripts/sync-ncert-catalog.ts",
     "sync:chapter-titles": "tsx scripts/apply-chapter-titles.ts",
     "sync:chapter-titles:local": "tsx scripts/apply-chapter-titles-local.ts",
-    "test:chapter-titles": "tsx scripts/extract-chapter-title.test.ts"
+    "test:chapter-titles": "tsx scripts/extract-chapter-title.test.ts",
+    "test:pdf-search": "tsx scripts/pdf-search.test.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
