@@ -19,7 +19,7 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - Client PDF fetch times out ~14s per attempt (2 tries) with clearer “retrying…” status instead of a long hang
 - Opens books from the first available section in order (no race-to-random-chapter)
 - Streams and caches PDFs; remaining chapters load in the background
-- Clear loading status while waiting on NCERT
+- Clear boot overlay while opening a book, plus background section progress after first page
 - Zoom, fit page/width, pinch/trackpad zoom, and pan
 - Privacy-friendly Vercel Analytics + Speed Insights (no ads)
 - Weekly automated catalog sync via GitHub Actions
