@@ -5,7 +5,11 @@ import { PdfSearchBar } from "@/components/pdf-search-bar";
 import { Typography } from "@/components/typography";
 import { controlButtonClassName } from "@/lib/control-button-class";
 import { trackEvent } from "@/lib/analytics";
-import { openPdfDocument, prefetchPdf } from "@/lib/pdf-cache";
+import {
+  describePdfFetchError,
+  openPdfDocument,
+  prefetchPdf,
+} from "@/lib/pdf-cache";
 import { computeFitScale, paintPageToCanvas } from "@/lib/pdf-render";
 import {
   findMatchesOnPage,
@@ -585,6 +589,7 @@ export function PdfReader({ book }: PdfReaderProps) {
       pdfjs: any,
       index: number,
       keepDoc: boolean,
+      announceAttempts: boolean,
     ): Promise<ChapterMeta> {
       const chapter = book.chapters[index];
       const existing = pdfDocsRef.current.get(index);
@@ -596,7 +601,21 @@ export function PdfReader({ book }: PdfReaderProps) {
         };
       }
 
-      const pdf = await openPdfDocument(pdfjs, chapter.pdfUrl, book.id);
+      const pdf = await openPdfDocument(pdfjs, chapter.pdfUrl, book.id, {
+        onAttempt: announceAttempts
+          ? ({ attempt, maxAttempts, reason }) => {
+              if (cancelled) return;
+              const title = chapter.title || "section";
+              if (reason === "retry") {
+                setLoadStatus(
+                  `NCERT is slow — retrying “${title}” (${attempt}/${maxAttempts})…`,
+                );
+              } else {
+                setLoadStatus(`Opening “${title}”…`);
+              }
+            }
+          : undefined,
+      });
       if (cancelled) {
         await pdf.destroy();
         throw new Error("cancelled");
@@ -620,18 +639,17 @@ export function PdfReader({ book }: PdfReaderProps) {
       pdfjs: any,
       index: number,
       keepDoc: boolean,
+      announceAttempts = false,
     ): Promise<ChapterMeta | null> {
-      for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        return await openChapter(pdfjs, index, keepDoc, announceAttempts);
+      } catch (error) {
         if (cancelled) return null;
-        try {
-          return await openChapter(pdfjs, index, keepDoc);
-        } catch {
-          await new Promise((resolve) =>
-            setTimeout(resolve, 280 * (attempt + 1)),
-          );
+        if (announceAttempts) {
+          setLoadStatus(describePdfFetchError(error));
         }
+        return null;
       }
-      return null;
     }
 
     function revealChapter(index: number, meta: ChapterMeta) {
@@ -706,7 +724,7 @@ export function PdfReader({ book }: PdfReaderProps) {
           if (cancelled) return;
           const chapterTitle = book.chapters[index]?.title ?? "section";
           setLoadStatus(`Opening “${chapterTitle}”…`);
-          const meta = await tryOpenChapter(pdfjs, index, true);
+          const meta = await tryOpenChapter(pdfjs, index, true, true);
           if (meta) {
             firstReadyIndex = index;
             revealChapter(index, meta);
@@ -721,7 +739,9 @@ export function PdfReader({ book }: PdfReaderProps) {
         if (firstReadyIndex === -1) {
           if (!cancelled) {
             setLoadStatus("Could not open this book.");
-            setError("Something went wrong. Please try again.");
+            setError(
+              "NCERT didn’t respond in time. Tap Try again — cached chapters open instantly.",
+            );
           }
           return;
         }
@@ -767,10 +787,10 @@ export function PdfReader({ book }: PdfReaderProps) {
             ),
           );
         })();
-      } catch {
+      } catch (loadError) {
         if (!cancelled) {
           setLoadStatus("Could not open this book.");
-          setError("Something went wrong. Please try again.");
+          setError(describePdfFetchError(loadError));
         }
       }
     }
@@ -1325,8 +1345,8 @@ export function PdfReader({ book }: PdfReaderProps) {
               variant="small"
               className={isFullscreen ? "text-zinc-400" : undefined}
             >
-              NCERT servers can be slow. We open the book from the beginning —
-              thanks for waiting.
+              NCERT can be slow. We fail quickly and retry instead of hanging —
+              reopen is instant once a chapter is cached.
             </Typography>
           </div>
         </div>

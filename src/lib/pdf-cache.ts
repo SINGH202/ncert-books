@@ -3,7 +3,8 @@ const DB_VERSION = 2;
 const STORE_PDFS = "pdfs";
 /** Soft cap — oldest entries are evicted when exceeded. */
 const MAX_CACHED_PDFS = 48;
-const FETCH_TIMEOUT_MS = 45_000;
+/** Fail each network attempt quickly; UX retries instead of a long hang. */
+const FETCH_TIMEOUT_MS = 14_000;
 const FETCH_ATTEMPTS = 2;
 
 type PdfCacheRecord = {
@@ -12,6 +13,14 @@ type PdfCacheRecord = {
   data: ArrayBuffer;
   updatedAt: number;
 };
+
+export type PdfFetchAttemptInfo = {
+  attempt: number;
+  maxAttempts: number;
+  reason: "start" | "retry";
+};
+
+export type PdfFetchErrorKind = "timeout" | "not_found" | "upstream" | "unknown";
 
 const inflightFetches = new Map<string, Promise<ArrayBuffer>>();
 
@@ -103,11 +112,53 @@ async function putCachedPdf(
   }
 }
 
-class PdfHttpError extends Error {
+export class PdfHttpError extends Error {
   status: number;
-  constructor(status: number, message: string) {
+  kind: PdfFetchErrorKind;
+
+  constructor(status: number, message: string, kind: PdfFetchErrorKind) {
     super(message);
+    this.name = "PdfHttpError";
     this.status = status;
+    this.kind = kind;
+  }
+}
+
+export function classifyPdfFetchError(error: unknown): PdfFetchErrorKind {
+  if (error instanceof PdfHttpError) return error.kind;
+  if (error instanceof DOMException && error.name === "AbortError") {
+    return "timeout";
+  }
+  if (error instanceof Error) {
+    const message = error.message.toLowerCase();
+    if (message.includes("abort") || message.includes("timeout")) {
+      return "timeout";
+    }
+    if (message.includes("404") || message.includes("not found")) {
+      return "not_found";
+    }
+    if (message.includes("502") || message.includes("503") || message.includes("upstream")) {
+      return "upstream";
+    }
+  }
+  return "unknown";
+}
+
+export function describePdfFetchError(error: unknown): string {
+  const kind = classifyPdfFetchError(error);
+  switch (kind) {
+    case "timeout":
+      return "NCERT took too long to respond. Tap Try again.";
+    case "not_found":
+      return "This section isn’t available on NCERT.";
+    case "upstream":
+      return "NCERT is temporarily unavailable. Tap Try again in a moment.";
+    case "unknown":
+      return "Something went wrong loading this PDF. Tap Try again.";
+    default: {
+      const _exhaustive: never = kind;
+      return _exhaustive;
+    }
   }
 }
 
@@ -116,16 +167,18 @@ async function fetchPdfBytes(officialUrl: string): Promise<ArrayBuffer> {
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   try {
     const response = await fetch(getPdfProxyUrl(officialUrl), {
+      // Prefer cached proxy/CDN responses when available.
       cache: "force-cache",
       signal: controller.signal,
     });
     if (response.status === 404) {
-      throw new PdfHttpError(404, "PDF not found on NCERT");
+      throw new PdfHttpError(404, "PDF not found on NCERT", "not_found");
     }
     if (!response.ok) {
       throw new PdfHttpError(
         response.status,
         `Failed to download PDF (${response.status})`,
+        "upstream",
       );
     }
     const data = await response.arrayBuffer();
@@ -133,10 +186,23 @@ async function fetchPdfBytes(officialUrl: string): Promise<ArrayBuffer> {
       throw new Error("Downloaded PDF was empty");
     }
     return data;
+  } catch (error) {
+    if (error instanceof PdfHttpError) throw error;
+    if (
+      (error instanceof DOMException && error.name === "AbortError") ||
+      (error instanceof Error && /abort/i.test(error.message))
+    ) {
+      throw new PdfHttpError(408, "PDF download timed out", "timeout");
+    }
+    throw error;
   } finally {
     clearTimeout(timeout);
   }
 }
+
+type FetchAndCacheOptions = {
+  onAttempt?: (info: PdfFetchAttemptInfo) => void;
+};
 
 /**
  * Download (or reuse cache) PDF bytes. Concurrent callers for the same URL
@@ -145,6 +211,7 @@ async function fetchPdfBytes(officialUrl: string): Promise<ArrayBuffer> {
 export async function fetchAndCachePdf(
   officialUrl: string,
   bookId: string,
+  options?: FetchAndCacheOptions,
 ): Promise<ArrayBuffer> {
   const cached = await getCachedPdf(officialUrl);
   if (cached && cached.byteLength > 100) return cached;
@@ -155,6 +222,11 @@ export async function fetchAndCachePdf(
   const request = (async () => {
     let lastError: unknown;
     for (let attempt = 0; attempt < FETCH_ATTEMPTS; attempt += 1) {
+      options?.onAttempt?.({
+        attempt: attempt + 1,
+        maxAttempts: FETCH_ATTEMPTS,
+        reason: attempt === 0 ? "start" : "retry",
+      });
       try {
         const data = await fetchPdfBytes(officialUrl);
         void putCachedPdf(officialUrl, bookId, data);
@@ -162,9 +234,9 @@ export async function fetchAndCachePdf(
       } catch (error) {
         lastError = error;
         // Missing files won't appear on retry.
-        if (error instanceof PdfHttpError && error.status === 404) break;
+        if (error instanceof PdfHttpError && error.kind === "not_found") break;
         if (attempt + 1 < FETCH_ATTEMPTS) {
-          const delay = Math.min(2000, 400 * 2 ** attempt);
+          const delay = 400 * (attempt + 1);
           await new Promise((resolve) => setTimeout(resolve, delay));
         }
       }
@@ -199,9 +271,10 @@ export async function openPdfDocument(
   pdfjs: any,
   officialUrl: string,
   bookId: string,
+  options?: FetchAndCacheOptions,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
-  const data = await fetchAndCachePdf(officialUrl, bookId);
+  const data = await fetchAndCachePdf(officialUrl, bookId, options);
   return pdfjs.getDocument({
     data: new Uint8Array(data.slice(0)),
     disableAutoFetch: true,
