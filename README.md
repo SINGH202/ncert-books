@@ -14,6 +14,8 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - Desktop reader toolbar includes chapter jump, page jump, and find without entering fullscreen
 - Find in book with match count, next/prev, and highlights
 - Offline-friendly IndexedDB + HTTP cache for PDF bytes (opens at page 1 every time)
+- Prefetches the first chapter on the book page so Read opens faster
+- Proxy retries NCERT with host fallback (`ncert.nic.in` ↔ `www`) and week-long edge cache
 - Opens books from the first available section in order (no race-to-random-chapter)
 - Streams and caches PDFs; remaining chapters load in the background
 - Clear loading status while waiting on NCERT

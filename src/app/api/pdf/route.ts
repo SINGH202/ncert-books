@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const ALLOWED_HOSTS = new Set(["ncert.nic.in", "www.ncert.nic.in"]);
+const UPSTREAM_TIMEOUT_MS = 22_000;
+const MAX_ATTEMPTS = 3;
 
 function isAllowedPdfUrl(rawUrl: string): URL | null {
   let parsed: URL;
@@ -17,33 +19,64 @@ function isAllowedPdfUrl(rawUrl: string): URL | null {
   return parsed;
 }
 
+function alternateHostUrl(pdfUrl: URL): URL | null {
+  const alt = new URL(pdfUrl.toString());
+  if (pdfUrl.hostname === "ncert.nic.in") {
+    alt.hostname = "www.ncert.nic.in";
+    return alt;
+  }
+  if (pdfUrl.hostname === "www.ncert.nic.in") {
+    alt.hostname = "ncert.nic.in";
+    return alt;
+  }
+  return null;
+}
+
+function upstreamCandidates(pdfUrl: URL): URL[] {
+  const alt = alternateHostUrl(pdfUrl);
+  return alt ? [pdfUrl, alt] : [pdfUrl];
+}
+
+async function fetchOnce(
+  pdfUrl: URL,
+  rangeHeader: string | null,
+): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
+  try {
+    const headers: Record<string, string> = {
+      "User-Agent":
+        "Mozilla/5.0 (compatible; ncrt-books-pdf-proxy/0.2; +https://github.com/SINGH202/ncert-books)",
+      Accept: "application/pdf,*/*",
+      Referer: "https://ncert.nic.in/textbook.php",
+    };
+    if (rangeHeader) headers.Range = rangeHeader;
+
+    return await fetch(pdfUrl.toString(), {
+      headers,
+      redirect: "follow",
+      // Cache successful upstream PDFs at the platform edge for a week.
+      next: { revalidate: 604800 },
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function fetchUpstream(
   pdfUrl: URL,
   rangeHeader: string | null,
 ): Promise<Response> {
   let lastError: unknown;
-  const maxAttempts = 3;
+  const candidates = upstreamCandidates(pdfUrl);
 
-  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10_000);
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt += 1) {
+    const target = candidates[attempt % candidates.length];
     try {
-      const headers: Record<string, string> = {
-        "User-Agent":
-          "Mozilla/5.0 (compatible; ncrt-books-pdf-proxy/0.1; +https://github.com/SINGH202/ncert-books)",
-        Accept: "application/pdf,*/*",
-        Referer: "https://ncert.nic.in/textbook.php",
-      };
-      if (rangeHeader) headers.Range = rangeHeader;
+      const upstream = await fetchOnce(target, rangeHeader);
 
-      const upstream = await fetch(pdfUrl.toString(), {
-        headers,
-        redirect: "follow",
-        // Cache successful upstream PDFs at the platform edge for a day.
-        next: { revalidate: 86400 },
-        signal: controller.signal,
-      });
-
+      // Missing chapters (esp. Prelims) — fail fast, no retries.
       if (upstream.status === 404) return upstream;
       if (upstream.ok || upstream.status === 206) return upstream;
 
@@ -54,11 +87,9 @@ async function fetchUpstream(
       lastError = new Error(`Upstream returned ${upstream.status}`);
     } catch (error) {
       lastError = error;
-    } finally {
-      clearTimeout(timeout);
     }
 
-    const delay = Math.min(1200, 250 * 2 ** attempt);
+    const delay = Math.min(1600, 300 * 2 ** attempt);
     await new Promise((resolve) => setTimeout(resolve, delay));
   }
 
@@ -106,12 +137,17 @@ export async function GET(request: NextRequest) {
 
     const headers = new Headers();
     headers.set("Content-Type", "application/pdf");
+    // Long browser/CDN cache — NCERT chapter PDFs are immutable by URL.
     headers.set(
       "Cache-Control",
-      "public, max-age=86400, stale-while-revalidate=604800",
+      "public, max-age=604800, s-maxage=604800, stale-while-revalidate=2592000",
     );
     headers.set("X-Content-Type-Options", "nosniff");
     headers.set("Accept-Ranges", "bytes");
+    headers.set(
+      "X-Proxy-Upstream-Host",
+      upstream.url ? new URL(upstream.url).hostname : pdfUrl.hostname,
+    );
 
     const contentLength = upstream.headers.get("content-length");
     if (contentLength) headers.set("Content-Length", contentLength);

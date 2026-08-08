@@ -5,7 +5,7 @@ import { PdfSearchBar } from "@/components/pdf-search-bar";
 import { Typography } from "@/components/typography";
 import { controlButtonClassName } from "@/lib/control-button-class";
 import { trackEvent } from "@/lib/analytics";
-import { openPdfDocument } from "@/lib/pdf-cache";
+import { openPdfDocument, prefetchPdf } from "@/lib/pdf-cache";
 import { computeFitScale, paintPageToCanvas } from "@/lib/pdf-render";
 import {
   findMatchesOnPage,
@@ -680,6 +680,13 @@ export function PdfReader({ book }: PdfReaderProps) {
 
       try {
         setLoadStatus("Starting PDF engine…");
+        // Warm the first content chapter while pdf.js loads (big first-open win).
+        const order = preferredLoadOrder(book.chapters);
+        const firstCandidate = order[0];
+        if (firstCandidate != null) {
+          prefetchPdf(book.chapters[firstCandidate].pdfUrl, book.id);
+        }
+
         const pdfjs = await import("pdfjs-dist");
         try {
           pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -693,7 +700,6 @@ export function PdfReader({ book }: PdfReaderProps) {
 
         // Load in a fixed order so the first painted page is always the book
         // start (not whichever chapter happens to finish downloading first).
-        const order = preferredLoadOrder(book.chapters);
         let firstReadyIndex = -1;
 
         for (const index of order) {
@@ -721,6 +727,7 @@ export function PdfReader({ book }: PdfReaderProps) {
         }
 
         // Prefetch the next chapter; load the rest quietly in the background.
+        // Prelims stay last in preferredLoadOrder so flaky 404s don't steal bandwidth.
         const remaining = order.filter((index) => {
           const meta = metasRef.current[index];
           return index !== firstReadyIndex && meta?.available !== true;
@@ -737,7 +744,7 @@ export function PdfReader({ book }: PdfReaderProps) {
           }
 
           const rest = remaining.slice(1);
-          const concurrency = 2;
+          const concurrency = 3;
           let cursor = 0;
 
           async function worker() {

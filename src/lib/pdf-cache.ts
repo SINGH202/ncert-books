@@ -1,6 +1,10 @@
 const DB_NAME = "ncert-books-pdf-cache";
 const DB_VERSION = 2;
 const STORE_PDFS = "pdfs";
+/** Soft cap — oldest entries are evicted when exceeded. */
+const MAX_CACHED_PDFS = 48;
+const FETCH_TIMEOUT_MS = 45_000;
+const FETCH_ATTEMPTS = 2;
 
 type PdfCacheRecord = {
   url: string;
@@ -8,6 +12,8 @@ type PdfCacheRecord = {
   data: ArrayBuffer;
   updatedAt: number;
 };
+
+const inflightFetches = new Map<string, Promise<ArrayBuffer>>();
 
 export function getPdfProxyUrl(officialUrl: string): string {
   return `/api/pdf?url=${encodeURIComponent(officialUrl)}`;
@@ -57,6 +63,20 @@ async function getCachedPdf(url: string): Promise<ArrayBuffer | null> {
   }
 }
 
+async function evictOldestIfNeeded(db: IDBDatabase): Promise<void> {
+  const tx = db.transaction(STORE_PDFS, "readwrite");
+  const store = tx.objectStore(STORE_PDFS);
+  const all = await idbRequest<PdfCacheRecord[]>(store.getAll());
+  if (all.length < MAX_CACHED_PDFS) return;
+
+  const overflow = all.length - MAX_CACHED_PDFS + 1;
+  const oldest = all
+    .slice()
+    .sort((a, b) => a.updatedAt - b.updatedAt)
+    .slice(0, overflow);
+  await Promise.all(oldest.map((record) => idbRequest(store.delete(record.url))));
+}
+
 async function putCachedPdf(
   url: string,
   bookId: string,
@@ -65,6 +85,7 @@ async function putCachedPdf(
   try {
     const db = await openDb();
     try {
+      await evictOldestIfNeeded(db);
       const tx = db.transaction(STORE_PDFS, "readwrite");
       await idbRequest(
         tx.objectStore(STORE_PDFS).put({
@@ -82,16 +103,30 @@ async function putCachedPdf(
   }
 }
 
+class PdfHttpError extends Error {
+  status: number;
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
 async function fetchPdfBytes(officialUrl: string): Promise<ArrayBuffer> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 25_000);
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   try {
     const response = await fetch(getPdfProxyUrl(officialUrl), {
       cache: "force-cache",
       signal: controller.signal,
     });
+    if (response.status === 404) {
+      throw new PdfHttpError(404, "PDF not found on NCERT");
+    }
     if (!response.ok) {
-      throw new Error(`Failed to download PDF (${response.status})`);
+      throw new PdfHttpError(
+        response.status,
+        `Failed to download PDF (${response.status})`,
+      );
     }
     const data = await response.arrayBuffer();
     if (data.byteLength < 100) {
@@ -103,6 +138,10 @@ async function fetchPdfBytes(officialUrl: string): Promise<ArrayBuffer> {
   }
 }
 
+/**
+ * Download (or reuse cache) PDF bytes. Concurrent callers for the same URL
+ * share one network request.
+ */
 export async function fetchAndCachePdf(
   officialUrl: string,
   bookId: string,
@@ -110,21 +149,45 @@ export async function fetchAndCachePdf(
   const cached = await getCachedPdf(officialUrl);
   if (cached && cached.byteLength > 100) return cached;
 
-  let lastError: unknown;
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      const data = await fetchPdfBytes(officialUrl);
-      void putCachedPdf(officialUrl, bookId, data);
-      return data.slice(0);
-    } catch (error) {
-      lastError = error;
-      const delay = Math.min(1500, 300 * 2 ** attempt);
-      await new Promise((resolve) => setTimeout(resolve, delay));
+  const existing = inflightFetches.get(officialUrl);
+  if (existing) return existing.then((data) => data.slice(0));
+
+  const request = (async () => {
+    let lastError: unknown;
+    for (let attempt = 0; attempt < FETCH_ATTEMPTS; attempt += 1) {
+      try {
+        const data = await fetchPdfBytes(officialUrl);
+        void putCachedPdf(officialUrl, bookId, data);
+        return data;
+      } catch (error) {
+        lastError = error;
+        // Missing files won't appear on retry.
+        if (error instanceof PdfHttpError && error.status === 404) break;
+        if (attempt + 1 < FETCH_ATTEMPTS) {
+          const delay = Math.min(2000, 400 * 2 ** attempt);
+          await new Promise((resolve) => setTimeout(resolve, delay));
+        }
+      }
     }
+    throw lastError instanceof Error
+      ? lastError
+      : new Error("Failed to download PDF");
+  })();
+
+  inflightFetches.set(officialUrl, request);
+  try {
+    const data = await request;
+    return data.slice(0);
+  } finally {
+    inflightFetches.delete(officialUrl);
   }
-  throw lastError instanceof Error
-    ? lastError
-    : new Error("Failed to download PDF");
+}
+
+/** Warm IDB/HTTP cache without opening a PDF.js document. */
+export function prefetchPdf(officialUrl: string, bookId: string): void {
+  void fetchAndCachePdf(officialUrl, bookId).catch(() => {
+    // Prefetch is best-effort.
+  });
 }
 
 /**
@@ -144,4 +207,13 @@ export async function openPdfDocument(
     disableAutoFetch: true,
     disableStream: true,
   }).promise;
+}
+
+/** First numbered chapter (skips Prelims) — best candidate for warm start. */
+export function getFirstContentChapterUrl(
+  chapters: Array<{ title: string; pdfUrl: string }>,
+): string | null {
+  const chapter =
+    chapters.find((item) => item.title !== "Prelims") ?? chapters[0] ?? null;
+  return chapter?.pdfUrl ?? null;
 }

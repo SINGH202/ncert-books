@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NcertAttribution } from "@/components/ncert-attribution";
+import { PrefetchBookPdfs } from "@/components/prefetch-book-pdfs";
 import { SiteHeader } from "@/components/site-header";
 import { TrackEventOnMount } from "@/components/track-event-on-mount";
 import { Typography } from "@/components/typography";
@@ -42,6 +43,7 @@ export default async function BookPage({ params }: BookPageProps) {
           subject: book.subject,
         }}
       />
+      <PrefetchBookPdfs book={book} />
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-6 pb-[calc(1.5rem+var(--safe-bottom))] sm:gap-8 sm:px-6 sm:py-10">
         <div className="space-y-2">
