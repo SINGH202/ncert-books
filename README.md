@@ -13,7 +13,8 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - Fullscreen reading with a side control rail (chapter jump, page jump, search)
 - Desktop reader toolbar includes chapter jump, page jump, and find without entering fullscreen
 - Find in book with match count, next/prev, highlights, progress, and cancel (loaded sections only)
-- Offline-friendly IndexedDB + HTTP cache for PDF bytes (opens at page 1 every time)
+- Offline-friendly IndexedDB + HTTP cache for PDF bytes
+- Optional continue-reading (local progress + soft prompt; opens at page 1 unless you choose Continue)
 - Prefetches the first chapter on the book page so Read opens faster
 - Proxy retries NCERT with host fallback (`ncert.nic.in` ↔ `www`), buffers bodies for edge cache, and short timeouts so the client can fail/retry quickly
 - Client PDF fetch times out ~14s per attempt (2 tries) with clearer “retrying…” status instead of a long hang
@@ -63,4 +64,4 @@ Open [http://localhost:3000](http://localhost:3000).
 - Textbook content remains copyrighted by NCERT; always prefer the official portal as the source of truth.
 - Catalog sync runs weekly via `.github/workflows/sync-ncert-catalog.yml` (also runnable manually).
 - Chapter titles are extracted from the first page of each chapter PDF (NCERT’s listing only shows “Chapter N”). Titles are cached in `data/chapter-titles.json` and filled gradually (`TITLE_MAX_FETCH`) because NCERT downloads are slow/flaky.
-- Analytics events: `book_open`, `reader_open`, `reader_ready`, `reader_error`, `fullscreen_enter`, `catalog_filter_used`.
+- Analytics events: `book_open`, `reader_open`, `reader_ready`, `reader_error`, `fullscreen_enter`, `catalog_filter_used`, `continue_reading_shown`, `continue_reading_accepted`, `continue_reading_dismissed`.

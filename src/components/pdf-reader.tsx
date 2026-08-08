@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ContinueReadingPrompt } from "@/components/continue-reading-prompt";
 import { PdfSearchBar } from "@/components/pdf-search-bar";
 import {
   ReaderBackgroundProgress,
@@ -22,11 +23,19 @@ import {
   type PdfSearchMatch,
   type PdfSearchRect,
 } from "@/lib/pdf-search";
+import {
+  clearReadingProgress,
+  getReadingProgress,
+  saveReadingProgress,
+  type ReadingProgress,
+} from "@/lib/reading-progress";
 import type { Book, Chapter, FitMode } from "@/lib/types";
 import { useDebouncedValue } from "@/shared/hooks/useDebouncedValue";
 
 type PdfReaderProps = {
   book: Book;
+  /** When true (from ?continue=1), jump to saved page after ready — no prompt. */
+  autoContinue?: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -138,7 +147,7 @@ function preferredLoadOrder(chapters: Chapter[]): number[] {
     });
 }
 
-export function PdfReader({ book }: PdfReaderProps) {
+export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const pdfDocsRef = useRef<Map<number, PdfDocument>>(new Map());
@@ -159,6 +168,8 @@ export function PdfReader({ book }: PdfReaderProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const lastViewportRef = useRef<any>(null);
   const searchAbortRef = useRef<AbortController | null>(null);
+  const continueHandledRef = useRef(false);
+  const pendingContinueRef = useRef<ReadingProgress | null>(null);
   const [retryToken, setRetryToken] = useState(0);
 
   const [metas, setMetas] = useState<ChapterMeta[]>(() =>
@@ -190,6 +201,9 @@ export function PdfReader({ book }: PdfReaderProps) {
   const [railOpen, setRailOpen] = useState(true);
   const [pageDraft, setPageDraft] = useState("1");
   const [loadStatus, setLoadStatus] = useState("Preparing reader…");
+  const [continueOffer, setContinueOffer] = useState<ReadingProgress | null>(
+    null,
+  );
   const [bgLoad, setBgLoad] = useState<BackgroundLoadProgress | null>(null);
   const zoomFactorRef = useRef(zoomFactor);
   const openStartedAtRef = useRef(Date.now());
@@ -202,6 +216,8 @@ export function PdfReader({ book }: PdfReaderProps) {
   useEffect(() => {
     openStartedAtRef.current = Date.now();
     readyTrackedRef.current = false;
+    continueHandledRef.current = false;
+    setContinueOffer(null);
     trackEvent("reader_open", {
       bookId: book.id,
       class: book.class,
@@ -217,6 +233,94 @@ export function PdfReader({ book }: PdfReaderProps) {
       ms_to_ready: Date.now() - openStartedAtRef.current,
     });
   }, [ready, book.id]);
+
+  function tryApplyPendingContinue() {
+    const pending = pendingContinueRef.current;
+    if (!pending) return false;
+    const meta = metasRef.current[pending.metaIndex];
+    if (meta?.available === true && meta.pageCount > 0) {
+      goToChapterPage(pending.metaIndex, pending.pageInChapter);
+      pendingContinueRef.current = null;
+      return true;
+    }
+    const max = sumAvailablePages(metasRef.current);
+    if (max >= pending.globalPage) {
+      goToGlobalPage(pending.globalPage);
+      pendingContinueRef.current = null;
+      return true;
+    }
+    return false;
+  }
+
+  // Soft continue-reading offer (never auto-jump unless ?continue=1).
+  useEffect(() => {
+    if (!ready || continueHandledRef.current) return;
+    continueHandledRef.current = true;
+
+    let cancelled = false;
+    void (async () => {
+      const saved = await getReadingProgress(book.id);
+      if (cancelled || !saved || saved.globalPage <= 1) return;
+
+      if (autoContinue) {
+        pendingContinueRef.current = saved;
+        tryApplyPendingContinue();
+        trackEvent("continue_reading_accepted", {
+          bookId: book.id,
+          page: saved.globalPage,
+          via: "query",
+        });
+        return;
+      }
+
+      setContinueOffer(saved);
+      trackEvent("continue_reading_shown", {
+        bookId: book.id,
+        page: saved.globalPage,
+      });
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, book.id, autoContinue]);
+
+  // Persist place while reading (local only). Skip page 1 spam at open.
+  const debouncedGlobalPage = useDebouncedValue(globalPage, 600);
+  useEffect(() => {
+    if (!ready || continueOffer) return;
+    if (debouncedGlobalPage <= 1) return;
+    const loc = resolveLocation(metasRef.current, debouncedGlobalPage);
+    if (!loc) return;
+    void saveReadingProgress({
+      bookId: book.id,
+      globalPage: debouncedGlobalPage,
+      metaIndex: loc.metaIndex,
+      pageInChapter: loc.pageInChapter,
+      updatedAt: Date.now(),
+    });
+  }, [ready, debouncedGlobalPage, book.id, continueOffer]);
+
+  function acceptContinueReading() {
+    if (!continueOffer) return;
+    const saved = continueOffer;
+    setContinueOffer(null);
+    pendingContinueRef.current = saved;
+    tryApplyPendingContinue();
+    trackEvent("continue_reading_accepted", {
+      bookId: book.id,
+      page: saved.globalPage,
+      via: "prompt",
+    });
+  }
+
+  function dismissContinueReading() {
+    setContinueOffer(null);
+    pendingContinueRef.current = null;
+    void clearReadingProgress(book.id);
+    trackEvent("continue_reading_dismissed", { bookId: book.id });
+  }
 
   useEffect(() => {
     if (!error) return;
@@ -588,6 +692,10 @@ export function PdfReader({ book }: PdfReaderProps) {
         // Keep the same chapter/page on screen when earlier chapters finish loading.
         syncGlobalPageToAnchor(next);
         return next;
+      });
+      // Apply queued continue-reading once the target section is available.
+      queueMicrotask(() => {
+        tryApplyPendingContinue();
       });
     }
 
@@ -1460,6 +1568,14 @@ export function PdfReader({ book }: PdfReaderProps) {
           status={loadStatus}
           bookTitle={book.title}
           isFullscreen={isFullscreen}
+        />
+      ) : null}
+      {ready && continueOffer ? (
+        <ContinueReadingPrompt
+          page={continueOffer.globalPage}
+          isFullscreen={isFullscreen}
+          onContinue={acceptContinueReading}
+          onStartOver={dismissContinueReading}
         />
       ) : null}
       {/* Keep canvas mounted so the first ready render does not miss the ref. */}
