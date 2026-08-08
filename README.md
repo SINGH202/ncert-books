@@ -11,6 +11,7 @@ PDFs load from the official [NCERT textbook portal](https://ncert.nic.in/textboo
 - Browse by class and subject from a synced NCERT catalog
 - In-app PDF.js reader with continuous page navigation across chapters
 - Fullscreen reading with a side control rail (chapter jump, page jump, search)
+- Desktop reader toolbar includes chapter jump, page jump, and find without entering fullscreen
 - Find in book with match count, next/prev, and highlights
 - Offline-friendly IndexedDB + HTTP cache for PDF bytes (opens at page 1 every time)
 - Opens books from the first available section in order (no race-to-random-chapter)
