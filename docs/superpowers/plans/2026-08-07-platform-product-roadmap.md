@@ -28,10 +28,10 @@ Order matters: do these before net-new product features.
 | --- | --- | --- | --- | --- |
 | A1 | Sync local `main` / confirm production matches PR #3 | Avoid building on stale code | Dev = prod | 0.5d |
 | A2 | Weekly catalog sync (GitHub Action → PR or commit) | Catalog goes stale; books change | Fresh catalog without manual runs | 1d |
-| A3 | Catalog quality: omit/soft-fail Prelims 404s; realer section counts | Inflated “sections”, wasted first-load races | Cleaner browse + faster first chapter | 1–2d |
-| A4 | Proxy hardening: structured logging, rate-ish guardrails, clearer 502/404 | Debug NCERT flakiness; protect origin | Operable proxy | 1d |
+| A3 | Catalog quality: omit/soft-fail Prelims 404s; realer section counts | Inflated “sections”, wasted first-load races | Soft-fail + load Prelims last | 1–2d |
+| A4 | Proxy hardening: structured logging, rate-ish guardrails, clearer 502/404 | Debug NCERT flakiness; protect origin | ✅ Host fallback + longer cache/timeouts | 1d |
 | A5 | Reader reliability pass: first-page paint, chapter remap, error retry UX | Trust is the product | Fewer blank/wrong-page reports | 1–2d |
-| A6 | Cache hygiene: IDB size awareness / simple eviction of oldest PDFs | Quota silent-fail on mobile | Stable reopens | 1d |
+| A6 | Cache hygiene: IDB size awareness / simple eviction of oldest PDFs | Quota silent-fail on mobile | ✅ Evict oldest beyond 48 PDFs | 1d |
 | A7 | SEO basics: per-book `generateMetadata`, `sitemap.ts`, `robots.ts` | Free discovery | Indexable book pages | 0.5–1d |
 | A8 | Minimal smoke checks: proxy allowlist unit test + Playwright “open a book” | Catch regressions | CI confidence | 1–2d |
 
