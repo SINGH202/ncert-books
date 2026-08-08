@@ -3,6 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContinueReadingPrompt } from "@/components/continue-reading-prompt";
 import { PdfSearchBar } from "@/components/pdf-search-bar";
+import {
+  ReaderBackgroundProgress,
+  ReaderBootOverlay,
+  type BackgroundLoadProgress,
+} from "@/components/reader-loading-ui";
 import { Typography } from "@/components/typography";
 import { controlButtonClassName } from "@/lib/control-button-class";
 import { trackEvent } from "@/lib/analytics";
@@ -199,6 +204,7 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
   const [continueOffer, setContinueOffer] = useState<ReadingProgress | null>(
     null,
   );
+  const [bgLoad, setBgLoad] = useState<BackgroundLoadProgress | null>(null);
   const zoomFactorRef = useRef(zoomFactor);
   const openStartedAtRef = useRef(Date.now());
   const readyTrackedRef = useRef(false);
@@ -773,6 +779,7 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
     async function bootstrap() {
       setReady(false);
       setError(null);
+      setBgLoad(null);
       setLoadStatus("Preparing reader…");
       viewAnchorRef.current = null;
       globalPageRef.current = 1;
@@ -862,14 +869,46 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
           return index !== firstReadyIndex && meta?.available !== true;
         });
 
+        if (remaining.length === 0) {
+          if (!cancelled) setBgLoad(null);
+          return;
+        }
+
         void (async () => {
+          const total = remaining.length;
+          let completed = 0;
+
+          const report = (title: string) => {
+            completed += 1;
+            if (cancelled) return;
+            setBgLoad({
+              completed,
+              total,
+              currentTitle: title,
+            });
+            if (completed >= total) {
+              window.setTimeout(() => {
+                if (!cancelled) setBgLoad(null);
+              }, 1400);
+            }
+          };
+
           const prefetch = remaining[0];
           if (prefetch != null) {
+            const title = book.chapters[prefetch]?.title ?? "section";
+            if (!cancelled) {
+              setBgLoad({
+                completed: 0,
+                total,
+                currentTitle: title,
+              });
+            }
             const meta = await tryOpenChapter(pdfjs, prefetch, true);
             if (!cancelled && meta) markChapter(prefetch, meta);
             else if (!cancelled) {
               markChapter(prefetch, { available: false, pageCount: 0 });
             }
+            report(title);
           }
 
           const rest = remaining.slice(1);
@@ -881,11 +920,23 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
               if (cancelled) return;
               const index = rest[cursor];
               cursor += 1;
-              if (metasRef.current[index]?.available === true) continue;
+              if (metasRef.current[index]?.available === true) {
+                report(book.chapters[index]?.title ?? "section");
+                continue;
+              }
+              const title = book.chapters[index]?.title ?? "section";
+              if (!cancelled) {
+                setBgLoad((prev) =>
+                  prev
+                    ? { ...prev, currentTitle: title }
+                    : { completed, total, currentTitle: title },
+                );
+              }
               const meta = await tryOpenChapter(pdfjs, index, false);
               if (cancelled) return;
               if (meta) markChapter(index, meta);
               else markChapter(index, { available: false, pageCount: 0 });
+              report(title);
             }
           }
 
@@ -900,6 +951,7 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
         if (!cancelled) {
           setLoadStatus("Could not open this book.");
           setError(describePdfFetchError(loadError));
+          setBgLoad(null);
         }
       }
     }
@@ -1512,33 +1564,11 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
       }
     >
       {!ready ? (
-        <div className="flex h-full min-h-[40dvh] w-full flex-col items-center justify-center gap-4 px-6 py-10 text-center">
-          <div
-            className={`h-9 w-9 animate-spin rounded-full border-2 border-transparent border-t-accent ${
-              isFullscreen ? "border-t-zinc-200" : ""
-            }`}
-            aria-hidden
-          />
-          <div className="flex max-w-sm flex-col gap-2">
-            <Typography
-              variant="bodyMedium"
-              className={
-                isFullscreen
-                  ? "font-medium text-zinc-100"
-                  : "font-medium text-foreground"
-              }
-            >
-              {loadStatus}
-            </Typography>
-            <Typography
-              variant="small"
-              className={isFullscreen ? "text-zinc-400" : undefined}
-            >
-              NCERT can be slow. We fail quickly and retry instead of hanging —
-              reopen is instant once a chapter is cached.
-            </Typography>
-          </div>
-        </div>
+        <ReaderBootOverlay
+          status={loadStatus}
+          bookTitle={book.title}
+          isFullscreen={isFullscreen}
+        />
       ) : null}
       {ready && continueOffer ? (
         <ContinueReadingPrompt
@@ -1564,7 +1594,7 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
             variant="small"
             className="absolute right-3 top-3 z-[1] rounded-md bg-background/90 px-2 py-1"
           >
-            Loading…
+            Rendering page…
           </Typography>
         ) : null}
         <div className="relative inline-block shadow-lg">
@@ -1587,6 +1617,12 @@ export function PdfReader({ book, autoContinue = false }: PdfReaderProps) {
           ))}
         </div>
       </div>
+      {ready && bgLoad ? (
+        <ReaderBackgroundProgress
+          progress={bgLoad}
+          isFullscreen={isFullscreen}
+        />
+      ) : null}
     </div>
   );
 

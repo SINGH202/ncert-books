@@ -115,7 +115,7 @@ Ship in this order. Each item is one PR-sized slice where possible.
 | Order | Feature | Depends on | Ship note |
 | --- | --- | --- | --- |
 | C4 | Search UX: progress (“Searching…” / loaded-chapters only) + cancel | B events optional | ✅ Progress + cancel |
-| C5 | Clearer loading states (“Opening chapter…”, background chapters progress) | A5 | Trust during slow NCERT |
+| C5 | Clearer loading states (“Opening chapter…”, background chapters progress) | A5 | ✅ Boot overlay + bg progress |
 | C6 | Optional **Continue reading** (opt-in or soft prompt) — reintroduce progress store carefully | B: measure if users bounce mid-book | ✅ Soft prompt + local save |
 
 ### Wave 3 — Reach & polish
