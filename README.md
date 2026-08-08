@@ -60,6 +60,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Notes
 
 - Catalog covers Classes 9–12 English-medium books only (v1).
+- Sitemap at [`/sitemap.xml`](https://ncert-books.vercel.app/sitemap.xml) (home, class pages, book pages). Reader URLs are excluded.
 - `/api/pdf` proxies allowlisted `ncert.nic.in` textbook URLs (required for CORS).
 - Textbook content remains copyrighted by NCERT; always prefer the official portal as the source of truth.
 - Catalog sync runs weekly via `.github/workflows/sync-ncert-catalog.yml` (also runnable manually).
