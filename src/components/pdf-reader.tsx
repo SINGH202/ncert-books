@@ -176,6 +176,7 @@ export function PdfReader({ book }: PdfReaderProps) {
   const [searchMatches, setSearchMatches] = useState<PdfSearchMatch[]>([]);
   const [activeMatchIndex, setActiveMatchIndex] = useState(0);
   const [searching, setSearching] = useState(false);
+  const [searchStatus, setSearchStatus] = useState<string | null>(null);
   const [highlightRects, setHighlightRects] = useState<
     Array<PdfSearchRect & { active: boolean }>
   >([]);
@@ -927,7 +928,6 @@ export function PdfReader({ book }: PdfReaderProps) {
   ]);
 
   useEffect(() => {
-    if (!isFullscreen) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== "f") {
         return;
@@ -937,7 +937,11 @@ export function PdfReader({ book }: PdfReaderProps) {
         return;
       }
       event.preventDefault();
-      document.getElementById("pdf-search-input")?.focus();
+      const inputId = isFullscreen
+        ? "pdf-search-input-fullscreen"
+        : "pdf-search-input-inline";
+      document.getElementById(inputId)?.focus();
+      if (isFullscreen) setRailOpen(true);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -951,6 +955,7 @@ export function PdfReader({ book }: PdfReaderProps) {
       setSearchMatches([]);
       setActiveMatchIndex(0);
       setSearching(false);
+      setSearchStatus(null);
       setHighlightRects([]);
       return;
     }
@@ -958,27 +963,62 @@ export function PdfReader({ book }: PdfReaderProps) {
     const controller = new AbortController();
     searchAbortRef.current = controller;
     setSearching(true);
+    setSearchStatus("Searching loaded sections…");
 
     void (async () => {
+      const results: PdfSearchMatch[] = [];
+      let jumpedToFirst = false;
+
       try {
-        const results: PdfSearchMatch[] = [];
         const currentMetas = metasRef.current;
-        let globalOffset = 0;
+        const searchableIndexes = currentMetas
+          .map((meta, index) => ({ meta, index }))
+          .filter(({ meta }) => meta.available === true && meta.pageCount > 0);
+        const total = searchableIndexes.length;
 
-        for (let metaIndex = 0; metaIndex < currentMetas.length; metaIndex += 1) {
+        if (total === 0) {
           if (controller.signal.aborted) return;
-          const meta = currentMetas[metaIndex];
-          if (meta.available !== true || meta.pageCount === 0) continue;
+          setSearchMatches([]);
+          setActiveMatchIndex(0);
+          setSearching(false);
+          setSearchStatus("No sections loaded yet — wait for the book to open.");
+          return;
+        }
 
-          const pdf = await loadChapterDoc(metaIndex);
-          if (controller.signal.aborted) return;
-          if (!pdf) {
-            globalOffset += meta.pageCount;
-            continue;
+        // Global page numbers must account for every chapter, including ones
+        // we skip because they are not loaded yet.
+        const pageCountByIndex = currentMetas.map((meta) =>
+          meta.available === true ? meta.pageCount : 0,
+        );
+
+        for (let i = 0; i < searchableIndexes.length; i += 1) {
+          if (controller.signal.aborted) break;
+
+          const { meta, index: metaIndex } = searchableIndexes[i];
+          const title = meta.chapter.title || `Section ${metaIndex + 1}`;
+          setSearchStatus(`Searching ${i + 1}/${total}: ${title}`);
+
+          let globalOffset = 0;
+          for (let j = 0; j < metaIndex; j += 1) {
+            globalOffset += pageCountByIndex[j] ?? 0;
           }
 
-          for (let pageInChapter = 1; pageInChapter <= meta.pageCount; pageInChapter += 1) {
-            if (controller.signal.aborted) return;
+          // Prefer an already-open document; otherwise open from cache/network
+          // for this available section only (never wait on not-yet-loaded ones).
+          let pdf = pdfDocsRef.current.get(metaIndex) ?? null;
+          if (!pdf) {
+            setSearchStatus(`Opening ${i + 1}/${total} for search: ${title}`);
+            pdf = await loadChapterDoc(metaIndex);
+          }
+          if (controller.signal.aborted) break;
+          if (!pdf) continue;
+
+          for (
+            let pageInChapter = 1;
+            pageInChapter <= meta.pageCount;
+            pageInChapter += 1
+          ) {
+            if (controller.signal.aborted) break;
             const page = await pdf.getPage(pageInChapter);
             const textContent = await page.getTextContent();
             const items = textContent.items.filter(
@@ -994,27 +1034,54 @@ export function PdfReader({ book }: PdfReaderProps) {
             results.push(...pageMatches);
           }
 
-          globalOffset += meta.pageCount;
+          if (controller.signal.aborted) break;
+
+          // Progressive results so the UI doesn't feel frozen.
+          setSearchMatches(results.slice());
+          if (!jumpedToFirst && results[0]) {
+            jumpedToFirst = true;
+            setActiveMatchIndex(0);
+            goToGlobalPage(results[0].globalPage);
+          }
         }
 
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted) {
+          // Superseded by a newer search — don't clobber its UI state.
+          if (searchAbortRef.current !== controller) return;
+          setSearching(false);
+          setSearchStatus(
+            results.length > 0
+              ? `Cancelled · ${results.length} match${results.length === 1 ? "" : "es"} so far (loaded sections)`
+              : "Search cancelled",
+          );
+          if (results.length > 0) {
+            setSearchMatches(results.slice());
+          }
+          return;
+        }
+
+        const pending =
+          currentMetas.filter((meta) => meta.available !== true).length;
         setSearchMatches(results);
         setActiveMatchIndex(0);
         setSearching(false);
-        if (results[0]) {
+        setSearchStatus(
+          pending > 0
+            ? `${results.length} match${results.length === 1 ? "" : "es"} in ${total} loaded section${total === 1 ? "" : "s"} · ${pending} still opening`
+            : `${results.length} match${results.length === 1 ? "" : "es"} in ${total} section${total === 1 ? "" : "s"}`,
+        );
+        if (!jumpedToFirst && results[0]) {
           goToGlobalPage(results[0].globalPage);
         }
       } catch (error) {
         if (controller.signal.aborted) return;
-        if (
-          error instanceof DOMException &&
-          error.name === "AbortError"
-        ) {
+        if (error instanceof DOMException && error.name === "AbortError") {
           return;
         }
         setSearching(false);
         setSearchMatches([]);
         setActiveMatchIndex(0);
+        setSearchStatus("Search failed — try again.");
       }
     })();
 
@@ -1024,6 +1091,18 @@ export function PdfReader({ book }: PdfReaderProps) {
     // loadChapterDoc is stable enough via refs; book.id changes remount reader flow.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchQuery, searchScopeKey, ready, book.id]);
+
+  function cancelSearch() {
+    const controller = searchAbortRef.current;
+    if (!controller) {
+      setSearching(false);
+      return;
+    }
+    // Mark as user-cancel so the in-flight loop can show partial results.
+    searchAbortRef.current = controller;
+    controller.abort();
+    setSearching(false);
+  }
 
   useEffect(() => {
     const viewport = lastViewportRef.current;
@@ -1305,7 +1384,9 @@ export function PdfReader({ book }: PdfReaderProps) {
           matchCount={searchMatches.length}
           activeIndex={activeMatchIndex}
           searching={searching}
+          statusLabel={searchStatus ?? undefined}
           disabled={!ready}
+          onCancel={cancelSearch}
           onPrev={() => goToMatch(activeMatchIndex - 1)}
           onNext={() => goToMatch(activeMatchIndex + 1)}
         />
@@ -1571,7 +1652,9 @@ export function PdfReader({ book }: PdfReaderProps) {
               matchCount={searchMatches.length}
               activeIndex={activeMatchIndex}
               searching={searching}
+              statusLabel={searchStatus ?? undefined}
               disabled={!ready}
+              onCancel={cancelSearch}
               onPrev={() => goToMatch(activeMatchIndex - 1)}
               onNext={() => goToMatch(activeMatchIndex + 1)}
             />
