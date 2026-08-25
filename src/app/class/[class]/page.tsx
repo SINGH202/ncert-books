@@ -11,6 +11,7 @@ import {
   parseSchoolClass,
   SCHOOL_CLASSES,
 } from "@/lib/catalog";
+import { buildPageMetadata } from "@/lib/seo";
 
 type ClassPageProps = {
   params: Promise<{ class: string }>;
@@ -28,10 +29,11 @@ export async function generateMetadata({
   const { class: classParam } = await params;
   const schoolClass = parseSchoolClass(classParam);
   if (!schoolClass) return { title: "Class" };
-  return {
+  return buildPageMetadata({
     title: `Class ${schoolClass}`,
     description: `Browse English-medium NCERT textbooks for Class ${schoolClass}.`,
-  };
+    path: `/class/${schoolClass}`,
+  });
 }
 
 export default async function ClassPage({ params }: ClassPageProps) {

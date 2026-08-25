@@ -1,8 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllBooks, getCatalog, SCHOOL_CLASSES } from "@/lib/catalog";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ncert-books.vercel.app";
+import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const catalog = getCatalog();
