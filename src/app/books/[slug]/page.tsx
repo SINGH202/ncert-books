@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 import { TrackEventOnMount } from "@/components/track-event-on-mount";
 import { Typography } from "@/components/typography";
 import { getAllBooks, getBookById } from "@/lib/catalog";
+import { buildPageMetadata } from "@/lib/seo";
 
 type BookPageProps = {
   params: Promise<{ slug: string }>;
@@ -23,10 +24,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const book = getBookById(slug);
   if (!book) return { title: "Book not found" };
-  return {
+  const description = `Preview ${book.title} — Class ${book.class} ${book.subject} (English medium) from NCERT.`;
+  return buildPageMetadata({
     title: book.title,
-    description: `Preview ${book.title} — Class ${book.class} ${book.subject} (English medium) from NCERT.`,
-  };
+    description,
+    path: `/books/${book.id}`,
+  });
 }
 
 export default async function BookPage({ params }: BookPageProps) {

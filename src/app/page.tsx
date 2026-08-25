@@ -1,8 +1,20 @@
+import type { Metadata } from "next";
 import { HomeCatalogBrowser } from "@/components/home-catalog-browser";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { SiteHeader } from "@/components/site-header";
 import { getCatalog, SCHOOL_CLASSES } from "@/lib/catalog";
+import { buildPageMetadata, DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/seo";
 import type { SchoolClass } from "@/lib/types";
+
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: SITE_NAME,
+    description: DEFAULT_DESCRIPTION,
+    path: "/",
+  }),
+  // Avoid "NCERT Books · NCERT Books" from the root title template.
+  title: { absolute: SITE_NAME },
+};
 
 export default function HomePage() {
   const catalog = getCatalog();
