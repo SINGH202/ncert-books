@@ -78,6 +78,15 @@ async function defaultSleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function bufferResponse(response: Response): Promise<Response> {
+  const body = await response.arrayBuffer();
+  return new Response(body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+}
+
 export async function fetchNcertHtmlWithCurl(
   url: string,
   timeoutMs = DEFAULT_TIMEOUT_MS,
@@ -134,10 +143,10 @@ export async function fetchNcertResponse(
       });
 
       if (response.ok || response.status === 206 || response.status === 404) {
-        return response;
+        return await bufferResponse(response);
       }
       if (!RETRYABLE_STATUSES.has(response.status)) {
-        return response;
+        return await bufferResponse(response);
       }
 
       lastError = new Error(`Upstream returned ${response.status}`);

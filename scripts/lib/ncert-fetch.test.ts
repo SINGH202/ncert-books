@@ -216,6 +216,43 @@ async function testTextThrowsWhenNodeAndCurlFail() {
   );
 }
 
+function stalledBodyResponse(signal: AbortSignal | null | undefined): Response {
+  const stream = new ReadableStream<Uint8Array>({
+    start(controller) {
+      const abort = () => {
+        controller.error(
+          Object.assign(new Error("The operation was aborted."), {
+            name: "AbortError",
+          }),
+        );
+      };
+      if (signal?.aborted) {
+        abort();
+        return;
+      }
+      signal?.addEventListener("abort", abort, { once: true });
+    },
+  });
+  return new Response(stream, { status: 200 });
+}
+
+async function testAbortsWhenResponseBodyStalls() {
+  const started = Date.now();
+  await assert.rejects(
+    () =>
+      fetchNcertResponse("https://ncert.nic.in/textbook.php?ln=en", {
+        timeoutMs: 80,
+        maxAttempts: 1,
+        sleep: async () => undefined,
+        fetchImpl: async (_input, init) => stalledBodyResponse(init?.signal),
+      }),
+  );
+  assert.ok(
+    Date.now() - started < 1000,
+    "stalled body download should abort within timeoutMs",
+  );
+}
+
 async function main() {
   testAlternateHost();
   testUpstreamCandidates();
@@ -230,6 +267,7 @@ async function main() {
   await testTextUsesNodeFetchWhenItWorks();
   await testTextFallsBackToCurlAfterNodeReset();
   await testTextThrowsWhenNodeAndCurlFail();
+  await testAbortsWhenResponseBodyStalls();
   console.log("ncert-fetch tests passed");
 }
 
