@@ -60,11 +60,11 @@ export function bookFaqs(book: Book): FaqItem[] {
     },
     {
       question: "How do I read the chapters online?",
-      answer: `Use Read book on this page to open the in-browser reader. It loads official chapter PDFs in order so you can move continuously across all ${book.chapters.length} sections.`,
+      answer: `Use Read book on this page to open the in-browser reader. It loads official chapter PDFs in order so you can move continuously across all ${book.chapters.length} chapters.`,
     },
     {
       question: `What is covered in Class ${book.class} ${book.subject}?`,
-      answer: `${book.title} includes ${book.chapters.length} sections listed below. Titles come from the NCERT listing and chapter PDFs where available.`,
+      answer: `${book.title} includes ${book.chapters.length} chapters listed in the chapter list on this page. Titles come from the NCERT listing and chapter PDFs where available.`,
     },
   ];
 }
