@@ -10,16 +10,32 @@ export function SiteHeader() {
             NCERT Books
           </Typography>
         </Link>
-        <a
-          href="https://ncert.nic.in/textbook.php"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="touch-target inline-flex shrink-0 items-center justify-center rounded-md px-2"
-        >
-          <Typography variant="link" className="whitespace-nowrap text-xs sm:text-sm">
-            Official NCERT
-          </Typography>
-        </a>
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <Link
+            href="/guides"
+            className="touch-target inline-flex items-center justify-center rounded-md px-2"
+          >
+            <Typography
+              variant="link"
+              className="whitespace-nowrap text-xs sm:text-sm"
+            >
+              Guides
+            </Typography>
+          </Link>
+          <a
+            href="https://ncert.nic.in/textbook.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="touch-target inline-flex items-center justify-center rounded-md px-2"
+          >
+            <Typography
+              variant="link"
+              className="whitespace-nowrap text-xs sm:text-sm"
+            >
+              Official NCERT
+            </Typography>
+          </a>
+        </div>
       </div>
     </header>
   );

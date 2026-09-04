@@ -197,3 +197,168 @@ export function buildClassJsonLd(
     ],
   };
 }
+
+export function chapterDocumentTitle(
+  book: Book,
+  chapter: Book["chapters"][number],
+): string {
+  return `${chapter.title} — ${book.title} Class ${book.class} NCERT`;
+}
+
+export function chapterMetaDescription(
+  book: Book,
+  chapter: Book["chapters"][number],
+): string {
+  return `Read “${chapter.title}” (Chapter ${chapter.index}) from ${book.title}, Class ${book.class} NCERT ${book.subject} (English medium). Preview the official NCERT chapter PDF online — we do not host downloads.`;
+}
+
+export function chapterIntro(
+  book: Book,
+  chapter: Book["chapters"][number],
+): string {
+  return `“${chapter.title}” is Chapter ${chapter.index} of ${book.title}, the Class ${book.class} ${book.subject} NCERT textbook (English medium). Use this page to open the chapter in our online reader or return to the full book outline. The PDF is streamed from the official NCERT textbook portal.`;
+}
+
+export function subjectDocumentTitle(
+  schoolClass: SchoolClass,
+  subject: string,
+): string {
+  return `Class ${schoolClass} ${subject} NCERT Books (English Medium)`;
+}
+
+export function subjectMetaDescription(
+  schoolClass: SchoolClass,
+  subject: string,
+  bookCount: number,
+): string {
+  return `Browse ${bookCount} English-medium NCERT ${subject} textbook${
+    bookCount === 1 ? "" : "s"
+  } for Class ${schoolClass}. Read chapters online from official NCERT PDFs.`;
+}
+
+export function subjectIntro(
+  schoolClass: SchoolClass,
+  subject: string,
+  bookCount: number,
+): string {
+  return `This Class ${schoolClass} ${subject} hub lists ${bookCount} English-medium NCERT textbook${
+    bookCount === 1 ? "" : "s"
+  }. Open a book for its chapter list and in-browser preview of official NCERT PDFs.`;
+}
+
+export function buildChapterJsonLd(
+  book: Book,
+  chapter: Book["chapters"][number],
+) {
+  const url = absoluteUrl(`/books/${book.id}/chapter/${chapter.index}`);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl("/"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: `Class ${book.class}`,
+            item: absoluteUrl(`/class/${book.class}`),
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: book.title,
+            item: absoluteUrl(`/books/${book.id}`),
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            name: chapter.title,
+            item: url,
+          },
+        ],
+      },
+      {
+        "@type": "Chapter",
+        name: chapter.title,
+        position: chapter.index,
+        url,
+        isPartOf: {
+          "@type": "Book",
+          name: book.title,
+          url: absoluteUrl(`/books/${book.id}`),
+        },
+        inLanguage: "en",
+      },
+    ],
+  };
+}
+
+export function buildSubjectJsonLd(
+  schoolClass: SchoolClass,
+  subject: string,
+  subjectSlug: string,
+  books: Book[],
+) {
+  const url = absoluteUrl(`/class/${schoolClass}/${subjectSlug}`);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl("/"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: `Class ${schoolClass}`,
+            item: absoluteUrl(`/class/${schoolClass}`),
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: subject,
+            item: url,
+          },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        name: subjectDocumentTitle(schoolClass, subject),
+        description: subjectMetaDescription(
+          schoolClass,
+          subject,
+          books.length,
+        ),
+        url,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: books.length,
+          itemListElement: books.map((book, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: absoluteUrl(`/books/${book.id}`),
+            name: book.title,
+          })),
+        },
+      },
+    ],
+  };
+}
+
+export const HOW_TO_READ_STEPS = [
+  "Open the book page and scan the chapter list.",
+  "Tap Read book to load official NCERT chapter PDFs in the browser reader.",
+  "Jump between chapters from the reader controls, or return here for the outline.",
+  "Use Open on NCERT if you need the source listing on the official portal.",
+] as const;
