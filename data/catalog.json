@@ -192,7 +192,7 @@
         },
         {
           "index": 6,
-          "title": "I’m Up and Down, and",
+          "title": "I\u2019m Up and Down, and",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh105.pdf"
         },
         {
@@ -1162,12 +1162,12 @@
         },
         {
           "index": 9,
-          "title": "Introduction To",
+          "title": "Introduction To Trigonometry",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh108.pdf"
         },
         {
           "index": 10,
-          "title": "Some Applications Of",
+          "title": "Some Applications Of Trigonometry",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh109.pdf"
         },
         {
@@ -1182,7 +1182,7 @@
         },
         {
           "index": 13,
-          "title": "Surface Areas And",
+          "title": "Surface Areas And Volumes",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh112.pdf"
         },
         {
@@ -3107,7 +3107,7 @@
         },
         {
           "index": 5,
-          "title": "Complex Numbers And",
+          "title": "Complex Numbers And Quadratic Equations",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh104.pdf"
         },
         {
@@ -5262,7 +5262,7 @@
         },
         {
           "index": 3,
-          "title": "Inverse Trigonometric",
+          "title": "Inverse Trigonometric Functions",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh102.pdf"
         },
         {
@@ -5277,7 +5277,7 @@
         },
         {
           "index": 6,
-          "title": "Continuity And",
+          "title": "Continuity And Differentiability",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh105.pdf"
         },
         {
