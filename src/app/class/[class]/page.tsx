@@ -19,6 +19,7 @@ import {
   classIntro,
   classMetaDescription,
 } from "@/lib/seo-content";
+import { subjectToSlug } from "@/lib/subject-slug";
 
 type ClassPageProps = {
   params: Promise<{ class: string }>;
@@ -86,8 +87,25 @@ export default async function ClassPage({ params }: ClassPageProps) {
           <Typography variant="bodyMedium" className="max-w-3xl">
             {classIntro(schoolClass, books.length, subjects)}
           </Typography>
+          <div className="flex flex-wrap gap-2 pt-1">
+            {subjects.map((subject) => (
+              <Link
+                key={subject}
+                href={`/class/${schoolClass}/${subjectToSlug(subject)}`}
+                className="rounded-lg border border-line bg-surface px-3 py-1.5 transition hover:border-accent/35"
+              >
+                <Typography variant="small" className="text-foreground">
+                  {subject}
+                </Typography>
+              </Link>
+            ))}
+          </div>
           <Typography variant="small" className="block">
-            Subjects: {subjects.join(" · ")}
+            Also see{" "}
+            <Link href="/guides" className="underline-offset-4 hover:underline">
+              NCERT book guides
+            </Link>{" "}
+            for Class 10 lists and popular subjects.
           </Typography>
         </div>
 

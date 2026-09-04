@@ -18,6 +18,7 @@ import {
   bookIntro,
   bookMetaDescription,
   buildBookJsonLd,
+  HOW_TO_READ_STEPS,
 } from "@/lib/seo-content";
 
 type BookPageProps = {
@@ -108,19 +109,35 @@ export default async function BookPage({ params }: BookPageProps) {
         </div>
 
         <section className="space-y-3">
+          <Typography variant="h2">How to read this book online</Typography>
+          <ol className="list-decimal space-y-2 pl-5">
+            {HOW_TO_READ_STEPS.map((step) => (
+              <Typography key={step} variant="li">
+                {step}
+              </Typography>
+            ))}
+          </ol>
+        </section>
+
+        <section className="space-y-3">
           <Typography variant="h2">
             Chapters in {book.title} (Class {book.class})
           </Typography>
           <Typography variant="small" className="block">
-            Preview opens the full book with continuous page navigation across
-            these official NCERT chapter PDFs.
+            Each chapter has its own page for search, plus a link into the
+            online reader. PDFs come from the official NCERT portal.
           </Typography>
           <ul className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface">
             {book.chapters.map((chapter) => (
-              <li key={chapter.index} className="list-none px-4 py-3">
-                <Typography variant="bodyMedium" className="text-foreground">
-                  {chapter.index}. {chapter.title}
-                </Typography>
+              <li key={chapter.index} className="list-none">
+                <Link
+                  href={`/books/${book.id}/chapter/${chapter.index}`}
+                  className="flex px-4 py-3 transition hover:bg-background/50"
+                >
+                  <Typography variant="bodyMedium" className="text-foreground">
+                    {chapter.index}. {chapter.title}
+                  </Typography>
+                </Link>
               </li>
             ))}
           </ul>
