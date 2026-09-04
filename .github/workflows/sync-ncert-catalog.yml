@@ -28,12 +28,24 @@ jobs:
 
       - name: Sync catalog from NCERT
         # Reuse cached chapter titles; fetch a limited batch of missing ones.
+        # Outer retries cover NCERT resetting GitHub runner connections (ECONNRESET).
         env:
           TITLE_CONCURRENCY: "2"
           TITLE_TIMEOUT_MS: "90000"
           # Fill titles gradually each week (NCERT PDF fetches are slow/flaky).
           TITLE_MAX_FETCH: "40"
-        run: npm run sync:catalog
+        run: |
+          for attempt in 1 2 3; do
+            if npm run sync:catalog; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Catalog sync attempt ${attempt} failed; retrying in 45s..."
+              sleep 45
+            fi
+          done
+          echo "Catalog sync failed after 3 attempts"
+          exit 1
 
       - name: Create pull request if catalog changed
         uses: peter-evans/create-pull-request@v7
