@@ -7,6 +7,12 @@ export type PdfTextItem = {
   height: number;
 };
 
+type TitleLine = {
+  text: string;
+  maxHeight: number;
+  avgY: number;
+};
+
 /** Join NCERT's letter-spaced title tokens ("R"+"EAL"+" "+"N"+"UMBERS"). */
 export function joinNcertTitleTokens(tokens: string[]): string {
   let out = "";
@@ -55,11 +61,7 @@ function clusterByY(items: PdfTextItem[], tolerance = 2): PdfTextItem[][] {
   return clusters;
 }
 
-function titleFromCluster(cluster: PdfTextItem[]): {
-  text: string;
-  maxHeight: number;
-  avgY: number;
-} | null {
+function titleFromCluster(cluster: PdfTextItem[]): TitleLine | null {
   const letterItems = cluster.filter(
     (item) => item.str.trim() && !isMostlyDigits(item.str) && item.height >= 14,
   );
@@ -87,29 +89,104 @@ function titleFromCluster(cluster: PdfTextItem[]): {
   };
 }
 
+const TRAILING_INCOMPLETE =
+  /^(And|Of|The|To|A|An|In|For|Or|With|From|Into|Onto|As|By|On|At|Vs|Versus)$/i;
+
+/** True when a cached/extracted title likely lost a wrapped second line. */
+export function looksLikeTruncatedChapterTitle(title: string): boolean {
+  const trimmed = title.trim();
+  if (!trimmed) return true;
+  const words = trimmed.split(/\s+/);
+  const last = words[words.length - 1] ?? "";
+  if (TRAILING_INCOMPLETE.test(last)) return true;
+  // Common NCERT wrap: "Inverse Trigonometric" / "Exploring Algebraic"
+  if (
+    words.length >= 2 &&
+    /^(Trigonometric|Algebraic|Linear|Quadratic|Geometric|Arithmetic|Differential|Integral)$/i.test(
+      last,
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function similarHeight(a: number, b: number): boolean {
+  const larger = Math.max(a, b);
+  if (larger <= 0) return false;
+  return Math.abs(a - b) / larger <= 0.35;
+}
+
+/**
+ * NCERT titles often wrap onto a second large-font line. Merge nearby
+ * same-size lines below the best-scoring opener line.
+ */
+export function mergeWrappedTitleLines(lines: TitleLine[]): string | null {
+  if (lines.length === 0) return null;
+
+  const scored = lines
+    .map((line) => ({
+      ...line,
+      score: line.maxHeight * 10 + line.avgY / 100,
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  const seed = scored[0];
+  const used = new Set<TitleLine>([seed]);
+  const ordered: TitleLine[] = [seed];
+
+  while (ordered.length < 3) {
+    const last = ordered[ordered.length - 1];
+    const candidates = lines
+      .filter((line) => !used.has(line))
+      .filter((line) => line.avgY < last.avgY - 2)
+      .filter((line) => similarHeight(line.maxHeight, last.maxHeight))
+      .map((line) => ({ line, gap: last.avgY - line.avgY }))
+      .filter(({ gap }) => gap <= last.maxHeight * 2.4)
+      .sort((a, b) => a.gap - b.gap);
+
+    if (candidates.length === 0) break;
+
+    const { line: next, gap } = candidates[0];
+    const currentText = ordered.map((line) => line.text).join(" ");
+    const incomplete = looksLikeTruncatedChapterTitle(currentText);
+    const veryClose = gap <= last.maxHeight * 1.6;
+    // Incomplete openers always take the next same-size line; otherwise only
+    // merge one very close continuation (tight wraps without a cue word).
+    if (!incomplete && !(veryClose && ordered.length === 1)) break;
+
+    used.add(next);
+    ordered.push(next);
+  }
+
+  ordered.sort((a, b) => b.avgY - a.avgY);
+  const merged = ordered
+    .map((line) => line.text)
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!merged || merged.length < 3 || merged.length > 160) return null;
+  return merged;
+}
+
 /**
  * Pick the chapter title from first-page text items.
  * NCERT chapter openers usually put a large letter-spaced title near the top,
- * beside an oversized chapter number.
+ * beside an oversized chapter number — sometimes wrapped across two lines.
  */
 export function extractChapterTitleFromTextItems(
   items: PdfTextItem[],
 ): string | null {
   if (items.length === 0) return null;
 
-  const scored: Array<{ text: string; score: number }> = [];
+  const lines: TitleLine[] = [];
   for (const cluster of clusterByY(items)) {
     const extracted = titleFromCluster(cluster);
-    if (!extracted) continue;
-    scored.push({
-      text: extracted.text,
-      score: extracted.maxHeight * 10 + extracted.avgY / 100,
-    });
+    if (extracted) lines.push(extracted);
   }
 
-  if (scored.length === 0) return null;
-  scored.sort((a, b) => b.score - a.score);
-  const best = scored[0].text;
+  const best = mergeWrappedTitleLines(lines);
+  if (!best) return null;
   if (best === best.toUpperCase() && /[A-Z]/.test(best)) {
     return toTitleCaseWords(best);
   }
