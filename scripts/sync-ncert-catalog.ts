@@ -9,6 +9,9 @@ import {
 } from "./lib/chapter-title-cache";
 import { fetchNcertResponse, fetchNcertText } from "./lib/ncert-fetch";
 import { extractChapterTitleFromPdfBytes } from "./lib/pdf-chapter-title";
+import {
+  looksLikeTruncatedChapterTitle,
+} from "./lib/extract-chapter-title";
 
 const NCERT_ORIGIN = "https://ncert.nic.in";
 const TEXTBOOK_PAGE = `${NCERT_ORIGIN}/textbook.php?ln=en`;
@@ -231,7 +234,8 @@ async function enrichChapterTitles(
   for (const book of books) {
     for (let n = Math.max(book.start, 1); n <= book.end; n += 1) {
       const key = chapterTitleKey(book.code, n);
-      if (cache.titles[key]) continue;
+      const cached = cache.titles[key];
+      if (cached && !looksLikeTruncatedChapterTitle(cached)) continue;
       jobs.push({
         code: book.code,
         chapterNumber: n,
@@ -287,11 +291,14 @@ async function enrichChapterTitles(
     try {
       const bytes = await fetchPdfBytes(job.url);
       const title = await extractChapterTitleFromPdfBytes(bytes);
-      if (title) {
+      if (title && !looksLikeTruncatedChapterTitle(title)) {
         cache.titles[key] = title;
         filled += 1;
         sinceSave += 1;
         console.log(`  ✓ ${key} → ${title}`);
+      } else if (title) {
+        failed += 1;
+        console.warn(`  ✗ ${key} still truncated after extract: ${title}`);
       } else {
         failed += 1;
         console.warn(`  ✗ ${key} no title found`);

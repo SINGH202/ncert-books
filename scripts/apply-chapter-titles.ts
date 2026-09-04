@@ -11,6 +11,7 @@ import {
   saveChapterTitleCache,
 } from "./lib/chapter-title-cache";
 import { extractChapterTitleFromPdfBytes } from "./lib/pdf-chapter-title";
+import { looksLikeTruncatedChapterTitle } from "./lib/extract-chapter-title";
 
 const CATALOG_PATH = path.join(process.cwd(), "data", "catalog.json");
 const TITLE_CACHE_PATH = path.join(process.cwd(), "data", "chapter-titles.json");
@@ -88,7 +89,7 @@ async function main() {
       const chapterNumber = chapterNumberFromPdfUrl(chapter.pdfUrl);
       if (!code || chapterNumber == null) continue;
       const key = chapterTitleKey(code, chapterNumber);
-      if (cache.titles[key]) continue;
+      if (cache.titles[key] && !looksLikeTruncatedChapterTitle(cache.titles[key])) continue;
       jobs.push({
         code,
         chapterNumber,
@@ -130,9 +131,11 @@ async function main() {
     try {
       const bytes = await fetchPdfBytes(job.url);
       const title = await extractChapterTitleFromPdfBytes(bytes);
-      if (!title) {
+      if (!title || looksLikeTruncatedChapterTitle(title)) {
         failed += 1;
-        console.warn(`  ✗ ${key} no title found`);
+        console.warn(
+          `  ✗ ${key} ${title ? `still truncated: ${title}` : "no title found"}`,
+        );
         return;
       }
       cache.titles[key] = title;

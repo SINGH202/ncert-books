@@ -1,5 +1,5 @@
 {
-  "syncedAt": "2026-08-06T23:01:31.362Z",
+  "syncedAt": "2026-09-04T22:13:30.852Z",
   "language": "en",
   "books": [
     {
@@ -172,42 +172,42 @@
         },
         {
           "index": 2,
-          "title": "Chapter 1",
+          "title": "Orienting Yourself: The Use of",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh101.pdf"
         },
         {
           "index": 3,
-          "title": "Chapter 2",
+          "title": "Introduction to",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh102.pdf"
         },
         {
           "index": 4,
-          "title": "Chapter 3",
+          "title": "The World of Numbers",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh103.pdf"
         },
         {
           "index": 5,
-          "title": "Chapter 4",
+          "title": "Exploring Algebraic",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh104.pdf"
         },
         {
           "index": 6,
-          "title": "Chapter 5",
+          "title": "I\u2019m Up and Down, and",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh105.pdf"
         },
         {
           "index": 7,
-          "title": "Chapter 6",
+          "title": "Measuring Space:",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh106.pdf"
         },
         {
           "index": 8,
-          "title": "Chapter 7",
+          "title": "The Mathematics of Maybe:",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh107.pdf"
         },
         {
           "index": 9,
-          "title": "Chapter 8",
+          "title": "Predicting What Comes Next:",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/iemh108.pdf"
         }
       ]
@@ -1132,67 +1132,67 @@
         },
         {
           "index": 3,
-          "title": "Chapter 2",
+          "title": "Polynomials",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh102.pdf"
         },
         {
           "index": 4,
-          "title": "Chapter 3",
+          "title": "Pair Of Linear Equations",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh103.pdf"
         },
         {
           "index": 5,
-          "title": "Chapter 4",
+          "title": "Quadratic Equations",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh104.pdf"
         },
         {
           "index": 6,
-          "title": "Chapter 5",
+          "title": "Arithmetic Progressions",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh105.pdf"
         },
         {
           "index": 7,
-          "title": "Chapter 6",
+          "title": "Triangles",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh106.pdf"
         },
         {
           "index": 8,
-          "title": "Chapter 7",
+          "title": "Coordinate Geometry",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh107.pdf"
         },
         {
           "index": 9,
-          "title": "Chapter 8",
+          "title": "Introduction To Trigonometry",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh108.pdf"
         },
         {
           "index": 10,
-          "title": "Chapter 9",
+          "title": "Some Applications Of Trigonometry",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh109.pdf"
         },
         {
           "index": 11,
-          "title": "Chapter 10",
+          "title": "Circles",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh110.pdf"
         },
         {
           "index": 12,
-          "title": "Chapter 11",
+          "title": "Areas Related To Circles",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh111.pdf"
         },
         {
           "index": 13,
-          "title": "Chapter 12",
+          "title": "Surface Areas And Volumes",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh112.pdf"
         },
         {
           "index": 14,
-          "title": "Chapter 13",
+          "title": "Statistics",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh113.pdf"
         },
         {
           "index": 15,
-          "title": "Chapter 14",
+          "title": "Probability",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/jemh114.pdf"
         }
       ]
@@ -3092,72 +3092,72 @@
         },
         {
           "index": 2,
-          "title": "Chapter 1",
+          "title": "Sets",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh101.pdf"
         },
         {
           "index": 3,
-          "title": "Chapter 2",
+          "title": "Relations And Functions",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh102.pdf"
         },
         {
           "index": 4,
-          "title": "Chapter 3",
+          "title": "Trigonometric Functions",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh103.pdf"
         },
         {
           "index": 5,
-          "title": "Chapter 4",
+          "title": "Complex Numbers And Quadratic Equations",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh104.pdf"
         },
         {
           "index": 6,
-          "title": "Chapter 5",
+          "title": "Linear Inequalities",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh105.pdf"
         },
         {
           "index": 7,
-          "title": "Chapter 6",
+          "title": "Permutations And Combinations",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh106.pdf"
         },
         {
           "index": 8,
-          "title": "Chapter 7",
+          "title": "Binomial Theorem",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh107.pdf"
         },
         {
           "index": 9,
-          "title": "Chapter 8",
+          "title": "Sequences And Series",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh108.pdf"
         },
         {
           "index": 10,
-          "title": "Chapter 9",
+          "title": "Straight Lines",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh109.pdf"
         },
         {
           "index": 11,
-          "title": "Chapter 10",
+          "title": "Conic Sections",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh110.pdf"
         },
         {
           "index": 12,
-          "title": "Chapter 11",
+          "title": "Introduction To Three",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh111.pdf"
         },
         {
           "index": 13,
-          "title": "Chapter 12",
+          "title": "Limits And Derivatives",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh112.pdf"
         },
         {
           "index": 14,
-          "title": "Chapter 13",
+          "title": "Statistics",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh113.pdf"
         },
         {
           "index": 15,
-          "title": "Chapter 14",
+          "title": "Probability",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/kemh114.pdf"
         }
       ]
@@ -5257,27 +5257,27 @@
         },
         {
           "index": 2,
-          "title": "Chapter 1",
+          "title": "Relations And Functions",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh101.pdf"
         },
         {
           "index": 3,
-          "title": "Chapter 2",
+          "title": "Inverse Trigonometric Functions",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh102.pdf"
         },
         {
           "index": 4,
-          "title": "Chapter 3",
+          "title": "Matrices",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh103.pdf"
         },
         {
           "index": 5,
-          "title": "Chapter 4",
+          "title": "Determinants",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh104.pdf"
         },
         {
           "index": 6,
-          "title": "Chapter 5",
+          "title": "Continuity And Differentiability",
           "pdfUrl": "https://ncert.nic.in/textbook/pdf/lemh105.pdf"
         },
         {
