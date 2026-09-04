@@ -205,18 +205,29 @@ export function chapterDocumentTitle(
   return `${chapter.title} — ${book.title} Class ${book.class} NCERT`;
 }
 
+/**
+ * Catalog `chapter.index` is PDF order (Prelims = 1), not the printed NCERT
+ * chapter number. Prefer the title for identity; use “section” for ordinals.
+ */
+export function chapterCatalogSectionLabel(
+  book: Book,
+  chapter: Book["chapters"][number],
+): string {
+  return `Catalog section ${chapter.index} of ${book.chapters.length}`;
+}
+
 export function chapterMetaDescription(
   book: Book,
   chapter: Book["chapters"][number],
 ): string {
-  return `Read “${chapter.title}” (Chapter ${chapter.index}) from ${book.title}, Class ${book.class} NCERT ${book.subject} (English medium). Preview the official NCERT chapter PDF online — we do not host downloads.`;
+  return `Read “${chapter.title}” from ${book.title}, Class ${book.class} NCERT ${book.subject} (English medium). ${chapterCatalogSectionLabel(book, chapter)} — official NCERT PDF preview online; we do not host downloads.`;
 }
 
 export function chapterIntro(
   book: Book,
   chapter: Book["chapters"][number],
 ): string {
-  return `“${chapter.title}” is Chapter ${chapter.index} of ${book.title}, the Class ${book.class} ${book.subject} NCERT textbook (English medium). Use this page to open the chapter in our online reader or return to the full book outline. The PDF is streamed from the official NCERT textbook portal.`;
+  return `“${chapter.title}” is part of ${book.title}, the Class ${book.class} ${book.subject} NCERT textbook (English medium). ${chapterCatalogSectionLabel(book, chapter)} in this catalog (Prelims is usually first; later titles may already say “Chapter N”). Use this page to open the online reader or return to the full book outline. The PDF is streamed from the official NCERT textbook portal.`;
 }
 
 export function subjectDocumentTitle(

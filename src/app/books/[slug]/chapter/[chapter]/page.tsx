@@ -9,6 +9,7 @@ import { getBookById } from "@/lib/catalog";
 import { buildPageMetadata } from "@/lib/seo";
 import {
   buildChapterJsonLd,
+  chapterCatalogSectionLabel,
   chapterDocumentTitle,
   chapterIntro,
   chapterMetaDescription,
@@ -87,8 +88,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             </ol>
           </nav>
           <Typography variant="small" className="block">
-            Chapter {chapter.index} · {book.title} · Class {book.class}{" "}
-            {book.subject} · NCERT
+            {chapterCatalogSectionLabel(book, chapter)} · {book.title} · Class{" "}
+            {book.class} {book.subject} · NCERT
           </Typography>
           <Typography variant="h1">{chapter.title}</Typography>
           <Typography variant="bodyMedium" className="max-w-3xl">
@@ -146,16 +147,12 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           <div className="flex flex-wrap gap-3 pt-1">
             {prev ? (
               <Link href={`/books/${book.id}/chapter/${prev.index}`}>
-                <Typography variant="link">
-                  ← Chapter {prev.index}: {prev.title}
-                </Typography>
+                <Typography variant="link">← {prev.title}</Typography>
               </Link>
             ) : null}
             {next ? (
               <Link href={`/books/${book.id}/chapter/${next.index}`}>
-                <Typography variant="link">
-                  Chapter {next.index}: {next.title} →
-                </Typography>
+                <Typography variant="link">{next.title} →</Typography>
               </Link>
             ) : null}
           </div>
