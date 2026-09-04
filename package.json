@@ -11,6 +11,7 @@
     "sync:chapter-titles": "tsx scripts/apply-chapter-titles.ts",
     "sync:chapter-titles:local": "tsx scripts/apply-chapter-titles-local.ts",
     "test:chapter-titles": "tsx scripts/extract-chapter-title.test.ts",
+    "test:ncert-fetch": "tsx scripts/lib/ncert-fetch.test.ts",
     "test:pdf-search": "tsx scripts/pdf-search.test.ts"
   },
   "dependencies": {

@@ -7,6 +7,7 @@ import {
   saveChapterTitleCache,
   type ChapterTitleCache,
 } from "./lib/chapter-title-cache";
+import { fetchNcertResponse, fetchNcertText } from "./lib/ncert-fetch";
 import { extractChapterTitleFromPdfBytes } from "./lib/pdf-chapter-title";
 
 const NCERT_ORIGIN = "https://ncert.nic.in";
@@ -22,8 +23,6 @@ const CLASS_CODE_PREFIX: Record<SchoolClass, string> = {
 const OUTPUT_PATH = path.join(process.cwd(), "data", "catalog.json");
 const TITLE_CACHE_PATH = path.join(process.cwd(), "data", "chapter-titles.json");
 const LOCAL_PAGE_FALLBACK = path.join(process.cwd(), "ncert-textbook.html");
-const USER_AGENT =
-  "ncrt-books-catalog-sync/0.1 (+https://github.com/SINGH202/ncrt-books)";
 
 const FETCH_TITLE_CONCURRENCY = Number(process.env.TITLE_CONCURRENCY ?? 3);
 const FETCH_TITLE_TIMEOUT_MS = Number(process.env.TITLE_TIMEOUT_MS ?? 90_000);
@@ -121,19 +120,11 @@ function parseBooks(change1Source: string): ParsedBook[] {
 }
 
 async function fetchTextbookHtml(): Promise<string> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 60_000);
   try {
-    const response = await fetch(TEXTBOOK_PAGE, {
-      headers: { "User-Agent": USER_AGENT },
-      signal: controller.signal,
+    return await fetchNcertText(TEXTBOOK_PAGE, {
+      timeoutMs: 25_000,
+      maxAttempts: 2,
     });
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch textbook page: ${response.status} ${response.statusText}`,
-      );
-    }
-    return await response.text();
   } catch (error) {
     try {
       await access(LOCAL_PAGE_FALLBACK);
@@ -144,8 +135,6 @@ async function fetchTextbookHtml(): Promise<string> {
     } catch {
       throw error;
     }
-  } finally {
-    clearTimeout(timer);
   }
 }
 
@@ -187,20 +176,14 @@ function toBookId(book: ParsedBook): string {
 }
 
 async function fetchPdfBytes(url: string): Promise<Uint8Array> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TITLE_TIMEOUT_MS);
-  try {
-    const response = await fetch(url, {
-      headers: { "User-Agent": USER_AGENT },
-      signal: controller.signal,
-    });
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`);
-    }
-    return new Uint8Array(await response.arrayBuffer());
-  } finally {
-    clearTimeout(timer);
+  const response = await fetchNcertResponse(url, {
+    timeoutMs: FETCH_TITLE_TIMEOUT_MS,
+    maxAttempts: 4,
+  });
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}`);
   }
+  return new Uint8Array(await response.arrayBuffer());
 }
 
 async function mapPool<T, R>(
