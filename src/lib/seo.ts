@@ -6,7 +6,7 @@ export const SITE_URL =
 export const SITE_NAME = "NCERT Books";
 
 export const DEFAULT_DESCRIPTION =
-  "Browse and preview English-medium NCERT textbooks for Classes 9–12 in one place.";
+  "Browse English-medium NCERT textbooks for Classes 9–12 and read chapters online from official NCERT PDFs. No hosted downloads — preview in your browser.";
 
 /** Shared social preview image (favicon package 512px icon). */
 export const DEFAULT_OG_IMAGE = "/icon-512x512.png";

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HomeCatalogBrowser } from "@/components/home-catalog-browser";
+import { HomeCrawlIndex } from "@/components/home-crawl-index";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { SiteHeader } from "@/components/site-header";
 import { getCatalog, SCHOOL_CLASSES } from "@/lib/catalog";
@@ -13,7 +14,17 @@ export const metadata: Metadata = {
     path: "/",
   }),
   // Avoid "NCERT Books · NCERT Books" from the root title template.
-  title: { absolute: SITE_NAME },
+  title: {
+    absolute: "NCERT Books — Classes 9–12 English Medium | Read Online",
+  },
+  openGraph: {
+    ...buildPageMetadata({
+      title: SITE_NAME,
+      description: DEFAULT_DESCRIPTION,
+      path: "/",
+    }).openGraph,
+    title: "NCERT Books — Classes 9–12 English Medium | Read Online",
+  },
 };
 
 export default function HomePage() {
@@ -37,6 +48,7 @@ export default function HomePage() {
           syncedAt={catalog.syncedAt}
           classCounts={classCounts}
         />
+        <HomeCrawlIndex books={catalog.books} />
         <NcertAttribution className="border-t border-line pt-6" />
       </main>
     </div>
