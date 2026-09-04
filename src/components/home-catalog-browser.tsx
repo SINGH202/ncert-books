@@ -85,12 +85,14 @@ export function HomeCatalogBrowser({
       <section className="space-y-3">
         <Typography variant="h1">NCERT Books</Typography>
         <Typography variant="bodyMedium" className="max-w-2xl">
-          Browse English-medium NCERT textbooks for Classes 9–12 and preview
-          full books in your browser. Content is loaded from the official NCERT
+          Browse English-medium NCERT textbooks for Classes 9–12 and read
+          chapters online in your browser. Preview official NCERT chapter PDFs
+          without downloading mirrors — content is streamed from the NCERT
           textbook portal.
         </Typography>
         <Typography variant="small" className="block">
-          Catalog synced {formatSyncedAt(syncedAt)} · {books.length} books
+          Catalog synced {formatSyncedAt(syncedAt)} · {books.length} books ·
+          Classes 9, 10, 11, and 12
         </Typography>
       </section>
 
@@ -117,14 +119,20 @@ export function HomeCatalogBrowser({
             <Link
               key={value}
               href={`/class/${value}`}
+              aria-label={`Class ${value} NCERT English-medium books`}
               className="group flex min-h-[7.5rem] flex-col justify-between rounded-xl border border-line bg-surface p-4 shadow-[0_1px_0_rgba(0,0,0,0.03)] transition hover:border-accent/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.98] sm:min-h-[9rem] sm:p-6"
             >
-              <Typography
-                variant="h2"
-                className="text-lg transition group-hover:text-accent sm:text-2xl"
-              >
-                Class {value}
-              </Typography>
+              <div className="space-y-1">
+                <Typography
+                  variant="h2"
+                  className="text-lg transition group-hover:text-accent sm:text-2xl"
+                >
+                  Class {value}
+                </Typography>
+                <Typography variant="small" className="block text-muted">
+                  NCERT English-medium books
+                </Typography>
+              </div>
               <Typography variant="small" className="mt-3 block">
                 {classCounts[value]} books
               </Typography>

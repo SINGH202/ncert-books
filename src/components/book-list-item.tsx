@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Typography } from "@/components/typography";
+import { bookLinkLabel } from "@/lib/seo-content";
 import type { Book } from "@/lib/types";
 
 type BookListItemProps = {
@@ -12,6 +13,7 @@ export function BookListItem({ book, showClass = true }: BookListItemProps) {
     <li className="list-none">
       <Link
         href={`/books/${book.id}`}
+        aria-label={bookLinkLabel(book)}
         className="group flex items-start justify-between gap-3 rounded-xl border border-line bg-surface px-4 py-3.5 transition hover:border-accent/35 hover:bg-background/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.99] sm:py-3"
       >
         <div className="min-w-0">
@@ -24,9 +26,9 @@ export function BookListItem({ book, showClass = true }: BookListItemProps) {
           <Typography variant="small" className="mt-1 block">
             {showClass ? `Class ${book.class} · ` : ""}
             {book.subject}
-            {" · "}
+            {" · NCERT · "}
             {book.chapters.length}{" "}
-            {book.chapters.length === 1 ? "section" : "sections"}
+            {book.chapters.length === 1 ? "chapter" : "chapters"}
           </Typography>
         </div>
         <Typography

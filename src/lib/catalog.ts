@@ -45,3 +45,11 @@ export function parseSchoolClass(value: string): SchoolClass | null {
   if (!isSchoolClass(value)) return null;
   return Number(value) as SchoolClass;
 }
+
+/** Same class + subject first, then other books in the same class. */
+export function getRelatedBooks(book: Book, limit = 6): Book[] {
+  const sameClass = getBooksByClass(book.class).filter((item) => item.id !== book.id);
+  const sameSubject = sameClass.filter((item) => item.subject === book.subject);
+  const otherSubject = sameClass.filter((item) => item.subject !== book.subject);
+  return [...sameSubject, ...otherSubject].slice(0, limit);
+}

@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Typography } from "@/components/typography";
 import { getAllBooks, getBookById } from "@/lib/catalog";
 import { buildPageMetadata } from "@/lib/seo";
+import { bookDocumentTitle, bookMetaDescription } from "@/lib/seo-content";
 
 type ReadPageProps = {
   params: Promise<{ slug: string }>;
@@ -24,8 +25,8 @@ export async function generateMetadata({
   const book = getBookById(slug);
   if (!book) return { title: "Reader" };
   return buildPageMetadata({
-    title: `Read ${book.title}`,
-    description: `Read ${book.title} online — Class ${book.class} ${book.subject} NCERT textbook preview.`,
+    title: `Read ${bookDocumentTitle(book)}`,
+    description: bookMetaDescription(book),
     path: `/books/${book.id}/read`,
     canonicalPath: `/books/${book.id}`,
     index: false,
