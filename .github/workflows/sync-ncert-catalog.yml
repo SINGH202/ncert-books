@@ -48,6 +48,8 @@ jobs:
           exit 1
 
       - name: Create pull request if catalog changed
+        id: cpr
+        continue-on-error: true
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -66,3 +68,14 @@ jobs:
           add-paths: |
             data/catalog.json
             data/chapter-titles.json
+
+      # Branch is often pushed even when PR creation is blocked by repo settings.
+      - name: Explain missing Actions PR permission
+        if: steps.cpr.outcome == 'failure'
+        run: |
+          echo "::error::Could not open a pull request with GITHUB_TOKEN."
+          echo "Enable: Repo Settings → Actions → General → Workflow permissions"
+          echo "  ☑ Read and write permissions"
+          echo "  ☑ Allow GitHub Actions to create and approve pull requests"
+          echo "Then re-run this workflow, or open a PR from branch chore/sync-ncert-catalog."
+          exit 1
