@@ -1,24 +1,32 @@
 import type { Book, SchoolClass } from "@/lib/types";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 
+export function isGenericChapterTitle(title: string): boolean {
+  const t = title.trim();
+  if (/^prelims$/i.test(t)) return true;
+  if (/^chapter\s+\d+[a-z]?$/i.test(t)) return true;
+  if (/^unit\s+\d+[a-z]?$/i.test(t)) return true;
+  return false;
+}
+
 export function bookDocumentTitle(book: Book): string {
-  return `${book.title} — Class ${book.class} NCERT ${book.subject}`;
+  return `${book.title} — Class ${book.class} NCERT ${book.subject} | Read chapters online`;
 }
 
 export function bookMetaDescription(book: Book): string {
   const chapterLabel =
     book.chapters.length === 1 ? "chapter" : "chapters";
-  return `Read ${book.title} online — Class ${book.class} NCERT ${book.subject} (English medium). ${book.chapters.length} ${chapterLabel} from official NCERT PDFs. Preview in your browser; we do not host downloads.`;
+  return `Read ${book.title} online — Class ${book.class} NCERT ${book.subject} (English medium). ${book.chapters.length} ${chapterLabel} from official NCERT PDFs. Preview in your browser; we do not host or redistribute downloads.`;
 }
 
 export function bookIntro(book: Book): string {
   const chapterLabel =
     book.chapters.length === 1 ? "chapter" : "chapters";
-  return `${book.title} is the Class ${book.class} ${book.subject} NCERT textbook (English medium). This page lists all ${book.chapters.length} ${chapterLabel} and lets you preview the official NCERT chapter PDFs in your browser with continuous page navigation. Textbook files remain on the NCERT portal — this site does not host or redistribute downloadable copies.`;
+  return `${book.title} is the Class ${book.class} ${book.subject} NCERT textbook (English medium). This page lists all ${book.chapters.length} ${chapterLabel} with individual chapter pages for search, plus an in-browser reader that streams official NCERT chapter PDFs in order. Textbook files stay on the NCERT portal — this site does not host or redistribute downloadable copies. Prefer “read online” here, or use Open on NCERT for the source listing.`;
 }
 
 export function classDocumentTitle(schoolClass: SchoolClass): string {
-  return `Class ${schoolClass} NCERT Books (English Medium)`;
+  return `Class ${schoolClass} NCERT Books English Medium — Read Online (Full List)`;
 }
 
 export function classMetaDescription(
@@ -31,7 +39,7 @@ export function classMetaDescription(
     subjects.length > 4 ? `, and ${subjects.length - 4} more subjects` : "";
   return `Browse ${bookCount} English-medium NCERT textbooks for Class ${schoolClass}${
     subjectPreview ? ` — ${subjectPreview}${more}` : ""
-  }. Read chapters online from official NCERT PDFs.`;
+  }. Read chapters online from official NCERT PDFs; we do not host downloads.`;
 }
 
 export function classIntro(
@@ -39,7 +47,13 @@ export function classIntro(
   bookCount: number,
   subjects: string[],
 ): string {
-  return `Find English-medium NCERT textbooks for Class ${schoolClass}. This catalog currently lists ${bookCount} books across ${subjects.length} subjects. Open any book to preview official chapter PDFs in your browser, or jump to the NCERT textbook portal for the source files.`;
+  const subjectList =
+    subjects.length === 0
+      ? "core subjects"
+      : subjects.length <= 4
+        ? subjects.join(", ")
+        : `${subjects.slice(0, 4).join(", ")}, and more`;
+  return `Find English-medium NCERT textbooks for Class ${schoolClass} — currently ${bookCount} books across ${subjects.length} subjects (${subjectList}). Open a popular title below for its chapter list, or use search/filters to jump by subject. Every chapter page and the in-browser reader stream official NCERT PDFs; this site does not host downloadable textbook files.`;
 }
 
 export type FaqItem = {
@@ -65,6 +79,51 @@ export function bookFaqs(book: Book): FaqItem[] {
     {
       question: `What is covered in Class ${book.class} ${book.subject}?`,
       answer: `${book.title} includes ${book.chapters.length} chapters listed in the chapter list on this page. Titles come from the NCERT listing and chapter PDFs where available.`,
+    },
+  ];
+}
+
+export function classFaqs(
+  schoolClass: SchoolClass,
+  bookCount: number,
+  subjects: string[],
+): FaqItem[] {
+  const subjectPreview =
+    subjects.length === 0
+      ? "the listed subjects"
+      : subjects.slice(0, 5).join(", ") +
+        (subjects.length > 5 ? ", and more" : "");
+  return [
+    {
+      question: `Are these the official Class ${schoolClass} NCERT books?`,
+      answer: `Yes. This hub lists ${bookCount} English-medium NCERT textbooks for Class ${schoolClass} from the NCERT catalog, covering ${subjectPreview}. Chapter PDFs are streamed from the official NCERT textbook portal.`,
+    },
+    {
+      question: `Can I download Class ${schoolClass} NCERT PDFs here?`,
+      answer:
+        "No. We do not host or redistribute textbook files. You can read chapters online in the browser reader, or open NCERT’s portal from any book page for their official options.",
+    },
+    {
+      question: `How do I find a specific Class ${schoolClass} subject book?`,
+      answer:
+        "Use the subject chips or search on this page, open a popular book below, or visit the NCERT book guides for curated lists (for example Class 10 English First Flight & Footprints).",
+    },
+  ];
+}
+
+export function chapterFaqs(
+  book: Book,
+  chapter: Book["chapters"][number],
+): FaqItem[] {
+  return [
+    {
+      question: `Is “${chapter.title}” part of ${book.title}?`,
+      answer: `Yes. This page is for “${chapter.title}” in ${book.title}, the Class ${book.class} ${book.subject} NCERT textbook (English medium). ${chapterCatalogSectionLabel(book, chapter)}.`,
+    },
+    {
+      question: "Can I download this chapter PDF from this site?",
+      answer:
+        "No. We stream the official NCERT chapter PDF for online reading and link to NCERT’s portal. We do not host or redistribute downloadable copies.",
     },
   ];
 }
@@ -149,6 +208,7 @@ export function buildClassJsonLd(
   subjects: string[],
 ) {
   const url = absoluteUrl(`/class/${schoolClass}`);
+  const faqs = classFaqs(schoolClass, books.length, subjects);
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -190,9 +250,20 @@ export function buildClassJsonLd(
             "@type": "ListItem",
             position: index + 1,
             url: absoluteUrl(`/books/${book.id}`),
-            name: book.title,
+            name: bookLinkLabel(book),
           })),
         },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
       },
     ],
   };
@@ -202,7 +273,11 @@ export function chapterDocumentTitle(
   book: Book,
   chapter: Book["chapters"][number],
 ): string {
-  return `${chapter.title} — ${book.title} Class ${book.class} NCERT`;
+  const readCue = "Read online";
+  if (isGenericChapterTitle(chapter.title)) {
+    return `${book.title} Class ${book.class} ${chapter.title} — NCERT ${book.subject} | ${readCue}`;
+  }
+  return `${chapter.title} — ${book.title} Class ${book.class} NCERT | ${readCue}`;
 }
 
 /**
@@ -227,14 +302,14 @@ export function chapterIntro(
   book: Book,
   chapter: Book["chapters"][number],
 ): string {
-  return `“${chapter.title}” is part of ${book.title}, the Class ${book.class} ${book.subject} NCERT textbook (English medium). ${chapterCatalogSectionLabel(book, chapter)} in this catalog (Prelims is usually first; later titles may already say “Chapter N”). Use this page to open the online reader or return to the full book outline. The PDF is streamed from the official NCERT textbook portal.`;
+  return `“${chapter.title}” is part of ${book.title}, the Class ${book.class} ${book.subject} NCERT textbook (English medium). ${chapterCatalogSectionLabel(book, chapter)} in this catalog (Prelims is usually first; later titles may already say “Chapter N”). Use this page to open the online reader or return to the full book outline. The PDF is streamed from the official NCERT textbook portal — we do not host downloads.`;
 }
 
 export function subjectDocumentTitle(
   schoolClass: SchoolClass,
   subject: string,
 ): string {
-  return `Class ${schoolClass} ${subject} NCERT Books (English Medium)`;
+  return `Class ${schoolClass} ${subject} NCERT Books (English Medium) — Read Online`;
 }
 
 export function subjectMetaDescription(
@@ -244,7 +319,7 @@ export function subjectMetaDescription(
 ): string {
   return `Browse ${bookCount} English-medium NCERT ${subject} textbook${
     bookCount === 1 ? "" : "s"
-  } for Class ${schoolClass}. Read chapters online from official NCERT PDFs.`;
+  } for Class ${schoolClass}. Read chapters online from official NCERT PDFs; we do not host downloads.`;
 }
 
 export function subjectIntro(
@@ -254,7 +329,7 @@ export function subjectIntro(
 ): string {
   return `This Class ${schoolClass} ${subject} hub lists ${bookCount} English-medium NCERT textbook${
     bookCount === 1 ? "" : "s"
-  }. Open a book for its chapter list and in-browser preview of official NCERT PDFs.`;
+  }. Open a book for its chapter list and in-browser preview of official NCERT PDFs. This site does not host downloadable copies.`;
 }
 
 export function buildChapterJsonLd(
@@ -262,6 +337,7 @@ export function buildChapterJsonLd(
   chapter: Book["chapters"][number],
 ) {
   const url = absoluteUrl(`/books/${book.id}/chapter/${chapter.index}`);
+  const faqs = chapterFaqs(book, chapter);
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -305,6 +381,17 @@ export function buildChapterJsonLd(
           url: absoluteUrl(`/books/${book.id}`),
         },
         inLanguage: "en",
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
       },
     ],
   };
@@ -359,7 +446,7 @@ export function buildSubjectJsonLd(
             "@type": "ListItem",
             position: index + 1,
             url: absoluteUrl(`/books/${book.id}`),
-            name: book.title,
+            name: bookLinkLabel(book),
           })),
         },
       },
@@ -373,3 +460,87 @@ export const HOW_TO_READ_STEPS = [
   "Jump between chapters from the reader controls, or return here for the outline.",
   "Use Open on NCERT if you need the source listing on the official portal.",
 ] as const;
+
+/** High-impression book IDs to surface first on class hubs (GSC-informed). */
+const POPULAR_BOOK_IDS_BY_CLASS: Record<SchoolClass, string[]> = {
+  9: [
+    "class-9-iekv1",
+    "class-9-iest1",
+    "class-9-iesc1",
+    "class-9-ieeo1",
+    "class-9-iemh1",
+    "class-9-iebe1",
+  ],
+  10: [
+    "class-10-jeff1",
+    "class-10-jefp1",
+    "class-10-jehp1",
+    "class-10-jesc1",
+    "class-10-jess1",
+    "class-10-jewe2",
+  ],
+  11: [
+    "class-11-kegy1",
+    "class-11-kefa1",
+    "class-11-keec1",
+    "class-11-kecs1",
+    "class-11-kebt1",
+  ],
+  12: [
+    "class-12-lemh1",
+    "class-12-lemh2",
+    "class-12-lech1",
+    "class-12-lebs1",
+    "class-12-lebs2",
+  ],
+};
+
+export function getPopularBooksForClass(
+  schoolClass: SchoolClass,
+  books: Book[],
+  limit = 8,
+): Book[] {
+  const byId = new Map(books.map((book) => [book.id, book]));
+  const prioritized: Book[] = [];
+  for (const id of POPULAR_BOOK_IDS_BY_CLASS[schoolClass] ?? []) {
+    const book = byId.get(id);
+    if (book) prioritized.push(book);
+  }
+  const remaining = books
+    .filter((book) => !prioritized.some((item) => item.id === book.id))
+    .slice()
+    .sort((a, b) => a.title.localeCompare(b.title));
+  return [...prioritized, ...remaining].slice(0, limit);
+}
+
+export function guideHrefForClass(schoolClass: SchoolClass): {
+  href: string;
+  label: string;
+} | null {
+  switch (schoolClass) {
+    case 9:
+      return {
+        href: "/guides/class-9-kaushal-vikas",
+        label: "Kaushal Vikas Class 9 guide",
+      };
+    case 10:
+      return {
+        href: "/guides/class-10-ncert-books",
+        label: "Class 10 NCERT books guide",
+      };
+    case 11:
+      return {
+        href: "/guides/class-11-ncert-books",
+        label: "Class 11 NCERT books guide",
+      };
+    case 12:
+      return {
+        href: "/guides/class-12-ncert-books",
+        label: "Class 12 NCERT books guide",
+      };
+    default: {
+      const _exhaustive: never = schoolClass;
+      return _exhaustive;
+    }
+  }
+}

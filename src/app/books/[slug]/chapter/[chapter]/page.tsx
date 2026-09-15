@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { FaqSection } from "@/components/faq-section";
 import { JsonLd } from "@/components/json-ld";
 import { NcertAttribution } from "@/components/ncert-attribution";
 import { SiteHeader } from "@/components/site-header";
@@ -11,6 +12,7 @@ import {
   buildChapterJsonLd,
   chapterCatalogSectionLabel,
   chapterDocumentTitle,
+  chapterFaqs,
   chapterIntro,
   chapterMetaDescription,
 } from "@/lib/seo-content";
@@ -92,6 +94,10 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             {book.class} {book.subject} · NCERT
           </Typography>
           <Typography variant="h1">{chapter.title}</Typography>
+          <Typography variant="bodyMedium">
+            {book.title} · Class {book.class} {book.subject} · NCERT · Read
+            online
+          </Typography>
           <Typography variant="bodyMedium" className="max-w-3xl">
             {chapterIntro(book, chapter)}
           </Typography>
@@ -106,7 +112,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
               variant="button"
               className="text-[#f7f4ef] dark:text-[#0c0f0e]"
             >
-              Read this book online
+              Read this chapter online
             </Typography>
           </Link>
           <a
@@ -115,7 +121,9 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             rel="noopener noreferrer"
             className="touch-target inline-flex w-full items-center justify-center rounded-xl border border-line bg-surface px-5 py-3 sm:w-auto"
           >
-            <Typography variant="button">Open chapter on NCERT</Typography>
+            <Typography variant="button">
+              Open official chapter PDF on NCERT
+            </Typography>
           </a>
         </div>
 
@@ -157,6 +165,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             ) : null}
           </div>
         </section>
+
+        <FaqSection items={chapterFaqs(book, chapter)} />
 
         <NcertAttribution
           ncertBookUrl={book.ncertBookUrl}

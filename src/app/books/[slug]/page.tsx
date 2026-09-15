@@ -104,7 +104,9 @@ export default async function BookPage({ params }: BookPageProps) {
             rel="noopener noreferrer"
             className="touch-target inline-flex w-full items-center justify-center rounded-xl border border-line bg-surface px-5 py-3 sm:w-auto"
           >
-            <Typography variant="button">Open on NCERT</Typography>
+            <Typography variant="button">
+              Open official book on NCERT
+            </Typography>
           </a>
         </div>
 

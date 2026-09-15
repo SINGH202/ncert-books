@@ -16,11 +16,10 @@ import { looksLikeTruncatedChapterTitle } from "./lib/extract-chapter-title";
 const CATALOG_PATH = path.join(process.cwd(), "data", "catalog.json");
 const TITLE_CACHE_PATH = path.join(process.cwd(), "data", "chapter-titles.json");
 const USER_AGENT =
-  "ncrt-books-catalog-sync/0.1 (+https://github.com/SINGH202/ncrt-books)";
+  "Mozilla/5.0 (compatible; ncrt-books-catalog-sync/0.1; +https://github.com/SINGH202/ncrt-books)";
 
 const FETCH_TITLE_CONCURRENCY = Number(process.env.TITLE_CONCURRENCY ?? 3);
 const FETCH_TITLE_TIMEOUT_MS = Number(process.env.TITLE_TIMEOUT_MS ?? 90_000);
-const FETCH_TITLE_MAX = Number(process.env.TITLE_MAX_FETCH ?? 40);
 
 function chapterNumberFromPdfUrl(pdfUrl: string): number | null {
   const match = pdfUrl.match(/\/([a-z0-9]+)(\d{2})\.pdf$/i);
@@ -100,16 +99,36 @@ async function main() {
     }
   }
 
+  const codeFilter = new Set(
+    (process.env.TITLE_BOOK_CODES ?? "")
+      .split(",")
+      .map((value) => value.trim().toLowerCase())
+      .filter(Boolean),
+  );
+  const filteredJobs =
+    codeFilter.size > 0
+      ? jobs.filter((job) => codeFilter.has(job.code))
+      : jobs;
+
   const subjectPriority = (subject: string): number => {
     const s = subject.toLowerCase();
     if (s.includes("math")) return 0;
     if (s.includes("science")) return 1;
     if (s.includes("english")) return 2;
-    if (s.includes("social") || s.includes("history") || s.includes("geography") || s.includes("politic") || s.includes("economic")) return 3;
+    if (s.includes("skill")) return 2;
+    if (
+      s.includes("social") ||
+      s.includes("history") ||
+      s.includes("geography") ||
+      s.includes("politic") ||
+      s.includes("economic")
+    ) {
+      return 3;
+    }
     return 9;
   };
 
-  jobs.sort(
+  filteredJobs.sort(
     (a, b) =>
       subjectPriority(a.subject) - subjectPriority(b.subject) ||
       a.schoolClass - b.schoolClass ||
@@ -117,9 +136,14 @@ async function main() {
       a.chapterNumber - b.chapterNumber,
   );
 
-  const pending = jobs.slice(0, FETCH_TITLE_MAX);
+  const fetchMax = Number(
+    process.env.TITLE_MAX_FETCH ?? (codeFilter.size > 0 ? 200 : 40),
+  );
+  const pending = filteredJobs.slice(0, fetchMax);
   console.log(
-    `Titles cached ${Object.keys(cache.titles).length}; missing ${jobs.length}; fetching ${pending.length}`,
+    `Titles cached ${Object.keys(cache.titles).length}; missing ${jobs.length}${
+      codeFilter.size > 0 ? ` (filtered ${filteredJobs.length})` : ""
+    }; fetching ${pending.length}`,
   );
 
   let filled = 0;
